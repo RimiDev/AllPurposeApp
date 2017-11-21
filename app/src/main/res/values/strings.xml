@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DawsonElectricCurrents</string>
+    <string name="menuText">Menu</string>
+    <string name="aboutMenuText">About</string>
+    <string name="dawsonMenuText">Dawson</string>
+    <string name="settingsMenuText">Settings</string>
+    <string name="classCancelText">Class Cancellations</string>
+    <string name="findTeacherText">Find a Teacher</string>
+    <string name="addCalendarText">Add to Calendar</string>
+    <string name="notesText">Notes</string>
+    <string name="weatherText">Weather</string>
+    <string name="academicCalText">Academic Calendar</string>
+    <string name="currentTempText">Current Temp</string>
+</resources>
