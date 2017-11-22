@@ -1,19 +1,21 @@
 package cs.dawson.dawsonelectriccurrents;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-public class WeatherActivity extends MenuActivity {
+
+/**
+ * Created by maximelacasse on 2017-11-22.
+ */
+
+public class UvIndexActivity extends MenuActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather);
-
+        setContentView(R.layout.activity_uv_index);
     }
 
     @Override
@@ -27,12 +29,6 @@ public class WeatherActivity extends MenuActivity {
     public boolean onOptionsItemSelected(MenuItem item)
     {
         return super.onOptionsItemSelected(item);
-    }
-
-    public void startUvIndex(View view)
-    {
-        Intent intent = new Intent(this, UvIndexActivity.class);
-        startActivity(intent);
     }
 
 

@@ -11,4 +11,10 @@
     <string name="weatherText">Weather</string>
     <string name="academicCalText">Academic Calendar</string>
     <string name="currentTempText">Current Temp</string>
+    <string name="currentweather">Current weather</string>
+    <string name="weatherapi">Weather API</string>
+    <string name="citylabel">Please enter the city you want the weather from</string>
+    <string name="cityhint">City</string>
+    <string name="uvindexlabel">UV index</string>
+    <string name="dayforecastlabel">5 day forecast</string>
 </resources>
