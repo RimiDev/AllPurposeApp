@@ -16,7 +16,7 @@
         android:layout_weight="0.2"
         android:textAlignment="center"
         android:layout_marginBottom="15dp"
-        android:text="UV WEATHER"
+        android:text="Five day forecast"
         android:textSize="30dp"/>
 
 
