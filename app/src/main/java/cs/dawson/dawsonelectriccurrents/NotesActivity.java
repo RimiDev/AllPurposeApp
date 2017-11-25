@@ -7,12 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class NotesActivity extends MenuActivity
 {
-    private static DBHelper dbHelper;
+    private static DBHelper dbHelper ;
     private SimpleCursorAdapter sCurAdapter;
     private Cursor cursor;
 
@@ -21,8 +22,9 @@ public class NotesActivity extends MenuActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
+        dbHelper = DBHelper.getDBHelper(this);
 
-        showNotes();
+       showNotes();
     }
 
     @Override
@@ -38,12 +40,26 @@ public class NotesActivity extends MenuActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public void insertNote(View view)
+    {
+        EditText et = (EditText) findViewById(R.id.noteText);
+        String note  = et.getText().toString();
+
+        if(!note.equals("") && note.length() > 10)
+        {
+            et.setText("");
+            dbHelper.insertNote(note.substring(0, 8), note);
+        }
+        else
+            et.setText(R.string.errorNotesText);
+        refreshView();
+    }
+
     private void showNotes()
     {
         ListView lv = (ListView) findViewById(R.id.noteList);
-        dbHelper = DBHelper.getDBHelper(this);
         cursor = dbHelper.getNotes();
-        String[] from = { DBHelper.COL_NOTE };
+        String[] from = { DBHelper.COL_SHORTNOTE };
         int[] to = { R.id.noteView };
 
         sCurAdapter = new SimpleCursorAdapter(this, R.layout.note_row, cursor, from, to, 0);
@@ -56,11 +72,18 @@ public class NotesActivity extends MenuActivity
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
             Cursor tempCursor = (Cursor) parent.getItemAtPosition(position);
-            String note = tempCursor.getString(0);
+            String note = tempCursor.getString(2);
 
             Intent intent = new Intent(NotesActivity.this, ItemNoteActivity.class);
             intent.putExtra("note", note);
             startActivity(intent);
         }
     };
+
+    public void refreshView()
+    {
+        cursor = dbHelper.getNotes();
+        sCurAdapter.changeCursor(cursor);
+        sCurAdapter.notifyDataSetChanged();
+    }
 }

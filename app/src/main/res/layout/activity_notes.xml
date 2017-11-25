@@ -8,18 +8,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/noteText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/enterNoteText" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.15"
+        android:layout_height="wrap_content"
         android:text="@string/addNoteText"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:onClick="insertNote"/>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.85"
+        android:layout_height="wrap_content"
         android:id="@+id/noteList">
     </ListView>
 </LinearLayout>

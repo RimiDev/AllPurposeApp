@@ -16,9 +16,10 @@ public class DBHelper extends SQLiteOpenHelper
 {
     private static final String DB_NAME = "notes.db";
     private static final int DB_VERSION = 1;
-    private static final String TABLE_NOTES = "notes";
+    public static final String TABLE_NOTES = "notes";
     public static final String COL_ID = "_id";
-    public static final String COL_NOTE = "note";
+    public static final String COL_SHORTNOTE = "shortNote";
+    public static final String COL_FULLNOTE = "fullNnote";
     private static DBHelper dbHelper = null;
 
     public DBHelper(Context context)
@@ -55,7 +56,8 @@ public class DBHelper extends SQLiteOpenHelper
         {
             String createNoteDB = "create table " + TABLE_NOTES + "(" +
                     COL_ID + " integer primary key autoincrement, " +
-                    COL_NOTE + " text not null);";
+                    COL_SHORTNOTE + " text not null, " +
+                    COL_FULLNOTE + " text not null);";
             db.execSQL(createNoteDB);
         }
         catch(SQLException ex)
@@ -77,15 +79,11 @@ public class DBHelper extends SQLiteOpenHelper
         return getReadableDatabase().query(TABLE_NOTES, null, null, null, null, null, null);
     }
 
-    public Cursor getNote(int id)
-    {
-        return getReadableDatabase().query(TABLE_NOTES, null, COL_ID + "=?", new String[] { String.valueOf(id) }, null, null, null);
-    }
-
-    public long insertNote(String note)
+    public long insertNote(String sNote, String fNote)
     {
         ContentValues cv = new ContentValues();
-        cv.put(COL_NOTE, note);
+        cv.put(COL_SHORTNOTE, sNote);
+        cv.put(COL_FULLNOTE, fNote);
 
         long code = getWritableDatabase().insert(TABLE_NOTES, null, cv);
         return code;
