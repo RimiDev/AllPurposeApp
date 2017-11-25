@@ -11,11 +11,15 @@ import android.view.MenuItem;
 
 public class UvIndexActivity extends MenuActivity {
 
+    String cityinput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uv_index);
+
+        cityinput = getIntent().getExtras().getString("city");
+
     }
 
     @Override

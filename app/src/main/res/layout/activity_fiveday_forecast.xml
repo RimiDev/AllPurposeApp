@@ -19,8 +19,14 @@
         android:text="Five day forecast"
         android:textSize="30dp"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnHit"
+        android:text="Click me"/>
 
-
-
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/JSONresponse"/>
 </LinearLayout>
