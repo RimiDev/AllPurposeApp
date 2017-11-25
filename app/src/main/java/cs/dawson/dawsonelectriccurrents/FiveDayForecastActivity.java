@@ -32,9 +32,9 @@ import java.net.URL;
 
 public class FiveDayForecastActivity extends MenuActivity {
 
-    String WEATHER_API_KEY = "..";
     TextView JSONresponse;
-    private String api = "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=d00d22f8b4783f4e387c4cbad258470f";
+    private String apiKey = "&APPID=5b62062bcde765f123614e4c944f8027";
+    private String city = "Paris";
 
 
     @Override
@@ -72,6 +72,8 @@ public class FiveDayForecastActivity extends MenuActivity {
 
     public class MyAsync extends AsyncTask<Void, Void, String>{
 
+        String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey;
+
         @Override
         protected void onPreExecute() {
             logIt("onPreExecute");
@@ -82,7 +84,7 @@ public class FiveDayForecastActivity extends MenuActivity {
         protected String doInBackground(Void... params) {
             String result = null;
             try {
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=d00d22f8b4783f4e387c4cbad258470f");
+                URL url = new URL(weatherURL);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -100,21 +102,15 @@ public class FiveDayForecastActivity extends MenuActivity {
             try {
                 logIt("ResultInOnPostExecute: "+ s);
                 JSONObject jsonObject = new JSONObject(s);
-//                JSONArray jsonArray = jsonObject.getJSONArray("contacts");
-//                for (int i = 0; i < jsonArray.length(); i++) {
-//                    String id = jsonArray.getJSONObject(i).getString("id");
-//                    String name = jsonArray.getJSONObject(i).getString("name");
-//                    String email = jsonArray.getJSONObject(i).getString("email");
-//                    String mobile = jsonArray.getJSONObject(i).getJSONObject("phone").getString("mobile");
+                //Grabbing the first item to then grab the weather.
+                JSONArray jsonItems = jsonObject.getJSONArray("weather");
 
-//                    JSONresponse.append(id + "\n");
-//                    JSONresponse.append(name + "\n");
-//                    JSONresponse.append(email + "\n");
-//                    JSONresponse.append(mobile + "\n\n");
+                String id = jsonItems.getJSONObject(0).getString("id");
+                String main = jsonItems.getJSONObject(0).getString("main");
 
-                   
-
-                //}
+                logIt("jsonItems: " + jsonItems);
+                logIt("id: " + id);
+                logIt("main: " + main);
 
             } catch (JSONException e) {
                 e.printStackTrace();
