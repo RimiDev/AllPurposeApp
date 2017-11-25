@@ -1,16 +1,27 @@
 package cs.dawson.dawsonelectriccurrents;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-public class ItemNoteActivity extends MenuActivity {
+public class ItemNoteActivity extends MenuActivity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_note);
+
+        String note = getIntent().getExtras().getString("note");
+        displayNote(note);
+    }
+
+    private void displayNote(String note)
+    {
+        TextView tv = (TextView) findViewById(R.id.note);
+        tv.setText(note);
     }
 
     @Override

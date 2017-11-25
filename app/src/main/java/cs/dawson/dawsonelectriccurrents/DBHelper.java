@@ -17,8 +17,9 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String DB_NAME = "notes.db";
     private static final int DB_VERSION = 1;
     private static final String TABLE_NOTES = "notes";
-    private static final String COL_ID = "_id";
-    private static final String COL_NOTE = "note";
+    public static final String COL_ID = "_id";
+    public static final String COL_NOTE = "note";
+    private static DBHelper dbHelper = null;
 
     public DBHelper(Context context)
     {
@@ -64,6 +65,23 @@ public class DBHelper extends SQLiteOpenHelper
         }
     }
 
+    public static DBHelper getDBHelper(Context context)
+    {
+        if (dbHelper == null)
+            dbHelper = new DBHelper(context.getApplicationContext());
+        return dbHelper;
+    }
+
+    public Cursor getNotes()
+    {
+        return getReadableDatabase().query(TABLE_NOTES, null, null, null, null, null, null);
+    }
+
+    public Cursor getNote(int id)
+    {
+        return getReadableDatabase().query(TABLE_NOTES, null, COL_ID + "=?", new String[] { String.valueOf(id) }, null, null, null);
+    }
+
     public long insertNote(String note)
     {
         ContentValues cv = new ContentValues();
@@ -71,10 +89,5 @@ public class DBHelper extends SQLiteOpenHelper
 
         long code = getWritableDatabase().insert(TABLE_NOTES, null, cv);
         return code;
-    }
-
-    public Cursor getNotes()
-    {
-        return getReadableDatabase().query(TABLE_NOTES, null, null, null, null, null, null);
     }
 }

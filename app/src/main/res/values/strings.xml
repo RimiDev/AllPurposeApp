@@ -8,6 +8,7 @@
     <string name="findTeacherText">Find a Teacher</string>
     <string name="addCalendarText">Add to Calendar</string>
     <string name="notesText">Notes</string>
+    <string name="addNoteText">Add Note</string>
     <string name="weatherText">Weather</string>
     <string name="academicCalText">Academic Calendar</string>
     <string name="currentTempText">Current Temp</string>
