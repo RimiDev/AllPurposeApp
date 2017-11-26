@@ -47,8 +47,6 @@ public class WeatherActivity extends MenuActivity {
 
     public void startFiveDayForecast(View view)
     {
-        logIt("startingnewact: "+ cityinput.getText().toString());
-
         Intent intent = new Intent(this, FiveDayForecastActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("city", cityinput.getText().toString());
