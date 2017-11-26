@@ -1,5 +1,5 @@
 package cs.dawson.dawsonelectriccurrents;
-g
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,14 +27,13 @@ import java.net.URL;
  * Created by maximelacasse on 2017-11-22.
  */
 
-
 public class FiveDayForecastActivity extends MenuActivity {
 
     TextView JSONresponse;
     //The API key that was genereated for my account on https://openweathermap.org/
-    private String apiKey = "&APPID=5b62062bcde765f123614e4c944f8027";
+    public String apiKey = "&APPID=5b62062bcde765f123614e4c944f8027";
     //The city that the user wants to check the weather for.
-    private String city;
+    public String city = "Paris";
 
 
 
@@ -44,9 +43,12 @@ public class FiveDayForecastActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fiveday_forecast);
 
-        city = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        Bundle b = getIntent().getExtras();
+        city = b.getString("city");
 
-        logIt("I am here" + city);
+        //city = getIntent().getExtras().getString("city");
+
+        logIt("I am here: " + city);
 
         Button btnHit = (Button) findViewById(R.id.btnHit);
         JSONresponse = (TextView) findViewById(R.id.JSONresponse);
@@ -54,8 +56,8 @@ public class FiveDayForecastActivity extends MenuActivity {
         btnHit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weatherRequest request = new weatherRequest();
-                weatherRequest.execute();
+                weatherRequest request = new weatherRequest(city,apiKey);
+                request.execute(city, apiKey);
             }
         });
 
@@ -77,11 +79,22 @@ public class FiveDayForecastActivity extends MenuActivity {
      * to be able to do an HttpURLConnection to the weather site, to gather information
      * about the weather that the user wants.
      */
-    public class weatherRequest extends AsyncTask<Void, Void, String>{
+    public class weatherRequest extends AsyncTask<String, Void, String>{
+        //Re-creating variables city and apiKey, to be used in this subclass.
+        private String city;
+        private String apiKey;
 
-        //The weather URL which includes the user the city inputted in the previous activity
-        //as well as the API key that was generated for me.
-        String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey;
+        /**
+         * A constructor that takes in the city that the user inputted in the previous activity
+         * as well as the all mighty API key which allows access to the JSON files on https://openweathermap.org/
+         * @param city
+         * @param apiKey
+         */
+        public weatherRequest(String city, String apiKey){
+            this.city = city;
+            this.apiKey = apiKey;
+            logIt("City in weatherRequest: " + this.city.toString());
+        }
 
         /**
          * This method is called whenever the subclass weatherRequest gets called by the method .execute()
@@ -89,7 +102,7 @@ public class FiveDayForecastActivity extends MenuActivity {
          */
         @Override
         protected void onPreExecute() {
-            logIt("onPreExecute");
+            logIt("onPreExecute: " + this.city);
             super.onPreExecute();
         }
 
@@ -105,7 +118,17 @@ public class FiveDayForecastActivity extends MenuActivity {
          * @return
          */
         @Override
-        protected String doInBackground(Void... params) {
+        protected String doInBackground(String... params) {
+            //The city and the apiKey from the parent class is passed through a String[] params
+            //And they are set here. Without this, strangely weatherURLs' city/apikey will be null.
+            String city = params[0];
+            String apiKey = params[1];
+            //The weather URL which includes the user the city inputted in the previous activity
+            //as well as the API key that was generated for me.
+            String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + this.city + this.apiKey;
+            logIt("city in background: " + city);
+            logIt("apiKey in background: " + apiKey);
+            logIt("background: "+ weatherURL);
             //The results will be stored in this variable.
             String result = null;
             try {

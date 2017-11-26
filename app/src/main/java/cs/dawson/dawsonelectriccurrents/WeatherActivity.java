@@ -39,7 +39,7 @@ public class WeatherActivity extends MenuActivity {
     {
 
         Intent intent = new Intent(this, UvIndexActivity.class);
-        logIt("city: " + cityinput.getText());
+        //logIt("city: " + cityinput.getText());
         intent.putExtra("city", cityinput.getText());
         startActivity(intent);
     }
@@ -47,8 +47,14 @@ public class WeatherActivity extends MenuActivity {
 
     public void startFiveDayForecast(View view)
     {
+        logIt("startingnewact: "+ cityinput.getText().toString());
+
         Intent intent = new Intent(this, FiveDayForecastActivity.class);
-        intent.putExtra("city", cityinput.getText());
+        Bundle bundle = new Bundle();
+        bundle.putString("city", cityinput.getText().toString());
+        intent.putExtras(bundle);
+        logIt("City in weather: " + cityinput.getText().toString());
+        logIt("City in weather2: " + intent.getExtras().getString("city"));
         startActivity(intent);
     }
 
