@@ -19,14 +19,108 @@
         android:text="Five day forecast"
         android:textSize="30dp"/>
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnHit"
-        android:text="Click me"/>
+        android:id="@+id/cityname"/>
+
+<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/JSONresponse"/>
+        android:id="@+id/weatherTypeDay1"
+        android:layout_weight="0.1"
+        android:layout_marginLeft="20dp"
+        android:text="Hey"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherTypeDay2"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.1"
+        android:text="Hey"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherTypeDay3"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.1"
+        android:text="Hey"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherTypeDay4"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.1"
+        android:text="Hey"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherTypeDay5"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.1"
+        android:text="Hey"/>
+
+
 </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weatherTempDay1"
+            android:layout_weight="0.1"
+            android:layout_marginLeft="20dp"
+            android:text="Hey"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weatherTempDay2"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.1"
+            android:text="Hey"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weatherTempDay3"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.1"
+            android:text="Hey"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weatherTempDay4"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.1"
+            android:text="Hey"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weatherTempDay5"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.1"
+            android:text="Hey"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+

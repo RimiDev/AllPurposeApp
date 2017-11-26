@@ -1,25 +1,15 @@
 package cs.dawson.dawsonelectriccurrents;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 import cs.dawson.dawsonelectriccurrents.weatherrequest.WeatherRequest;
@@ -38,6 +28,20 @@ public class FiveDayForecastActivity extends MenuActivity {
     //The city that the user wants to check the weather for.
     public String city = "Paris";
 
+    //Weather types for 5 day range.
+    TextView weatherTypeDay1;
+    TextView weatherTypeDay2;
+    TextView weatherTypeDay3;
+    TextView weatherTypeDay4;
+    TextView weatherTypeDay5;
+
+    //Weather temperature for 5 day range.
+    TextView weatherTempDay1;
+    TextView weatherTempDay2;
+    TextView weatherTempDay3;
+    TextView weatherTempDay4;
+    TextView weatherTempDay5;
+
 
 
 
@@ -49,13 +53,10 @@ public class FiveDayForecastActivity extends MenuActivity {
         Bundle b = getIntent().getExtras();
         city = b.getString("city");
 
-        logIt("I am here: " + city);
-
-        Button btnHit = (Button) findViewById(R.id.btnHit);
-        JSONresponse = (TextView) findViewById(R.id.JSONresponse);
+        setUpWeatherDisplays();
 
         //Calling the WeatherRequest class to demand a request with the weather forecast with user input.
-            WeatherRequest request = new WeatherRequest(city, apiKey);
+        WeatherRequest request = new WeatherRequest(city, apiKey);
         try {
             parseJSON(request.execute(city, apiKey).get());
         } catch (InterruptedException e) {
@@ -106,6 +107,24 @@ public class FiveDayForecastActivity extends MenuActivity {
                 logIt("main: " + main);
 
 
+                weatherTempDay1.setText(main);
+                weatherTypeDay1.setText(id);
+
+                weatherTempDay2.setText(main);
+                weatherTypeDay2.setText(id);
+
+                weatherTempDay3.setText(main);
+                weatherTypeDay3.setText(id);
+
+                weatherTempDay4.setText(main);
+                weatherTypeDay4.setText(id);
+
+                weatherTempDay5.setText(main);
+                weatherTypeDay5.setText(id);
+
+
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -114,6 +133,32 @@ public class FiveDayForecastActivity extends MenuActivity {
         }
 
     }
+
+    /**
+     * This method is used to set up all the resources for the UI associated with displaying the
+     * results from the JSON file that we grabbed from https://openweathermap.org/.
+     * Displaying in a 5 day forecast fashion.
+     */
+    public void setUpWeatherDisplays(){
+
+        //Finding resources for weather type.
+        weatherTypeDay1 = (TextView) findViewById(R.id.weatherTypeDay1);
+        weatherTypeDay2 = (TextView) findViewById(R.id.weatherTypeDay2);
+        weatherTypeDay3 = (TextView) findViewById(R.id.weatherTypeDay3);
+        weatherTypeDay4 = (TextView) findViewById(R.id.weatherTypeDay4);
+        weatherTypeDay5 = (TextView) findViewById(R.id.weatherTypeDay5);
+
+        //Finding resources for weather temperature.
+        weatherTempDay1 = (TextView) findViewById(R.id.weatherTempDay1);
+        weatherTempDay2 = (TextView) findViewById(R.id.weatherTempDay2);
+        weatherTempDay3 = (TextView) findViewById(R.id.weatherTempDay3);
+        weatherTempDay4 = (TextView) findViewById(R.id.weatherTempDay4);
+        weatherTempDay5 = (TextView) findViewById(R.id.weatherTempDay5);
+
+
+
+    }
+
 
 
 
