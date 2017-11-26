@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import cs.dawson.dawsonelectriccurrents.weatherrequest.WeatherRequest;
 
@@ -54,12 +55,13 @@ public class FiveDayForecastActivity extends MenuActivity {
         JSONresponse = (TextView) findViewById(R.id.JSONresponse);
 
         //Calling the WeatherRequest class to demand a request with the weather forecast with user input.
-        //Check if city is null, if so, do not execute request (prevents crash).
-        if (city != null) {
             WeatherRequest request = new WeatherRequest(city, apiKey);
-            request.execute(city, apiKey);
-        } else {
-            JSONresponse.setText("INVALID");
+        try {
+            parseJSON(request.execute(city, apiKey).get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
 
     } // end of onCreate
@@ -74,6 +76,47 @@ public class FiveDayForecastActivity extends MenuActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * onPostExecute in the WeatherRequest class passed us the information that
+     * doInBackground() passed him (The JSON weather information that we need to parse)
+     * we now have the JSON information in a string, we create a JSONObject with that string
+     * to be able to manipulate and go around in the JSON file, using JSONArrays and JSONObjects.
+     * @param jsonForecastResult Whatever doInBackground returns is this parameter, in this case, JSON info as a String.
+     */
+    public void parseJSON(String jsonForecastResult){
+        //Checks if s is null, if it is, then the user typed a bad city name and we did not
+        //get any results from the website, which results in a crash when trying to use
+        //bufferreader on a bad HttpURLConnection. This will redirect to a error page for user.
+        if (jsonForecastResult != null) {
+
+            try {
+                logIt("ResultInOnPostExecute: " + jsonForecastResult);
+                //Create a JSONObject with the String JSON results from 'doInBackground' method.
+                JSONObject jsonObject = new JSONObject(jsonForecastResult);
+                //Grabbing the first item to then grab the weather.
+                JSONArray jsonItems = jsonObject.getJSONArray("weather");
+
+                //Grabbing all the individual items associated to the weather.
+                String id = jsonItems.getJSONObject(0).getString("id");
+                String main = jsonItems.getJSONObject(0).getString("main");
+
+                logIt("jsonItems: " + jsonItems);
+                logIt("id: " + id);
+                logIt("main: " + main);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            //Alert user that input is invalid and that no response is given to us.
+        }
+
+    }
+
+
+
 
 
     /**

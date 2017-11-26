@@ -15,16 +15,20 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by maximelacasse on 2017-11-26.
- */
-
     /**
      * This is a subclass of FiveDayForecastActivity, for the sole purpose to do an AsyncTask
      * to be able to do an HttpURLConnection to the weather site, to gather information
      * about the weather that the user wants.
+     * The three generic types '<String, Void, String[]>' are the types that are passed from method to method.
+     * 1-String: When using .execute on this class, you can pass it a string for doInBackground().
+     * 2-Void: Whatever onPreExecute sends to doInBackground.
+     * 3-String: Whatever onPostExecute will return. (Using weatherRequest.execute().get()).
+     *
+     * @author Created by Maxime Lacasse on 2017-11-26.
+     * @version 1.0
+     *
      */
-    public class WeatherRequest extends AsyncTask<String, Void, String> {
+    public class WeatherRequest extends AsyncTask<String, String, String> {
         //Re-creating variables city and apiKey, to be used in this subclass.
         private String city;
         private String apiKey;
@@ -98,42 +102,15 @@ import java.net.URL;
 
         /**
          * This method is called whenever doInBackground is finished.
-         * Since in this stage, we have the JSON information in a string, we create a JSONObject
-         * to be able to manipulate and go around in the JSON file, using JSONArrays and JSONObjects.
-         * @param s Whatever doInBackground returns is this parameter, in this case, JSON info in as a String.
+         * Simply calls the super.onPostExecute with the results from doInBackground.
+         * The JSON information from the website is passed back to the weather activity
+         * to do it's parsing within it's own class, for easier setting of the UI.
+         * Network background threading is complete.
+         * Sockets closed.
          */
         @Override
         protected void onPostExecute(String s) {
-
-            //Checks if s is null, if it is, then the user typed a bad city name and we did not
-            //get any results from the website, which results in a crash when trying to use
-            //bufferreader on a bad HttpURLConnection. This will redirect to a error page for user.
-            if (s != null) {
-
-                //Calls the super.
-                super.onPostExecute(s);
-                try {
-                    logIt("ResultInOnPostExecute: " + s);
-                    //Create a JSONObject with the String JSON results from 'doInBackground' method.
-                    JSONObject jsonObject = new JSONObject(s);
-                    //Grabbing the first item to then grab the weather.
-                    JSONArray jsonItems = jsonObject.getJSONArray("weather");
-
-                    //Grabbing all the individual items associated to the weather.
-                    String id = jsonItems.getJSONObject(0).getString("id");
-                    String main = jsonItems.getJSONObject(0).getString("main");
-
-                    logIt("jsonItems: " + jsonItems);
-                    logIt("id: " + id);
-                    logIt("main: " + main);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                //Alert user that input is invalid and that no response is given to us.
-            }
-
+            super.onPostExecute(s);
         }
 
     /**
