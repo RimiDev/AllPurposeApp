@@ -1,4 +1,4 @@
-package cs.dawson.dawsonelectriccurrents;
+package cs.dawson.dawsonelectriccurrents.Notes;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,12 +11,32 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import cs.dawson.dawsonelectriccurrents.Database.DBHelper;
+import cs.dawson.dawsonelectriccurrents.MenuActivity;
+import cs.dawson.dawsonelectriccurrents.R;
+
+/**
+ * Notes activity which will display a list of notes from the database which are populated
+ * by the user when they enter any information into the text field and press the "Add Note" button.
+ *
+ * @author Alessandro Ciotola
+ * @author Hannah Ly
+ * @author Kevin Bui
+ * @author Maxime Lacasse
+ * @version 2017/11/25
+ *
+ */
 public class NotesActivity extends MenuActivity
 {
     private static DBHelper dbHelper ;
     private SimpleCursorAdapter sCurAdapter;
     private Cursor cursor;
 
+    /**
+     * Method which is called when the activity is first opened.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -27,6 +47,13 @@ public class NotesActivity extends MenuActivity
        showNotes();
     }
 
+    /**
+     * Method which calls the super method on onCreateOptionsMenu to display the menu. Required
+     * so code to show the menu will not have to be repeated for each activity.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -34,12 +61,25 @@ public class NotesActivity extends MenuActivity
         return true;
     }
 
+    /**
+     * Method which calls the super method on onOptionsItemSelected to add functionality to the menu
+     * buttons without having to repeat the code for each activity.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Method which is called when the add button is pressed. If information is added to the
+     * text field, then add that data to the database and refresh the view.
+     *
+     * @param view
+     */
     public void insertNote(View view)
     {
         EditText et = (EditText) findViewById(R.id.noteText);
@@ -55,6 +95,10 @@ public class NotesActivity extends MenuActivity
         refreshView();
     }
 
+    /**
+     * After the Activity has begun, display the list of notes from the database.
+     *
+     */
     private void showNotes()
     {
         ListView lv = (ListView) findViewById(R.id.noteList);
@@ -67,6 +111,11 @@ public class NotesActivity extends MenuActivity
         lv.setOnItemClickListener(displayNote);
     }
 
+    /**
+     * Event Listener which is called when one of the items in the List view has been pressed.
+     * Will start the ItemNoteActivity and pass the note information to the intent.
+     *
+     */
     public AdapterView.OnItemClickListener displayNote = new AdapterView.OnItemClickListener()
     {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -80,6 +129,11 @@ public class NotesActivity extends MenuActivity
         }
     };
 
+    /**
+     * Method which will reset the view in order to display all the notes when a new note is
+     * added.
+     *
+     */
     public void refreshView()
     {
         cursor = dbHelper.getNotes();

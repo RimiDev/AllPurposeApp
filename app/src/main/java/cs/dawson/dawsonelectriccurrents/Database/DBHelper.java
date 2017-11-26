@@ -1,4 +1,4 @@
-package cs.dawson.dawsonelectriccurrents;
+package cs.dawson.dawsonelectriccurrents.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,9 +9,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
+ * DBHelper class which is responsible for creating the database and tables required for
+ * the Notes section of the application. Contains methods required to get a specific note from
+ * the database or insert a new note into the database.
+ *
  * @author Alessandro Ciotola
+ * @author Hannah Ly
+ * @author Kevin Bui
+ * @author Maxime Lacasse
+ * @version 2017/11/25
+ *
  */
-
 public class DBHelper extends SQLiteOpenHelper
 {
     private static final String DB_NAME = "notes.db";
@@ -22,17 +30,35 @@ public class DBHelper extends SQLiteOpenHelper
     public static final String COL_FULLNOTE = "fullNnote";
     private static DBHelper dbHelper = null;
 
+    /**
+     * Constructor that calls the super constructor which creates a helper
+     * object to create, open, and/or manage a database.
+     *
+     * @param context
+     */
     public DBHelper(Context context)
     {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
+    /**
+     * Method which is called when the database is made for the first time.
+     *
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db)
     {
         createDatabase(db);
     }
 
+    /**
+     * Method which is called when the database is needs to be upgraded.
+     *
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
@@ -50,6 +76,11 @@ public class DBHelper extends SQLiteOpenHelper
         createDatabase(db);
     }
 
+    /**
+     * Method which creates the table required for keeping notes.
+     *
+     * @param db
+     */
     private void createDatabase(SQLiteDatabase db)
     {
         try
@@ -67,6 +98,12 @@ public class DBHelper extends SQLiteOpenHelper
         }
     }
 
+    /**
+     * Method which ensures that only one database helper exists across the app's lifecycle
+     *
+     * @param context
+     * @return
+     */
     public static DBHelper getDBHelper(Context context)
     {
         if (dbHelper == null)
@@ -74,11 +111,23 @@ public class DBHelper extends SQLiteOpenHelper
         return dbHelper;
     }
 
+    /**
+     * Method which will get all of the notes from the database.
+     *
+     * @return
+     */
     public Cursor getNotes()
     {
         return getReadableDatabase().query(TABLE_NOTES, null, null, null, null, null, null);
     }
 
+    /**
+     * Method which will insert a new note into the database.
+     *
+     * @param sNote
+     * @param fNote
+     * @return
+     */
     public long insertNote(String sNote, String fNote)
     {
         ContentValues cv = new ContentValues();
