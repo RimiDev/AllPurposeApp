@@ -74,7 +74,7 @@ import java.net.URL;
             String apiKey = params[1];
             //The weather URL which includes the user the city inputted in the previous activity
             //as well as the API key that was generated for me.
-            String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + this.city + this.apiKey;
+            String weatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + this.city + this.apiKey;
             logIt("city in background: " + city);
             logIt("apiKey in background: " + apiKey);
             logIt("background: "+ weatherURL);

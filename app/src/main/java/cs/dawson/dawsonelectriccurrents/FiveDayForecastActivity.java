@@ -58,7 +58,7 @@ public class FiveDayForecastActivity extends MenuActivity {
         //Calling the WeatherRequest class to demand a request with the weather forecast with user input.
         WeatherRequest request = new WeatherRequest(city, apiKey);
         try {
-            parseJSON(request.execute(city, apiKey).get());
+            parseJSONandDisplay(request.execute(city, apiKey).get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -83,9 +83,10 @@ public class FiveDayForecastActivity extends MenuActivity {
      * doInBackground() passed him (The JSON weather information that we need to parse)
      * we now have the JSON information in a string, we create a JSONObject with that string
      * to be able to manipulate and go around in the JSON file, using JSONArrays and JSONObjects.
+     * Whilst parsing the JSONObject, we will be setting the textfields to display the results to the user.
      * @param jsonForecastResult Whatever doInBackground returns is this parameter, in this case, JSON info as a String.
      */
-    public void parseJSON(String jsonForecastResult){
+    public void parseJSONandDisplay(String jsonForecastResult){
         //Checks if s is null, if it is, then the user typed a bad city name and we did not
         //get any results from the website, which results in a crash when trying to use
         //bufferreader on a bad HttpURLConnection. This will redirect to a error page for user.
@@ -96,31 +97,38 @@ public class FiveDayForecastActivity extends MenuActivity {
                 //Create a JSONObject with the String JSON results from 'doInBackground' method.
                 JSONObject jsonObject = new JSONObject(jsonForecastResult);
                 //Grabbing the first item to then grab the weather.
-                JSONArray jsonItems = jsonObject.getJSONArray("weather");
+                JSONArray jsonItems = jsonObject.getJSONArray("list");
 
-                //Grabbing all the individual items associated to the weather.
-                String id = jsonItems.getJSONObject(0).getString("id");
-                String main = jsonItems.getJSONObject(0).getString("main");
-
+                logIt("jsonObject: " + jsonObject);
                 logIt("jsonItems: " + jsonItems);
-                logIt("id: " + id);
-                logIt("main: " + main);
+
+                for (int i = 0; i < 5; i++) {
+                    //Grabbing all the individual items associated to the weather.
+                    String temp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp");
+                    String main = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main");
+
+                    logIt("temp: " + temp);
+                    logIt("main: " + main);
+                }
+
+                //Displaying the results.
 
 
-                weatherTempDay1.setText(main);
-                weatherTypeDay1.setText(id);
 
-                weatherTempDay2.setText(main);
-                weatherTypeDay2.setText(id);
-
-                weatherTempDay3.setText(main);
-                weatherTypeDay3.setText(id);
-
-                weatherTempDay4.setText(main);
-                weatherTypeDay4.setText(id);
-
-                weatherTempDay5.setText(main);
-                weatherTypeDay5.setText(id);
+//                weatherTempDay1.setText(main);
+//                weatherTypeDay1.setText(id);
+//
+//                weatherTempDay2.setText(main);
+//                weatherTypeDay2.setText(id);
+//
+//                weatherTempDay3.setText(main);
+//                weatherTypeDay3.setText(id);
+//
+//                weatherTempDay4.setText(main);
+//                weatherTypeDay4.setText(id);
+//
+//                weatherTempDay5.setText(main);
+//                weatherTypeDay5.setText(id);
 
 
 
