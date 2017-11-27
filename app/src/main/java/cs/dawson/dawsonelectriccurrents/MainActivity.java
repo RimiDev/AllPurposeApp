@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends MenuActivity
 {
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private final static String TAG = MainActivity.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -63,5 +68,13 @@ public class MainActivity extends MenuActivity
     public boolean onOptionsItemSelected(MenuItem item)
     {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        if (mFirebaseUser == null)
+            // Login activity
+        else
+            // Display main activity
     }
 }
