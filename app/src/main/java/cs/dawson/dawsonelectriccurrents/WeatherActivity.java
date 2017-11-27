@@ -39,8 +39,6 @@ public class WeatherActivity extends MenuActivity {
     {
 
         Intent intent = new Intent(this, UvIndexActivity.class);
-        //logIt("city: " + cityinput.getText());
-        intent.putExtra("city", cityinput.getText());
         startActivity(intent);
     }
 
