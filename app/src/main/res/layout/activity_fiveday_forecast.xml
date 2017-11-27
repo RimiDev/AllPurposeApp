@@ -1,126 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="cs.dawson.dawsonelectriccurrents.WeatherActivity"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <TextView
         android:id="@+id/dawsonweathertitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2"
         android:textAlignment="center"
         android:layout_marginBottom="15dp"
         android:text="Five day forecast"
-        android:textSize="30dp"/>
+        android:textSize="50sp"/>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cityname"/>
 
-<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/weatherTypeDay1"
-        android:layout_weight="0.1"
-        android:layout_marginLeft="20dp"
-        android:text="Hey"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/weatherTypeDay2"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="0.1"
-        android:text="Hey"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/weatherTypeDay3"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="0.1"
-        android:text="Hey"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/weatherTypeDay4"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="0.1"
-        android:text="Hey"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/weatherTypeDay5"
-        android:layout_marginLeft="20dp"
-        android:layout_weight="0.1"
-        android:text="Hey"/>
+<HorizontalScrollView
+    android:id="@+id/horizontalscrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
-</LinearLayout>
+
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/weatherTempDay1"
-            android:layout_weight="0.1"
-            android:layout_marginLeft="20dp"
-            android:text="Hey"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Date" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Time" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Main Temperature" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Mininimum Temperature" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Maximum Temperature" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Main pressure" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Main sea level" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Main ground level" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Main humidity" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Main tempkf" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Weather ID" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Weather condition" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Weather condition" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Weather icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Cloudiness" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Wind speed" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Wind degree" />
+
+
+
+        </LinearLayout>
+
+
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/weatherDay1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/weatherTempDay2"
             android:layout_marginLeft="20dp"
             android:layout_weight="0.1"
-            android:text="Hey"/>
+            android:textSize="30dp"
+            android:text="Hey" />
 
         <TextView
+            android:id="@+id/weatherDay2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/weatherTempDay3"
             android:layout_marginLeft="20dp"
             android:layout_weight="0.1"
-            android:text="Hey"/>
+            android:textSize="18dp"
+            android:text="Hey" />
 
         <TextView
+            android:id="@+id/weatherDay3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/weatherTempDay4"
             android:layout_marginLeft="20dp"
-            android:layout_weight="0.1"
-            android:text="Hey"/>
+            android:layout_weight="0.5"
+            android:textSize="30dp"
+
+            android:text="Hey" />
 
         <TextView
+            android:id="@+id/weatherDay4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/weatherTempDay5"
             android:layout_marginLeft="20dp"
-            android:layout_weight="0.1"
-            android:text="Hey"/>
+            android:layout_weight="0.5"
+            android:textSize="30dp"
+
+            android:text="Hey" />
+
+        <TextView
+            android:id="@+id/weatherDay5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.5"
+            android:textSize="30dp"
+            android:text="Hey" />
+
 
 
     </LinearLayout>
 
 
+</HorizontalScrollView>
 
 </LinearLayout>
 
