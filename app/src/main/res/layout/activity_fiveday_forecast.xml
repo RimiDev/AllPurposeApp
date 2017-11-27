@@ -21,7 +21,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cityname"/>
+        android:id="@+id/cityname"
+        android:textAlignment="center"
+        android:layout_marginBottom="15dp"
+        android:text="Five day forecast"
+        android:textSize="30sp"/>
 
 <HorizontalScrollView
     android:id="@+id/horizontalscrollView"
@@ -46,7 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
                 android:textSize="25sp"
                 android:text="Date" />
 
@@ -54,7 +57,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
                 android:textSize="25sp"
                 android:text="Time" />
 
@@ -62,7 +64,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
+                android:textSize="25sp"
+                android:text="Weather condition" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="25sp"
+                android:text="Weather description" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:textSize="25sp"
                 android:text="Main Temperature" />
 
@@ -70,7 +85,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
                 android:textSize="25sp"
                 android:text="Mininimum Temperature" />
 
@@ -78,7 +92,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
                 android:textSize="25sp"
                 android:text="Maximum Temperature" />
 
@@ -86,97 +99,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
                 android:textSize="25sp"
-                android:text="Main pressure" />
+                android:text="Humidity" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Main sea level" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Main ground level" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Main humidity" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Main tempkf" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Weather ID" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Weather condition" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Weather condition" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Weather icon" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Cloudiness" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
                 android:textSize="25sp"
                 android:text="Wind speed" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.5"
-                android:textSize="25sp"
-                android:text="Wind degree" />
 
 
 
@@ -186,11 +117,10 @@
 
         <TextView
             android:id="@+id/weatherDay1"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_weight="0.1"
-            android:textSize="30dp"
+            android:textSize="25sp"
             android:text="Hey" />
 
         <TextView
@@ -198,8 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_weight="0.1"
-            android:textSize="18dp"
+            android:textSize="25sp"
             android:text="Hey" />
 
         <TextView
@@ -207,8 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_weight="0.5"
-            android:textSize="30dp"
+            android:textSize="25sp"
 
             android:text="Hey" />
 
@@ -217,8 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_weight="0.5"
-            android:textSize="30dp"
+            android:textSize="25sp"
 
             android:text="Hey" />
 
@@ -227,8 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_weight="0.5"
-            android:textSize="30dp"
+            android:textSize="25sp"
             android:text="Hey" />
 
 

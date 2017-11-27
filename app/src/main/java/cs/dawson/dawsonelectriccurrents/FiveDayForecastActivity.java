@@ -1,5 +1,6 @@
 package cs.dawson.dawsonelectriccurrents;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +39,7 @@ public class FiveDayForecastActivity extends MenuActivity {
     TextView weatherDay3;
     TextView weatherDay4;
     TextView weatherDay5;
+    TextView cityname;
 
 
     @Override
@@ -81,6 +83,7 @@ public class FiveDayForecastActivity extends MenuActivity {
      * Whilst parsing the JSONObject, we will be setting the textfields to display the results to the user.
      * @param jsonForecastResult Whatever doInBackground returns is this parameter, in this case, JSON info as a String.
      */
+    @SuppressLint("SetTextI18n")
     public void parseJSONandDisplay(String jsonForecastResult){
         //Checks if s is null, if it is, then the user typed a bad city name and we did not
         //get any results from the website, which results in a crash when trying to use
@@ -116,7 +119,8 @@ public class FiveDayForecastActivity extends MenuActivity {
                 String weatherHourWeNeedToGrab = currentHourDay.substring(0,2); //Grabbing the current hour.
                 String weatherDayWeNeedToGrab = currentHourDay.substring(2,4); //Grabbing current day.
 
-                int dayCounter = 1;
+                int dayCounter = 0;
+                cityname.setText(city);
 
                 //Iterate through all the JSONObjects inside the list JSONArray.
                 for (int i = 0; i < jsonItems.length(); i++) {
@@ -138,6 +142,7 @@ public class FiveDayForecastActivity extends MenuActivity {
                     if (Integer.valueOf(weatherHour) > Integer.valueOf(weatherHourWeNeedToGrab) &&
                             weatherDay.equals(weatherDayWeNeedToGrab)){
                         //The same hour and fits the day counter -> GRAB RESULTS!
+                        dayCounter++;
 
                         logIt("Inside the weatherTime condition");
 
@@ -145,54 +150,34 @@ public class FiveDayForecastActivity extends MenuActivity {
                         String mainTemp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp");
                         String mainMinTemp= jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_min");
                         String mainMaxTemp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_max");
-                        String mainPressure = jsonItems.getJSONObject(i).getJSONObject("main").getString("pressure");
-                        String mainSeaLevel = jsonItems.getJSONObject(i).getJSONObject("main").getString("sea_level");
-                        String mainGroundLevel = jsonItems.getJSONObject(i).getJSONObject("main").getString("grnd_level");
-                        String mainHuminity = jsonItems.getJSONObject(i).getJSONObject("main").getString("grnd_level");
-                        String mainTempKf = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_kf");
+                        String mainHumidity = jsonItems.getJSONObject(i).getJSONObject("main").getString("humidity");
+                        logIt("mainTemp: " + mainTemp);
 
                         //Grabbing the weather branch and all it's components.
-                        String weatherId = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("id");
                         String weatherMain = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main");
                         String weatherDescription = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
-                        String weatherIcon = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon");
-
-                        //Grabbing the clouds.
-                        String cloudsAll = jsonItems.getJSONObject(i).getJSONObject("clouds").getString("all");
 
                         //Grabbing the winds.
                         String windSpeed = jsonItems.getJSONObject(i).getJSONObject("wind").getString("speed");
-                        String windDeg = jsonItems.getJSONObject(i).getJSONObject("wind").getString("deg");
-
 
                         //Displaying the results
                         //CONVERT TEMPERATURE TO CELCIUS
                         switch (dayCounter){
                             case 1:
-                                weatherDay1.setText(weatherDate + "\n" + weatherTime + "\n" + mainTemp + "\n" + mainMinTemp + "\n" + mainMaxTemp + "\n" + mainPressure +
-                                        "\n" + mainSeaLevel + "\n" + mainGroundLevel + "\n" + mainHuminity + "\n" + mainTempKf +
-                                        "\n" + weatherId + "\n" + weatherMain + "\n" + weatherDescription + "\n" +
-                                        "\n" + weatherIcon + "\n" + cloudsAll + "\n" + windSpeed + "\n" + windDeg);
+                                weatherDay1.setText(weatherDate + "\n" + weatherTime + "\n" +  weatherMain + "\n" + weatherDescription + "\n" + mainTemp + "\n" + mainMinTemp +
+                                        "\n" + mainMaxTemp + "\n" + mainHumidity + "\n" + windSpeed + "\n");
                             case 2:
-                                weatherDay2.setText(weatherDate + "\n" + weatherTime + "\n" + mainTemp + "\n" + mainMinTemp + "\n" + mainMaxTemp + "\n" + mainPressure +
-                                        "\n" + mainSeaLevel + "\n" + mainGroundLevel + "\n" + mainHuminity + "\n" + mainTempKf +
-                                        "\n" + weatherId + "\n" + weatherMain + "\n" + weatherDescription + "\n" +
-                                        "\n" + weatherIcon + "\n" + cloudsAll + "\n" + windSpeed + "\n" + windDeg);
+                                weatherDay2.setText(weatherDate + "\n" + weatherTime + "\n" +  weatherMain + "\n" + weatherDescription + "\n" + mainTemp + "\n" + mainMinTemp +
+                                        "\n" + mainMaxTemp + "\n" + mainHumidity + "\n" + windSpeed + "\n");
                             case 3:
-                                weatherDay3.setText(weatherDate + "\n" + weatherTime + "\n" + mainTemp + "\n" + mainMinTemp + "\n" + mainMaxTemp + "\n" + mainPressure +
-                                        "\n" + mainSeaLevel + "\n" + mainGroundLevel + "\n" + mainHuminity + "\n" + mainTempKf +
-                                        "\n" + weatherId + "\n" + weatherMain + "\n" + weatherDescription + "\n" +
-                                        "\n" + weatherIcon + "\n" + cloudsAll + "\n" + windSpeed + "\n" + windDeg);
+                                weatherDay3.setText(weatherDate + "\n" + weatherTime + "\n" +  weatherMain + "\n" + weatherDescription + "\n" + mainTemp + "\n" + mainMinTemp +
+                                        "\n" + mainMaxTemp + "\n" + mainHumidity + "\n" + windSpeed + "\n");
                             case 4:
-                                weatherDay4.setText(weatherDate + "\n" + weatherTime + "\n" + mainTemp + "\n" + mainMinTemp + "\n" + mainMaxTemp + "\n" + mainPressure +
-                                        "\n" + mainSeaLevel + "\n" + mainGroundLevel + "\n" + mainHuminity + "\n" + mainTempKf +
-                                        "\n" + weatherId + "\n" + weatherMain + "\n" + weatherDescription + "\n" +
-                                        "\n" + weatherIcon + "\n" + cloudsAll + "\n" + windSpeed + "\n" + windDeg);
+                                weatherDay4.setText(weatherDate + "\n" + weatherTime + "\n" +  weatherMain + "\n" + weatherDescription + "\n" + mainTemp + "\n" + mainMinTemp +
+                                        "\n" + mainMaxTemp + "\n" + mainHumidity + "\n" + windSpeed + "\n");
                             case 5:
-                                weatherDay5.setText(weatherDate + "\n" + weatherTime + "\n" + mainTemp + "\n" + mainMinTemp + "\n" + mainMaxTemp + "\n" + mainPressure +
-                                        "\n" + mainSeaLevel + "\n" + mainGroundLevel + "\n" + mainHuminity + "\n" + mainTempKf +
-                                        "\n" + weatherId + "\n" + weatherMain + "\n" + weatherDescription + "\n" +
-                                        "\n" + weatherIcon + "\n" + cloudsAll + "\n" + windSpeed + "\n" + windDeg);
+                                weatherDay5.setText(weatherDate + "\n" + weatherTime + "\n" +  weatherMain + "\n" + weatherDescription + "\n" + mainTemp + "\n" + mainMinTemp +
+                                        "\n" + mainMaxTemp + "\n" + mainHumidity + "\n" + windSpeed + "\n");
                         }
 
 
@@ -253,6 +238,7 @@ public class FiveDayForecastActivity extends MenuActivity {
         weatherDay3 = (TextView) findViewById(R.id.weatherDay3);
         weatherDay4 = (TextView) findViewById(R.id.weatherDay4);
         weatherDay5 = (TextView) findViewById(R.id.weatherDay5);
+        cityname = (TextView) findViewById(R.id.cityname);
 
     }
 
