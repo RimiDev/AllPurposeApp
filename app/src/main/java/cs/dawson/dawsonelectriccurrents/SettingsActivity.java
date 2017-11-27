@@ -1,22 +1,45 @@
 package cs.dawson.dawsonelectriccurrents;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.sql.Timestamp;
 
 public class SettingsActivity extends MenuActivity {
 
     private static final String TAG = SettingsActivity.class.getName();
+
+    // TextViews
+    private TextView firstName;
+    private TextView lastName;
+    private TextView email;
+    private TextView password;
+    private TextView lastUpdated;
+
+    // Strings
+    private String firstNameStr;
+    private String lastNameStr;
+    private String emailStr;
+    private String passwordStr;
+    private String timeStampStr;
+
+    // EditText
+    private EditText editFirstName;
+    private EditText editLastName;
+    private EditText editEmail;
+    private EditText editPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +47,32 @@ public class SettingsActivity extends MenuActivity {
         setContentView(R.layout.activity_settings);
 
         Intent extras = getIntent();
-        String firstName;
-        String lastName;
-        String email;
-        String password;
-        Timestamp timeStamp;
+        String firstNameStr;
+        String lastNameStr;
+        String emailStr;
+        String passwordStr;
+        Timestamp timeStampStr;
 
-        // TODO: Get the textviews for all infos
+        // TextView
+        firstName = (TextView) findViewById(R.id.firstNameSp);
+        lastName = (TextView) findViewById(R.id.lastNameSp);
+        email = (TextView) findViewById(R.id.emailSp);
+        password = (TextView) findViewById(R.id.passwordSp);
+        lastUpdated = (TextView) findViewById(R.id.lastUpdatedSp);
 
-        // TODO: Button to save
+        editFirstName = (EditText) findViewById(R.id.editFirstName);
+        editLastName = (EditText) findViewById(R.id.editLastName);
+        editEmail = (EditText) findViewById(R.id.editEmail);
+        editPassword = (EditText) findViewById(R.id.editPassword);
+
+        Button saveBtn = (Button) findViewById(R.id.saveButton);
 
         if (extras != null) {
-            firstName = extras.getExtras().getString("firstName");
-            lastName = extras.getExtras().getString("lastName");
-            email = extras.getExtras().getString("email");
-            password = extras.getExtras().getString("password");
-            timeStamp = (Timestamp)  extras.getExtras().getSerializableExtra("timeStamp");
+            firstNameStr = extras.getExtras().getString("firstName");
+            lastNameStr = extras.getExtras().getString("lastName");
+            emailStr = extras.getExtras().getString("email");
+            passwordStr = extras.getExtras().getString("password");
+            timeStampStr = (Timestamp)  extras.getExtras().getSerializable("timeStamp");
         }
 
         // Sets the settings
@@ -47,12 +80,11 @@ public class SettingsActivity extends MenuActivity {
     }
 
     private void setSettingsTextView() {
-        // TODO : set the textviews
-        // firstNameTv.setText(attributed);
-        // lastNameTv.setText(dateOfBirth);
-        // emailTv.setText(quoteShort);
-        // passwordTv.setText(quoteFull);
-        // timeStampTv.setText(reference);
+        firstName.setText(firstNameStr);
+        lastName.setText(lastNameStr);
+        email.setText(emailStr);
+        password.setText(passwordStr);
+        lastUpdated.setText(timeStampStr);
     }
 
     @Override
@@ -77,7 +109,7 @@ public class SettingsActivity extends MenuActivity {
         builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // Save the result
-                // saveResult();
+                save();
                 SettingsActivity.super.onBackPressed();
             }
         });
@@ -88,5 +120,43 @@ public class SettingsActivity extends MenuActivity {
         });
         builder.show();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor e = prefs.edit();
+
+        e.putString("firstname", firstName.getText().toString());
+        e.putString("lastname", lastName.getText().toString());
+        e.putString("email", email.getText().toString());
+        e.putString("password", password.getText().toString());
+        e.putString("lastupdate", lastUpdated.getText().toString());
+
+        e.commit();
+    }
+
+    public void save() {
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor e = prefs.edit();
+
+        e.putString("firstnameedit", editFirstName.getText().toString());
+        e.putString("lastnameedit", editLastName.getText().toString());
+        e.putString("emailedit", editEmail.getText().toString());
+        e.putString("passwordedit", editPassword.getText().toString());
+
+        e.commit();
+    }
+
+    /**
+     * Saves the settings when the user clicks the button save
+     * @param v
+     */
+    public void saveSettings(View v) {
+        save();
+    }
+
+
 
 }

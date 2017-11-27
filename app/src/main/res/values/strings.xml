@@ -11,4 +11,11 @@
     <string name="weatherText">Weather</string>
     <string name="academicCalText">Academic Calendar</string>
     <string name="currentTempText">Current Temp</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="lastUpdated">Last updated</string>
+    <string name="editSettings">Edit Settings</string>
+    <string name="save">Save</string>
 </resources>
