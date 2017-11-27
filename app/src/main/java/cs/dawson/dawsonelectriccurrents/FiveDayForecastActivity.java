@@ -96,12 +96,10 @@ public class FiveDayForecastActivity extends MenuActivity {
         if (jsonForecastResult != null) {
 
             try {
-                logIt("ResultInOnPostExecute: " + jsonForecastResult);
                 //Create a JSONObject with the String JSON results from 'doInBackground' method.
                 JSONObject jsonObject = new JSONObject(jsonForecastResult);
                 //Grabbing the first item to then grab the weather.
                 JSONArray jsonItems = jsonObject.getJSONArray("list");
-
 
                 /**
                  * Checking and pushing condiitons that will grab only the next weather
@@ -112,75 +110,81 @@ public class FiveDayForecastActivity extends MenuActivity {
                  * than the current time's hour. The for loop will increase by 3 every iteration
                  * since the openWeatherChannel sends out new information every 3 hours.
                  * This will ensure that we are grabbing the next future weather information.
-                 * 3. In the for loop for actual grabbing of the information, make sure to
+                 * 3. Grab the information from dt_txt to aquire the hour and day for step 4 condition.
+                 * 4. In the for loop for actual grabbing of the information, make sure to
                  * create a condition that it will only grab information from the sections that
                  * have the time that we established in this for loop.
                  */
 
                 //1. Creating a SimpleDateFormat to format the current date/time with ease.
-                SimpleDateFormat sdf = new SimpleDateFormat("HH");
-                String currentHourTime = sdf.format(new Date()); //Output: 01 || 11 -> weather: 01 || 11
+                SimpleDateFormat sdf = new SimpleDateFormat("HHdd");
+                String currentHourDay = sdf.format(new Date()); //Output: 01 || 11 -> weather: 01 || 11
 
                 //2. For loop to grab the correct time that we want to have for our user.
-                String weatherTimeWeNeedToGrab = "";
-                for (int i = 0; i <= 24; i += 3){
-                    if (i <= Integer.valueOf(currentHourTime)){
-                        //Not in the correct range.
-                        continue;
+                String weatherHourWeNeedToGrab = currentHourDay.substring(0,2); //Grabbing the current hour.
+                String weatherDayWeNeedToGrab = currentHourDay.substring(2,4); //Grabbing current day.
+
+                //Iterate through all the JSONObjects inside the list JSONArray.
+                for (int i = 0; i < jsonItems.length(); i++) {
+
+                    //3. Grabbing the dt_txt to see if it's the results that we want to display.
+                    String weatherTimeAndDay = jsonItems.getJSONObject(i).getString("dt_txt");
+                    String weatherHour = weatherTimeAndDay.substring(11,13); //Grabbing the hour.
+                    String weatherDay = weatherTimeAndDay.substring(8,10); //Grabbing the day.
+
+                    logIt("WeatherDayGRAB: " + weatherDayWeNeedToGrab);
+                    logIt("WeatherDay: " + weatherDay);
+                    logIt("WeatherHour: " + weatherHour);
+                    logIt("weatherHourGRAB: " + weatherHourWeNeedToGrab);
+
+                    //4. A condition to check to check if we are grabbing the same hour
+                    //And incrementing the day counter until we hit 5 (5-day forecast).
+                    if (Integer.valueOf(weatherHour) > Integer.valueOf(weatherHourWeNeedToGrab) &&
+                            weatherDay.equals(weatherDayWeNeedToGrab)){
+                        //The same hour and fits the day counter -> GRAB RESULTS!
+
+                        logIt("Inside the weatherTime condition");
+
+                        //Grabbing the main branch and all it's components.
+                        String mainTemp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp");
+                        String mainMinTemp= jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_min");
+                        String mainMaxTemp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_max");
+                        String mainPressure = jsonItems.getJSONObject(i).getJSONObject("main").getString("pressure");
+                        String mainSeaLevel = jsonItems.getJSONObject(i).getJSONObject("main").getString("sea_level");
+                        String mainGroundLevel = jsonItems.getJSONObject(i).getJSONObject("main").getString("grnd_level");
+                        String mainHuminity = jsonItems.getJSONObject(i).getJSONObject("main").getString("grnd_level");
+                        String mainTempKf = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_kf");
+
+                        //Grabbing the weather branch and all it's components.
+                        String weatherId = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("id");
+                        String weatherMain = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main");
+                        String weatherDesciption = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
+                        String weatherIcon = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon");
+
+                        //Grabbing the clouds.
+                        String cloudsAll = jsonItems.getJSONObject(i).getJSONObject("clouds").getString("all");
+
+                        //Grabbing the winds.
+                        String windSpeed = jsonItems.getJSONObject(i).getJSONObject("wind").getString("speed");
+                        String windDeg = jsonItems.getJSONObject(i).getJSONObject("wind").getString("deg");
+
+                        logIt("WeatherDayBeforeIncrease: " + weatherDayWeNeedToGrab);
+
+                        //Increase the weather day counter.
+                        int weatherIncrease = Integer.valueOf(weatherDay);
+                        weatherIncrease++;
+                        weatherDayWeNeedToGrab = String.valueOf(weatherIncrease);
+
+                        logIt("WeatherDayAfterIncrease: " + weatherDayWeNeedToGrab);
+
                     } else {
-                        //Correct range.
-                        if (i <= 9){
-                            weatherTimeWeNeedToGrab = String.valueOf("0" + i); //Get the number out of the loop.
-
-                        } else {
-                            weatherTimeWeNeedToGrab = String.valueOf(i); //Get the number out of the loop.
-                        }
-                        break;
+                        logIt("Continue...");
+                        continue;
                     }
-                }
-
-                //3. Grabbing only information with regards to the next 3-hour time range condition.
-
-                String weatherTime = jsonItems.getJSONObject(1).getString("dt_txt");
-
-                String weatherDay = weatherTime.substring(8,10); //Grabbing the day.
-
-                String weatherHour = weatherTime.substring(11,13); //Grabbing the hour.
-
-                logIt("dt_text: " + weatherTime);
-                logIt("dt_text: " + weatherDay);
-                logIt("dt_text: " + weatherHour);
 
 
-                for (int i = 0; i < 5; i++) {
-                    //Grabbing all the individual items associated to the weather.
 
 
-                    //Grabbing the main branch and all it's components.
-                    String mainTemp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp");
-                    String mainMinTemp= jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_min");
-                    String mainMaxTemp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_max");
-                    String mainPressure = jsonItems.getJSONObject(i).getJSONObject("main").getString("pressure");
-                    String mainSeaLevel = jsonItems.getJSONObject(i).getJSONObject("main").getString("sea_level");
-                    String mainGroundLevel = jsonItems.getJSONObject(i).getJSONObject("main").getString("grnd_level");
-                    String mainHuminity = jsonItems.getJSONObject(i).getJSONObject("main").getString("grnd_level");
-                    String mainTempKf = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_kf");
-
-                    //Grabbing the weather branch and all it's components.
-                    String weatherId = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("id");
-                    String weatherMain = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main");
-                    String weatherDesciption = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
-                    String weatherIcon = jsonItems.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon");
-
-
-                    //Grabbing the clouds.
-                    String cloudsAll = jsonItems.getJSONObject(i).getJSONObject("clouds").getString("all");
-
-                    //Grabbing the winds.
-                    String windSpeed = jsonItems.getJSONObject(i).getJSONObject("wind").getString("speed");
-                    String windDeg = jsonItems.getJSONObject(i).getJSONObject("wind").getString("deg");
-
-                    logIt("clouds: " + cloudsAll);
                 }
 
                 //Displaying the results.
@@ -238,6 +242,27 @@ public class FiveDayForecastActivity extends MenuActivity {
 
 
     }
+
+    private String get3HourRangeCondition(String currentHourDay){
+        String hour = "Hour?";
+
+        for (int i = 0; i <= 24; i += 3) {
+            if (i <= Integer.valueOf(currentHourDay)) {
+                //Not in the correct range.
+                continue;
+            } else {
+                //Correct range.
+                if (i <= 9) {
+                    hour = String.valueOf("0" + i); //Get the number out of the loop.
+
+                } else {
+                    hour = String.valueOf(i); //Get the number out of the loop.
+                }
+                break;
+            }
+        }
+        return hour;
+    } // end of get3HourRangeCondition
 
 
 
