@@ -119,8 +119,23 @@ public class FiveDayForecastActivity extends MenuActivity {
                 String weatherHourWeNeedToGrab = currentHourDay.substring(0,2); //Grabbing the current hour.
                 String weatherDayWeNeedToGrab = currentHourDay.substring(2,4); //Grabbing current day.
 
+                //Day counter to display the information gathered depending on which day it is.
                 int dayCounter = 0;
+                //Set the city that the user inputted.
                 cityname.setText(city);
+                //Set the firstDay to true, so it goes into the loop immeditely and grab the information.
+                //Then we set the hour to be the hour that we got from the 'firstDay' and we keep it for the
+                //rest of the forecast. example: firstDay: 00:00:00, then the rest will be 00:00:00 but with increase of day.
+                boolean firstDay = true;
+                /**
+                 * 'firstDayOfTheMonth' string
+                 * This string is used to know whenever the month changes.
+                * With my technique, i increase the day of the month every time we grab information.
+                * If it's at 31 and i increase it to 32, then i will never get information.
+                * Thus, if the information that the JSONObject provides us is at day 01, then we will grab it.
+                * This string will turn null whenever we grab the 01, or else it will grab all the 3 hour weather info every iteration.
+                 **/
+                String firstDayOfTheMonth = "01";
 
                 //Iterate through all the JSONObjects inside the list JSONArray.
                 for (int i = 0; i < jsonItems.length(); i++) {
@@ -131,6 +146,8 @@ public class FiveDayForecastActivity extends MenuActivity {
                     String weatherDay = weatherTimeAndDay.substring(8,10); //Grabbing the day.
                     String weatherDate = weatherTimeAndDay.substring(0,10); //Grabbing the date.
                     String weatherTime = weatherTimeAndDay.substring(11,19); //Grabbing the time.
+                    //Change the hour we need to grab to the first one that came out closest to our time.
+                    weatherHourWeNeedToGrab = weatherHour;
 
                     logIt("WeatherDayGRAB: " + weatherDayWeNeedToGrab);
                     logIt("WeatherDay: " + weatherDay);
@@ -139,10 +156,12 @@ public class FiveDayForecastActivity extends MenuActivity {
 
                     //4. A condition to check to check if we are grabbing the same hour
                     //And incrementing the day counter until we hit 5 (5-day forecast).
-                    if (Integer.valueOf(weatherHour) > Integer.valueOf(weatherHourWeNeedToGrab) &&
-                            weatherDay.equals(weatherDayWeNeedToGrab)){
+                    if ((Integer.valueOf(weatherHour) == Integer.valueOf(weatherHourWeNeedToGrab) &&
+                            (weatherDay.equals(weatherDayWeNeedToGrab) || weatherDay.equals(firstDayOfTheMonth))) || firstDay){
                         //The same hour and fits the day counter -> GRAB RESULTS!
                         dayCounter++;
+                        //Turn to false because there can only be one first day.
+                        firstDay = false;
 
                         logIt("Inside the weatherTime condition");
 
@@ -184,10 +203,23 @@ public class FiveDayForecastActivity extends MenuActivity {
 
                         logIt("WeatherDayBeforeIncrease: " + weatherDayWeNeedToGrab);
 
-                        //Increase the weather day counter.
-                        int weatherIncrease = Integer.valueOf(weatherDay);
-                        weatherIncrease++;
-                        weatherDayWeNeedToGrab = String.valueOf(weatherIncrease);
+                        int weatherIncrease;
+                            //Increase the weather day counter.
+                            weatherIncrease = Integer.valueOf(weatherDay);
+                            weatherIncrease++;
+                            if (weatherIncrease < 10) {
+                                //Adds a zero at the start of the string or else it will search for a '1' or '2', which is invalid.
+                                weatherDayWeNeedToGrab = String.valueOf("0" + weatherIncrease);
+                            } else {
+                                //Simply adds it since it is already a double digit number.
+                                weatherDayWeNeedToGrab = String.valueOf(weatherIncrease);
+                            }
+
+                            //This prevents having duplicates for the first day of the month
+                            if (weatherDay.equals(firstDayOfTheMonth)){
+                                firstDayOfTheMonth = null;
+                            }
+
 
                         logIt("WeatherDayAfterIncrease: " + weatherDayWeNeedToGrab);
 
