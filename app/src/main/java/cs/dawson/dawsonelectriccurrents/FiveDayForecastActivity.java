@@ -12,11 +12,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import cs.dawson.dawsonelectriccurrents.weatherrequest.WeatherRequest;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * This class is used to generate an httpURLConnection to the https://openweathermap.org/
@@ -30,7 +34,8 @@ public class FiveDayForecastActivity extends MenuActivity {
     //The API key that was genereated for my account on https://openweathermap.org/
     public String apiKey = "&APPID=5b62062bcde765f123614e4c944f8027";
     //The city that the user wants to check the weather for.
-    public String city = "Paris";
+    public String city;
+    public String countryCode;
 
     //Latitude and longitude of the device.
     public String longitude;
@@ -47,8 +52,8 @@ public class FiveDayForecastActivity extends MenuActivity {
     TextView uvIndex;
 
     //weatherRequest class objects in global scope.
-    WeatherRequest forecastRequest = new WeatherRequest(city, apiKey, "1");
-    WeatherRequest uvIndexRequest = new WeatherRequest(city, apiKey, "2");
+    WeatherRequest forecastRequest;
+    WeatherRequest uvIndexRequest;
 
 
     @Override
@@ -58,12 +63,16 @@ public class FiveDayForecastActivity extends MenuActivity {
 
         Bundle b = getIntent().getExtras();
         city = b.getString("city");
+        countryCode = b.getString("countrycode");
+
+        forecastRequest = new WeatherRequest(city, apiKey, "1");
+        uvIndexRequest = new WeatherRequest(city, apiKey, "2");
 
         setUpWeatherDisplays();
 
         //Calling the WeatherRequest class to demand a request with the weather forecast with user input.
         try {
-            parseJSONandDisplayForecast(forecastRequest.execute(city, apiKey).get());
+            parseJSONandDisplayForecast(forecastRequest.execute(city, apiKey, countryCode).get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -112,7 +121,7 @@ public class FiveDayForecastActivity extends MenuActivity {
                 this.latitude = lat;
                 this.longitude = lon;
 
-                String[] uvIndexes = parseJSONandDisplayUV(uvIndexRequest.execute(city,apiKey,latitude,longitude).get());
+                String[] uvIndexes = parseJSONandReturnUV(uvIndexRequest.execute(city,apiKey,latitude,longitude).get());
 
                 //Grabbing the first item to then grab the weather.
                 JSONArray jsonItems = jsonObject.getJSONArray("list");
@@ -143,7 +152,7 @@ public class FiveDayForecastActivity extends MenuActivity {
                 //Day counter to display the information gathered depending on which day it is.
                 int dayCounter = 0;
                 //Set the city that the user inputted.
-                cityname.setText(city);
+                cityname.setText(city+", "+countryCode);
                 //Set the firstDay to true, so it goes into the loop immeditely and grab the information.
                 //Then we set the hour to be the hour that we got from the 'firstDay' and we keep it for the
                 //rest of the forecast. example: firstDay: 00:00:00, then the rest will be 00:00:00 but with increase of day.
@@ -187,9 +196,12 @@ public class FiveDayForecastActivity extends MenuActivity {
                         logIt("Inside the weatherTime condition");
 
                         //Grabbing the main branch and all it's components.
-                        String mainTemp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp");
-                        String mainMinTemp= jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_min");
-                        String mainMaxTemp = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_max");
+                        String mainTempKelv = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp");
+                        String mainTemp = convertKelvtoCelcius(mainTempKelv);
+                        String mainMinTempKelv= jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_min");
+                        String mainMinTemp = convertKelvtoCelcius(mainMinTempKelv);
+                        String mainMaxTempKelv = jsonItems.getJSONObject(i).getJSONObject("main").getString("temp_max");
+                        String mainMaxTemp = convertKelvtoCelcius(mainMaxTempKelv);
                         String mainHumidity = jsonItems.getJSONObject(i).getJSONObject("main").getString("humidity");
                         logIt("mainTemp: " + mainTemp);
 
@@ -265,7 +277,7 @@ public class FiveDayForecastActivity extends MenuActivity {
     } // end of parseJSONandDisplayForecast
 
 
-    public String[] parseJSONandDisplayUV(String jsonUvIndexResults) {
+    public String[] parseJSONandReturnUV(String jsonUvIndexResults) {
 
         String[] uvIndexes = new String[5];
 
@@ -274,19 +286,14 @@ public class FiveDayForecastActivity extends MenuActivity {
         //bufferreader on a bad HttpURLConnection. This will redirect to a error page for user.
         if (jsonUvIndexResults != null) {
 
-//            StringBuilder uvValues = new StringBuilder();
-//            uvValues.append("UV index value: ");
-
             try {
                 //Create a JSONArray with the String JSON results from 'doInBackground' method.
                 JSONArray jsonArray = new JSONArray(jsonUvIndexResults);
-
 
                 //Iterate through the JSONArray to grab all the uv values for 5 day range.
                 for (int i = 0; i < 5; i++){
                     //Grabbing the uv value for each day.
                     uvIndexes[i] = jsonArray.getJSONObject(i).getString("value");
-//                    uvValues.append("                    " + jsonArray.getJSONObject(i).getString("value"));
                 }
 
                 //Grabbing the first item to then grab the weather.
@@ -319,30 +326,14 @@ public class FiveDayForecastActivity extends MenuActivity {
         uvIndex = (TextView) findViewById(R.id.uvIndex);
     }
 
-    private String get3HourRangeCondition(String currentHourDay){
-        String hour = "Hour?";
+    public String convertKelvtoCelcius(String kelv){
+        Double celcius = Double.valueOf(kelv);
+        logIt("celcius: " + celcius);
+        celcius -= 273.15;
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        return String.valueOf(formatter.format(celcius) + "C°");
 
-        for (int i = 0; i <= 24; i += 3) {
-            if (i <= Integer.valueOf(currentHourDay)) {
-                //Not in the correct range.
-                continue;
-            } else {
-                //Correct range.
-                if (i <= 9) {
-                    hour = String.valueOf("0" + i); //Get the number out of the loop.
-
-                } else {
-                    hour = String.valueOf(i); //Get the number out of the loop.
-                }
-                break;
-            }
-        }
-        return hour;
-    } // end of get3HourRangeCondition
-
-
-
-
+    }
 
 
     /**
