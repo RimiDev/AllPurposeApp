@@ -32,6 +32,9 @@ import java.net.URL;
         //Re-creating variables city and apiKey, to be used in this subclass.
         private String city;
         private String apiKey;
+        private String format;
+        private String latitude;
+        private String longitude;
 
         /**
          * A constructor that takes in the city that the user inputted in the previous activity
@@ -39,9 +42,10 @@ import java.net.URL;
          * @param city
          * @param apiKey
          */
-        public WeatherRequest(String city, String apiKey){
+        public WeatherRequest(String city, String apiKey, String format){
             this.city = city;
             this.apiKey = apiKey;
+            this.format = format;
             logIt("City in weatherRequest: " + this.city.toString());
         }
 
@@ -72,12 +76,19 @@ import java.net.URL;
             //And they are set here. Without this, strangely weatherURLs' city/apikey will be null.
             String city = params[0];
             String apiKey = params[1];
+            String weatherURL;
             //The weather URL which includes the user the city inputted in the previous activity
             //as well as the API key that was generated for me.
-            String weatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + this.city + this.apiKey;
+            if (this.format.equals(String.valueOf(1))) {
+                weatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + this.city + this.apiKey;
+            } else {
+                this.latitude = params[2];
+                this.longitude = params[3];
+                weatherURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + this.latitude + "&lon=" + this.longitude + this.apiKey;
+            }
             logIt("city in background: " + city);
             logIt("apiKey in background: " + apiKey);
-            logIt("background: "+ weatherURL);
+            logIt("background: " + weatherURL);
             //The results will be stored in this variable.
             String result = null;
             try {

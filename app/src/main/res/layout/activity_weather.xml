@@ -49,13 +49,6 @@ android:orientation="vertical">
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:onClick="startUvIndex"
-            android:text="@string/uvindexlabel" />
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
