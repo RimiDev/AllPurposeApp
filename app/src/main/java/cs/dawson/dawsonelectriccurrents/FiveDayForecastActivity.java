@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -20,7 +22,6 @@ import java.util.concurrent.ExecutionException;
 
 import cs.dawson.dawsonelectriccurrents.weatherrequest.WeatherRequest;
 
-import static java.lang.Integer.parseInt;
 
 /**
  * This class is used to generate an httpURLConnection to the https://openweathermap.org/
@@ -30,7 +31,6 @@ import static java.lang.Integer.parseInt;
 
 public class FiveDayForecastActivity extends MenuActivity {
 
-    TextView JSONresponse;
     //The API key that was genereated for my account on https://openweathermap.org/
     public String apiKey = "&APPID=5b62062bcde765f123614e4c944f8027";
     //The city that the user wants to check the weather for.
@@ -50,6 +50,8 @@ public class FiveDayForecastActivity extends MenuActivity {
     TextView weatherDay5;
     TextView cityname;
     TextView uvIndex;
+    TextView dawsonweathertitle;
+    HorizontalScrollView horizontalscrollView;
 
     //weatherRequest class objects in global scope.
     WeatherRequest forecastRequest;
@@ -272,11 +274,22 @@ public class FiveDayForecastActivity extends MenuActivity {
             }
         } else {
             //Alert user that input is invalid and that no response is given to us.
+
+            cityname.setText("");
+            dawsonweathertitle.setText("ERROR, CITY NOT FOUND!");
+            horizontalscrollView.setVisibility(View.INVISIBLE);
+
         }
 
     } // end of parseJSONandDisplayForecast
 
 
+    /**
+     * This method is used to parse the JSON information that is given by the UV index forecast api.
+     * This will grab the UV index value for each of the following 5 days.
+     * @param jsonUvIndexResults
+     * @return
+     */
     public String[] parseJSONandReturnUV(String jsonUvIndexResults) {
 
         String[] uvIndexes = new String[5];
@@ -317,15 +330,24 @@ public class FiveDayForecastActivity extends MenuActivity {
     public void setUpWeatherDisplays(){
 
         //Finding resources for weather type.
-        weatherDay1 = (TextView) findViewById(R.id.weatherDay1);
-        weatherDay2 = (TextView) findViewById(R.id.weatherDay2);
-        weatherDay3 = (TextView) findViewById(R.id.weatherDay3);
-        weatherDay4 = (TextView) findViewById(R.id.weatherDay4);
-        weatherDay5 = (TextView) findViewById(R.id.weatherDay5);
-        cityname = (TextView) findViewById(R.id.cityname);
-        uvIndex = (TextView) findViewById(R.id.uvIndex);
+        weatherDay1 = findViewById(R.id.weatherDay1);
+        weatherDay2 = findViewById(R.id.weatherDay2);
+        weatherDay3 = findViewById(R.id.weatherDay3);
+        weatherDay4 = findViewById(R.id.weatherDay4);
+        weatherDay5 = findViewById(R.id.weatherDay5);
+        cityname = findViewById(R.id.cityname);
+        uvIndex = findViewById(R.id.uvIndex);
+        dawsonweathertitle = findViewById(R.id.dawsonweathertitle);
+        horizontalscrollView = findViewById(R.id.horizontalscrollView);
     }
 
+    /**
+     * This method is used to convert the information that is given to us by the weather api (kelvin)
+     * to celcius since not everyone is comfortable reading kevlin temperature when they want to know
+     * what they have to wear in the morning.
+     * @param kelv
+     * @return
+     */
     public String convertKelvtoCelcius(String kelv){
         Double celcius = Double.valueOf(kelv);
         logIt("celcius: " + celcius);

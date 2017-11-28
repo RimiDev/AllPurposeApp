@@ -38,8 +38,6 @@ public class WeatherActivity extends MenuActivity {
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getApplicationContext(),countryNames);
 
         countrySpinner.setAdapter(spinnerAdapter);
-
-
     }
 
     @Override
@@ -63,6 +61,7 @@ public class WeatherActivity extends MenuActivity {
         //Country name selected by user
         String countrySelected = countryNames.get(indexOfCountrySelected);
 
+        //Creating an intent and sending it over to the fiveDayForecastActivity.
         Intent intent = new Intent(this, FiveDayForecastActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("city", cityinput.getText().toString());
@@ -71,6 +70,10 @@ public class WeatherActivity extends MenuActivity {
         startActivity(intent);
     }
 
+    /**
+     * This grabs the country names
+     * @return
+     */
     public ArrayList getCountryNames(){
         //Get all the available locales
         Locale[] locale = Locale.getAvailableLocales();
@@ -93,6 +96,8 @@ public class WeatherActivity extends MenuActivity {
 
     /**
      * Converts a country name into a countryISO code to be able to use the openWeatherApi country code feature.
+     * Credits to Vlad: https://stackoverflow.com/users/3833411/vlad
+     * Post help: https://stackoverflow.com/questions/28503225/get-country-code-from-country-name-in-android/28503619#28503619
      * @param countryName
      * @return
      */
@@ -119,8 +124,6 @@ public class WeatherActivity extends MenuActivity {
         return countryCode;
 
     }
-
-
 
     /**
      * Method to easily log to logcat

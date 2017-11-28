@@ -4,9 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,6 +12,8 @@ import java.util.ArrayList;
 import cs.dawson.dawsonelectriccurrents.R;
 
 /**
+ * This is the custom adapter that is used to display the spinner in the weather activity.
+ * It grabs the arraylist that the weather activity is giving it, which will display all the country names.
  * Created by maximelacasse on 2017-11-28.
  */
 
