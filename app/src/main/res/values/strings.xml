@@ -14,4 +14,14 @@
     <string name="weatherText">Weather</string>
     <string name="academicCalText">Academic Calendar</string>
     <string name="currentTempText">Current Temp</string>
+    <string name="currentweather">Current weather</string>
+    <string name="weatherapi">Weather API</string>
+    <string name="citylabel">Please enter the city you want the weather from</string>
+    <string name="cityhint">City</string>
+    <string name="uvindexlabel">UV index</string>
+    <string name="dayforecastlabel">5 day forecast</string>
+    <string name="teamMates">Maxime Lacasse,  Alessandro Ciotola, Hannah Ly and Kevin</string>
+    <string name="aboutUs">Welcome to the Dawson Electric Currents team and our beautiful Dawson Friend Finder application.
+        We are students in 3rd year comptuer science and oh boy are we lovin' it.
+    </string>
 </resources>
