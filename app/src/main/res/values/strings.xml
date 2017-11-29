@@ -18,4 +18,8 @@
     <string name="lastUpdated">Last updated</string>
     <string name="editSettings">Edit Settings</string>
     <string name="save">Save</string>
+    <string name="currSettings">Current Settings</string>
+    <string name="exitSettings">Exit Settings</string>
+    <string name="exitDialog">Do you want to exit the settings?</string>
+    <string name="discard">Discard</string>
 </resources>

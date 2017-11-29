@@ -19,4 +19,8 @@
     <string name="lastUpdated">Derniere Mise a jour</string>
     <string name="editSettings">Modifier les parametres</string>
     <string name="save">Enregistrer</string>
+    <string name="currSettings">Parametres</string>
+    <string name="exitSettings">Quitter Parametres</string>
+    <string name="exitDialog">Voulez-vous quitter les parametres?</string>
+    <string name="discard">Annuler</string>
 </resources>

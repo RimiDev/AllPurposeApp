@@ -1,24 +1,38 @@
 package cs.dawson.dawsonelectriccurrents;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import android.util.Log;
+
+import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 
 public class MainActivity extends MenuActivity
 {
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private final static String TAG = MainActivity.class.getName();
+    private FriendFinderDBHelper database;
+    private final String USERS_PREFS = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        database = new FriendFinderDBHelper(this);
+        database.getWritableDatabase();
+
+        SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
+        String fullName = prefs.getString("firstName", "") + " " + prefs.getString("lastName", "");
+        Log.i(TAG, "Full name is: " + fullName);
+
+        if (fullName == null || fullName.trim().equals("")){
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void startClassCancelled(View view)
@@ -72,9 +86,9 @@ public class MainActivity extends MenuActivity
 
     @Override
     public void onStart() {
-        if (mFirebaseUser == null)
-            // Login activity
-        else
-            // Display main activity
+        super.onStart();
+
+
+
     }
 }

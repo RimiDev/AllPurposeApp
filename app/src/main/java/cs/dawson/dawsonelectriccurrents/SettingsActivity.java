@@ -3,89 +3,75 @@ package cs.dawson.dawsonelectriccurrents;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
+import cs.dawson.dawsonelectriccurrents.utilities.UserLoader;
 
-import java.sql.Timestamp;
+import static cs.dawson.dawsonelectriccurrents.utilities.Options.*;
 
 public class SettingsActivity extends MenuActivity {
 
     private static final String TAG = SettingsActivity.class.getName();
-
-    // TextViews
-    private TextView firstName;
-    private TextView lastName;
-    private TextView email;
-    private TextView password;
-    private TextView lastUpdated;
-
-    // Strings
-    private String firstNameStr;
-    private String lastNameStr;
-    private String emailStr;
-    private String passwordStr;
-    private String timeStampStr;
-
-    // EditText
-    private EditText editFirstName;
-    private EditText editLastName;
-    private EditText editEmail;
-    private EditText editPassword;
+    private FriendFinderDBHelper database;
+    private final String USERS_PREFS = "user";
+    private final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        database = new FriendFinderDBHelper(this);
+        database.getWritableDatabase();
         setContentView(R.layout.activity_settings);
 
-        Intent extras = getIntent();
-        String firstNameStr;
-        String lastNameStr;
-        String emailStr;
-        String passwordStr;
-        Timestamp timeStampStr;
-
-        // TextView
-        firstName = (TextView) findViewById(R.id.firstNameSp);
-        lastName = (TextView) findViewById(R.id.lastNameSp);
-        email = (TextView) findViewById(R.id.emailSp);
-        password = (TextView) findViewById(R.id.passwordSp);
-        lastUpdated = (TextView) findViewById(R.id.lastUpdatedSp);
-
-        editFirstName = (EditText) findViewById(R.id.editFirstName);
-        editLastName = (EditText) findViewById(R.id.editLastName);
-        editEmail = (EditText) findViewById(R.id.editEmail);
-        editPassword = (EditText) findViewById(R.id.editPassword);
-
-        Button saveBtn = (Button) findViewById(R.id.saveButton);
-
-        if (extras != null) {
-            firstNameStr = extras.getExtras().getString("firstName");
-            lastNameStr = extras.getExtras().getString("lastName");
-            emailStr = extras.getExtras().getString("email");
-            passwordStr = extras.getExtras().getString("password");
-            timeStampStr = (Timestamp)  extras.getExtras().getSerializable("timeStamp");
+        SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
+        if (prefs != null) {
+            // Edit the textviews for the current shared preferences
+            ((TextView) findViewById(R.id.firstNameSp)).setText(prefs.getString("firstName", ""));
+            ((TextView) findViewById(R.id.lastNameSp)).setText(prefs.getString("lastName", ""));
+            ((TextView) findViewById(R.id.emailSp)).setText(prefs.getString("email", ""));
+            ((TextView) findViewById(R.id.passwordSp)).setText(prefs.getString("password", ""));
+            ((TextView) findViewById(R.id.lastUpdatedSp)).setText(prefs.getString("lastUpdated", ""));
         }
-
-        // Sets the settings
-        setSettingsTextView();
     }
 
-    private void setSettingsTextView() {
-        firstName.setText(firstNameStr);
-        lastName.setText(lastNameStr);
-        email.setText(emailStr);
-        password.setText(passwordStr);
-        lastUpdated.setText(timeStampStr);
+    /**
+     * Sets the database
+     * @param database
+     */
+    public void setDatabase(FriendFinderDBHelper database) { this.database = database; }
+
+    /**
+     * Saves the information from the form into the database
+     * All fields must be entered in order to save the information
+     * @param view
+     */
+    public void saveSettings(View view) {
+        // Get the information
+        String firstName = ((EditText) findViewById(R.id.editFirstName)).getText().toString();
+        String lastName = ((EditText) findViewById(R.id.editLastName)).getText().toString();
+        String email = ((EditText) findViewById(R.id.editEmail)).getText().toString();
+        String password = ((EditText) findViewById(R.id.editPassword)).getText().toString();
+
+        if (validateInformation(firstName, lastName, email, password)) {
+            if (getSharedPreferences(USERS_PREFS, MODE_PRIVATE).getString("email", "") != "") {
+                new UserLoader(MODIFY_USER, this, database, new String[] { firstName, lastName, email, password }).execute();
+            } else {
+                new UserLoader(ADD_USER, this, database, new String[] { firstName, lastName, email, password}).execute();
+            }
+            finish();
+        } else {
+            showInvalidInput();
+        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -104,20 +90,14 @@ public class SettingsActivity extends MenuActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Save");
-        builder.setMessage("Do you want to save the settings?");
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.exitSettings);
+        builder.setMessage(R.string.exitDialog);
+        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {}});
+        builder.setNegativeButton(R.string.discard, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // Save the result
-                save();
-                SettingsActivity.super.onBackPressed();
-            }
-        });
-        builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                SettingsActivity.super.onBackPressed();
-            }
-        });
+                finish();
+            }});
         builder.show();
     }
 
@@ -125,37 +105,39 @@ public class SettingsActivity extends MenuActivity {
     public void onPause() {
         super.onPause();
 
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor e = prefs.edit();
-
-        e.putString("firstname", firstName.getText().toString());
-        e.putString("lastname", lastName.getText().toString());
-        e.putString("email", email.getText().toString());
-        e.putString("password", password.getText().toString());
-        e.putString("lastupdate", lastUpdated.getText().toString());
-
-        e.commit();
-    }
-
-    public void save() {
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor e = prefs.edit();
-
-        e.putString("firstnameedit", editFirstName.getText().toString());
-        e.putString("lastnameedit", editLastName.getText().toString());
-        e.putString("emailedit", editEmail.getText().toString());
-        e.putString("passwordedit", editPassword.getText().toString());
-
-        e.commit();
     }
 
     /**
-     * Saves the settings when the user clicks the button save
-     * @param v
+     * Validates if all the information in the form is correct to our standards
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param password
+     * @return
      */
-    public void saveSettings(View v) {
-        save();
+    private boolean validateInformation(String firstName, String lastName, String email, String password) {
+        if (firstName == "" || lastName == "" || email == "" || password == "")
+            return false;
+
+        if (!email.matches(EMAIL_REGEX))
+            return false;
+
+        return true;
     }
+
+    /**
+     * Validates user input
+     */
+    private void showInvalidInput() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Error");
+        builder.setMessage("Invalid input");
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {}}).show();
+    }
+
 
 
 
