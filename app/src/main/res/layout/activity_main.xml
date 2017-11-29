@@ -98,7 +98,29 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
+                android:onClick="startAcademicCalendar"
                 android:text="@string/academicCalText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:onClick="startFindFriends"
+                android:text="@string/findFriend" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:onClick="startFindFreeFriends"
+                android:text="@string/findFreeFriendsText" />
         </LinearLayout>
 
         <TextView
