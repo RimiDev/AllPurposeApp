@@ -18,15 +18,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="@string/eventTitleText" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/etTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"/>
+            android:hint="@string/eventTitleHint"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -39,14 +40,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="@string/datePickerText" />
 
         <TextView
             android:id="@+id/tvDatePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="@string/datePickerHint" />
 
     </LinearLayout>
 
@@ -60,15 +61,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="@string/startTimePickerText" />
 
-        <EditText
-            android:id="@+id/editText3"
+        <TextView
+            android:id="@+id/tvStartTimePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"/>
+            android:text="@string/startTimePickerHint" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -81,15 +82,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="@string/endTimePickerText" />
 
-        <EditText
-            android:id="@+id/editText4"
+        <TextView
+            android:id="@+id/tvEndTimePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:text="@string/endTimePickerHint" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -102,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:onClick="addEvent"
+            android:text="@string/addEventBtnText" />
     </LinearLayout>
 </LinearLayout>

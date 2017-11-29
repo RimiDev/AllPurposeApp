@@ -1,4 +1,4 @@
-package cs.dawson.dawsonelectriccurrents.Database;
+package cs.dawson.dawsonelectriccurrents.database;
 
 import android.content.ContentValues;
 import android.content.Context;
