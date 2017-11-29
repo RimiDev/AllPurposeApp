@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DawsonElectricCurrents</string>
+    <string name="menuText">Menu</string>
+    <string name="aboutMenuText">A Propos</string>
+    <string name="dawsonMenuText">Dawson</string>
+    <string name="settingsMenuText">Parametres</string>
+    <string name="classCancelText">Cancellation de Classe</string>
+    <string name="findTeacherText">Trouver un Professeur</string>
+    <string name="addCalendarText">Ajouter au Calendrier</string>
+    <string name="notesText">Notes</string>
+    <string name="weatherText">Temperatuer</string>
+    <string name="academicCalText">Calendrier Academique</string>
+    <string name="currentTempText">Temperature Courante</string>
+    <string name="firstName">Prenom</string>
+    <string name="lastName">Nom de Famille</string>
+    <string name="email">Address Courriel</string>
+    <string name="password">Mot de passe</string>
+    <string name="lastUpdated">Derniere Mise a jour</string>
+    <string name="editSettings">Modifier les parametres</string>
+    <string name="save">Enregistrer</string>
+    <string name="currSettings">Parametres</string>
+    <string name="exitSettings">Quitter Parametres</string>
+    <string name="exitDialog">Voulez-vous quitter les parametres?</string>
+    <string name="discard">Annuler</string>
+    <string name="heroku">Heroku</string>
+    <string name="findFriend">Trouver amis</string>
+    <string name="findFreeFriendsText">Trouver amis libre</string>
+</resources>

@@ -35,7 +35,10 @@
         <activity android:name=".Notes.NotesActivity" />
         <activity android:name=".Notes.ItemNoteActivity" />
         <activity android:name=".CalendarActivity" />
-        <activity android:name=".WeatherActivity"/>
+        <activity android:name=".WeatherActivity" />
+        <activity android:name=".FindFriendActivity" />
+        <activity android:name=".AcademicCalendarActivity" />
+        <activity android:name=".FindFreeFriends"></activity>
         <activity android:name=".FiveDayForecastActivity"/>
     </application>
 

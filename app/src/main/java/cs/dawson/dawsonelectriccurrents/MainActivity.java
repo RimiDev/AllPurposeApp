@@ -1,20 +1,40 @@
 package cs.dawson.dawsonelectriccurrents;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.util.Log;
+
+import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 
 import cs.dawson.dawsonelectriccurrents.Notes.NotesActivity;
 
 public class MainActivity extends MenuActivity
 {
+    private final static String TAG = MainActivity.class.getName();
+    private FriendFinderDBHelper database;
+    private final String USERS_PREFS = "user";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        database = new FriendFinderDBHelper(this);
+        database.getWritableDatabase();
+
+        SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
+        String fullName = prefs.getString("firstName", "") + " " + prefs.getString("lastName", "");
+        Log.i(TAG, "Full name is: " + fullName);
+
+        if (fullName == null || fullName.trim().equals("")){
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void startClassCancelled(View view)
@@ -53,6 +73,21 @@ public class MainActivity extends MenuActivity
         startActivity(intent);
     }
 
+    public void startAcademicCalendar(View view) {
+        Intent intent = new Intent(this,AcademicCalendarActivity.class);
+        startActivity(intent);
+    }
+
+    public void startFindFriends(View view) {
+        Intent intent = new Intent(this,FindFriendActivity.class);
+        startActivity(intent);
+    }
+
+    public void startFindFreeFriends(View view) {
+        Intent intent = new Intent(this,FindFreeFriends.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -64,5 +99,13 @@ public class MainActivity extends MenuActivity
     public boolean onOptionsItemSelected(MenuItem item)
     {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+
     }
 }
