@@ -38,8 +38,8 @@ public class WeatherActivity extends MenuActivity {
     public void startUvIndex(View view)
     {
 
-        //Intent intent = new Intent(this, UvIndexActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, UvIndexActivity.class);
+        startActivity(intent);
     }
 
 
