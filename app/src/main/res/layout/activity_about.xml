@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cs.dawson.dawsonelectriccurrents.AboutActivity">
+    android:orientation="vertical"
+    tools:context="cs.dawson.dawsonelectriccurrents.AboutActivity"
+    android:weightSum="1">
 
-</android.support.constraint.ConstraintLayout>
+
+    android:id="@+id/textView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/appInfo"
+    android:textAlignment="center"
+    android:textSize="32sp"
+    android:layout_weight="0.19" />
+
+<TextView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="@string/teamMates"
+android:textAlignment="center"
+android:layout_weight="0.08" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/aboutUs"
+        android:textAlignment="center"
+        android:layout_weight="0.08"/>
+
+
+<ImageView
+android:id="@+id/aboutImageView"
+android:layout_width="match_parent"
+android:layout_height="154dp"/>
+<!--app:srcCompat="" -->
+
+
+</LinearLayout>

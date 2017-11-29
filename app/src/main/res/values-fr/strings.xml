@@ -33,4 +33,13 @@
     <string name="acadCalendar">Calendrier Academique</string>
     <string name="invalidYear">Annee Invalide!</string>
     <string name="noInput">Aucun semestre selectionne</string>
+    <string name="currentweather">Temperature Courante</string>
+    <string name="weatherapi">API Temperature</string>
+    <string name="citylabel">Entrez la ville dont vous voulez la temperature</string>
+    <string name="cityhint">Ville</string>
+    <string name="uvindexlabel">Index UV</string>
+    <string name="dayforecastlabel">Previsions 5 jours</string>
+    <string name="teamMates">Maxime Lacasse,  Alessandro Ciotola, Hannah Ly et Kevin</string>
+    <string name="aboutUs">Bienvenue a l\'equipe Dawson Courant Electrique et notre belle application chercheur d\'amis.  Nous sommes des
+        etudiants de troisieme annee en science de l\'ordinateur et oh boy nous adorons ca.</string>
 </resources>

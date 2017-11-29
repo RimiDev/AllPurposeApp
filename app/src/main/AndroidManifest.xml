@@ -3,6 +3,9 @@
     package="cs.dawson.dawsonelectriccurrents">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -18,7 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuActivity" />
+        <activity
+            android:name="cs.dawson.dawsonelectriccurrents.MenuActivity"
+            android:label="Menu">
+        </activity>
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".CancelledActivity" />
@@ -26,13 +32,14 @@
         <activity android:name=".FindTeacherActivity" />
         <activity android:name=".ChooseTeacherActivity" />
         <activity android:name=".TeacherContactActivity" />
-        <activity android:name=".NotesActivity" />
-        <activity android:name=".ItemNoteActivity" />
+        <activity android:name=".Notes.NotesActivity" />
+        <activity android:name=".Notes.ItemNoteActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".WeatherActivity" />
         <activity android:name=".FindFriendActivity" />
         <activity android:name=".AcademicCalendarActivity" />
         <activity android:name=".FindFreeFriends"></activity>
+        <activity android:name=".FiveDayForecastActivity"/>
     </application>
 
 </manifest>
