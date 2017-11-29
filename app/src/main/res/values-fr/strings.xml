@@ -26,4 +26,11 @@
     <string name="heroku">Heroku</string>
     <string name="findFriend">Trouver amis</string>
     <string name="findFreeFriendsText">Trouver amis libre</string>
+    <string name="academicYear">Entrez une annee</string>
+    <string name="winter">Semester Hiver</string>
+    <string name="fall">Semester Automne</string>
+    <string name="loadButton">Charger</string>
+    <string name="acadCalendar">Calendrier Academique</string>
+    <string name="invalidYear">Annee Invalide!</string>
+    <string name="noInput">Aucun semestre selectionne</string>
 </resources>
