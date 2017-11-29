@@ -26,6 +26,7 @@
     <string name="heroku">Heroku</string>
     <string name="findFriend">Trouver amis</string>
     <string name="findFreeFriendsText">Trouver amis libre</string>
+    <string name="eventActivityTitle">Ajouter un nouvel evenement</string>
     <string name="eventTitleText">Titre:</string>
     <string name="eventTitleHint">Cliquer ici pour entrer le titre.</string>
     <string name="datePickerText">Date:</string>

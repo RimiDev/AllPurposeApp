@@ -93,13 +93,13 @@ public class CalendarActivity extends MenuActivity {
 
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int syear, int smonth, int sday) {
-                smonth = smonth + 1;
+            public void onDateSet(DatePicker datePicker, int y, int m, int d) {
+                m = m + 1;
 
-                year = syear;
-                month = smonth - 1;
-                day = sday;
-                String date = smonth + "/" + sday + "/" + syear;
+                year = y;
+                month = m - 1;
+                day = d;
+                String date = m + "/" + d + "/" + y;
                 datePickerTV.setText(date);
             }
         };
@@ -127,9 +127,16 @@ public class CalendarActivity extends MenuActivity {
         startTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hours, int minutes) {
+                String startTime;
                 startHour = hours;
                 startMinute = minutes;
-                String startTime = hours + ":" + minutes;
+
+                if(minutes < 10){
+                    startTime = hours + ":0" + minutes;
+                }
+                else {
+                    startTime = hours + ":" + minutes;
+                }
                 startTimePickerTV.setText(startTime);
             }
         };
@@ -157,9 +164,16 @@ public class CalendarActivity extends MenuActivity {
         endTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hours, int minutes) {
+                String endTime;
                 endHour = hours;
                 endMinute = minutes;
-                String endTime = hours + ":" + minutes;
+
+                if(minutes < 10){
+                    endTime = hours + ":0" + minutes;
+                }
+                else {
+                    endTime = hours + ":" + minutes;
+                }
                 endTimePickerTV.setText(endTime);
             }
         };
@@ -167,22 +181,22 @@ public class CalendarActivity extends MenuActivity {
 
     public void addEvent(View v){
         long calID = 1;
-        long startM;
-        long endM;
+        long start;
+        long end;
         Calendar startTime = Calendar.getInstance();
         startTime.set(year, month, day, startHour, startMinute);
-        startM = startTime.getTimeInMillis();
+        start = startTime.getTimeInMillis();
         Calendar endTime = Calendar.getInstance();
         endTime.set(year, month, day, endHour, endMinute);
-        endM = endTime.getTimeInMillis();
+        end = endTime.getTimeInMillis();
 
         ContentResolver cr = getContentResolver();
         ContentValues values = new ContentValues();
-        values.put(CalendarContract.Events.DTSTART, startM);
-        values.put(CalendarContract.Events.DTEND, endM);
+        values.put(CalendarContract.Events.DTSTART, start);
+        values.put(CalendarContract.Events.DTEND, end);
+        values.put(CalendarContract.Events.EVENT_TIMEZONE, "America/Montreal");
         values.put(CalendarContract.Events.TITLE, etTitle.getText().toString());
         values.put(CalendarContract.Events.CALENDAR_ID, calID);
-        values.put(CalendarContract.Events.EVENT_TIMEZONE, "America/Montreal");
         Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
 
         Toast.makeText(this, "The event was created.", Toast.LENGTH_SHORT).show();
