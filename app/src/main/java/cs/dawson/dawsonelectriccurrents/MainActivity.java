@@ -71,6 +71,21 @@ public class MainActivity extends MenuActivity
         startActivity(intent);
     }
 
+    public void startAcademicCalendar(View view) {
+        Intent intent = new Intent(this,AcademicCalendarActivity.class);
+        startActivity(intent);
+    }
+
+    public void startFindFriends(View view) {
+        Intent intent = new Intent(this,FindFriendActivity.class);
+        startActivity(intent);
+    }
+
+    public void startFindFreeFriends(View view) {
+        Intent intent = new Intent(this,FindFreeFriends.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

@@ -23,4 +23,7 @@
     <string name="exitSettings">Quitter Parametres</string>
     <string name="exitDialog">Voulez-vous quitter les parametres?</string>
     <string name="discard">Annuler</string>
+    <string name="heroku">Heroku</string>
+    <string name="findFriend">Trouver amis</string>
+    <string name="findFreeFriendsText">Trouver amis libre</string>
 </resources>

@@ -22,4 +22,7 @@
     <string name="exitSettings">Exit Settings</string>
     <string name="exitDialog">Do you want to exit the settings?</string>
     <string name="discard">Discard</string>
+    <string name="heroku">Heroku</string>
+    <string name="findFriend">Find Friends</string>
+    <string name="findFreeFriendsText">Find Free Friends</string>
 </resources>
