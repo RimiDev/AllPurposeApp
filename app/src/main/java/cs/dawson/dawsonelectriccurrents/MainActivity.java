@@ -10,6 +10,8 @@ import android.util.Log;
 
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 
+import cs.dawson.dawsonelectriccurrents.Notes.NotesActivity;
+
 public class MainActivity extends MenuActivity
 {
     private final static String TAG = MainActivity.class.getName();
