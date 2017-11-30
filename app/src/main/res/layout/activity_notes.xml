@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cs.dawson.dawsonelectriccurrents.notes.NotesActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cs.dawson.dawsonelectriccurrents.NotesActivity">
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/noteText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/enterNoteText" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addNoteText"
+        android:textSize="18sp"
+        android:onClick="insertNote"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/noteList">
+    </ListView>
+
+</LinearLayout>
