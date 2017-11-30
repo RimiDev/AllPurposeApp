@@ -42,4 +42,14 @@
     <string name="teamMates">Maxime Lacasse,  Alessandro Ciotola, Hannah Ly et Kevin</string>
     <string name="aboutUs">Bienvenue a l\'equipe Dawson Courant Electrique et notre belle application chercheur d\'amis.  Nous sommes des
         etudiants de troisieme annee en science de l\'ordinateur et oh boy nous adorons ca.</string>
+    <string name="eventActivityTitle">Ajouter un nouvel evenement</string>
+    <string name="eventTitleText">Titre:</string>
+    <string name="eventTitleHint">Cliquer ici pour entrer le titre.</string>
+    <string name="datePickerText">Date:</string>
+    <string name="datePickerHint">Cliquer ici pour entrer la date.</string>
+    <string name="startTimePickerText">Heure de debut:</string>
+    <string name="startTimePickerHint">Cliquer ici pour entrer l\'heure du debut.</string>
+    <string name="endTimePickerText">Heure de fin:</string>
+    <string name="endTimePickerHint">Cliquer ici pour entrer l\'heure de la fin.</string>
+    <string name="addEventBtnText">Ajouter</string>
 </resources>
