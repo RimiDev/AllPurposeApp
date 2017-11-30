@@ -38,4 +38,14 @@
     <string name="aboutUs">Welcome to the Dawson Electric Currents team and our beautiful Dawson Friend Finder application.
         We are students in 3rd year comptuer science and oh boy are we lovin' it.
     </string>
+    <string name="eventActivityTitle">Add a new event</string>
+    <string name="eventTitleText">Event Title:</string>
+    <string name="eventTitleHint">Click here to enter the event\'s title.</string>
+    <string name="datePickerText">Date:</string>
+    <string name="datePickerHint">Click here to enter the event\'s date.</string>
+    <string name="startTimePickerText">Start time:</string>
+    <string name="startTimePickerHint">Click here to enter the event\'s start time.</string>
+    <string name="endTimePickerText">End time:</string>
+    <string name="endTimePickerHint">Click here to enter the event\'s end time.</string>
+    <string name="addEventBtnText">Add event</string>
 </resources>
