@@ -10,7 +10,7 @@ import android.util.Log;
 
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 
-import cs.dawson.dawsonelectriccurrents.Notes.NotesActivity;
+import cs.dawson.dawsonelectriccurrents.notes.NotesActivity;
 
 public class MainActivity extends MenuActivity
 {

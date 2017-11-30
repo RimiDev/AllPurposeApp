@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="cs.dawson.dawsonelectriccurrents.Notes.ItemNoteActivity">
+    tools:context="cs.dawson.dawsonelectriccurrents.notes.ItemNoteActivity">
 
     <TextView
         android:id="@+id/note"

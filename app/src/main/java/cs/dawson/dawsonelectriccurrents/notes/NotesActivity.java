@@ -1,4 +1,4 @@
-package cs.dawson.dawsonelectriccurrents.Notes;
+package cs.dawson.dawsonelectriccurrents.notes;
 
 import android.content.Intent;
 import android.database.Cursor;
