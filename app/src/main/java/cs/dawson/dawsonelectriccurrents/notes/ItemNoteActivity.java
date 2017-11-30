@@ -1,4 +1,4 @@
-package cs.dawson.dawsonelectriccurrents.Notes;
+package cs.dawson.dawsonelectriccurrents.notes;
 
 import android.os.Bundle;
 import android.view.Menu;
