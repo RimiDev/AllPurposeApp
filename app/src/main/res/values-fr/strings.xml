@@ -42,6 +42,18 @@
     <string name="teamMates">Maxime Lacasse,  Alessandro Ciotola, Hannah Ly et Kevin</string>
     <string name="aboutUs">Bienvenue a l\'equipe Dawson Courant Electrique et notre belle application chercheur d\'amis.  Nous sommes des
         etudiants de troisieme annee en science de l\'ordinateur et oh boy nous adorons ca.</string>
+    <string name="similar">Resultat similaire</string>
+    <string name="exact">Resultat exacte</string>
+    <string name="search">Recherche</string>
+    <string name="teacherInfo">Information sur l\'enseignant</string>
+    <string name="name">Nom</string>
+    <string name="office">Bureau</string>
+    <string name="local">Locale</string>
+    <string name="website">Site Internet</string>
+    <string name="bio">Biographie</string>
+    <string name="position">Position</string>
+    <string name="department">Department</string>
+    <string name="sector">Secteur</string>
     <string name="eventActivityTitle">Ajouter un nouvel evenement</string>
     <string name="eventTitleText">Titre:</string>
     <string name="eventTitleHint">Cliquer ici pour entrer le titre.</string>
