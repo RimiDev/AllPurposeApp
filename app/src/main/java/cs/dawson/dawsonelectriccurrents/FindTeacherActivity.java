@@ -8,6 +8,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+/**
+ * Activity containing all the functionality to search for teachers
+ * @author Kevin
+ * @version 1.0
+ */
 public class FindTeacherActivity extends MenuActivity {
 
     private static final String TAG = FindTeacherActivity.class.getName();
@@ -15,6 +28,7 @@ public class FindTeacherActivity extends MenuActivity {
     private EditText firstNameInput;
     private EditText lastNameInput;
     private RadioGroup rg;
+    protected FirebaseDatabase mDatabase;
 
     // For testing purposes, will delete after
     private Button one;
@@ -24,11 +38,10 @@ public class FindTeacherActivity extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_teacher);
-
-        // for testing
+        // Loads the blank fragment
         loadInitialFragment();
-        // for testing
 
+        mDatabase = FirebaseDatabase.getInstance();
         search = (Button)findViewById(R.id.searchTeacherBtn);
         firstNameInput = (EditText)findViewById(R.id.firstNameTeacher);
         lastNameInput = (EditText) findViewById(R.id.lastNameTeacher);
