@@ -34,8 +34,8 @@
         <activity android:name=".FindTeacherActivity" />
         <activity android:name=".ChooseTeacherActivity" />
         <activity android:name=".TeacherContactActivity" />
-        <activity android:name=".Notes.NotesActivity" />
-        <activity android:name=".Notes.ItemNoteActivity" />
+        <activity android:name=".notes.NotesActivity" />
+        <activity android:name=".notes.ItemNoteActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".WeatherActivity" />
         <activity android:name=".FindFriendActivity" />
