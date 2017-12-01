@@ -2,11 +2,13 @@ package cs.dawson.dawsonelectriccurrents;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.util.Log;
+import android.widget.ImageView;
 
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 
@@ -17,6 +19,7 @@ public class MainActivity extends MenuActivity
     private final static String TAG = MainActivity.class.getName();
     private FriendFinderDBHelper database;
     private final String USERS_PREFS = "user";
+    private ImageView dawsonLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,6 +38,19 @@ public class MainActivity extends MenuActivity
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         }
+    }
+
+    public void startDawsonPage(View view)
+    {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
+        startActivity(intent);
+    }
+
+    public void startAbout(View view)
+    {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
     }
 
     public void startClassCancelled(View view)
@@ -67,12 +83,6 @@ public class MainActivity extends MenuActivity
         startActivity(intent);
     }
 
-    public void startAbout(View view)
-    {
-        Intent intent = new Intent(this, AboutActivity.class);
-        startActivity(intent);
-    }
-
     public void startAcademicCalendar(View view) {
         Intent intent = new Intent(this,AcademicCalendarActivity.class);
         startActivity(intent);
@@ -102,10 +112,8 @@ public class MainActivity extends MenuActivity
     }
 
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         super.onStart();
-
-
-
     }
 }

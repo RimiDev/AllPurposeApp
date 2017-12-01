@@ -35,14 +35,6 @@ public class WeatherActivity extends MenuActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void startUvIndex(View view)
-    {
-
-        Intent intent = new Intent(this, UvIndexActivity.class);
-        startActivity(intent);
-    }
-
-
     public void startFiveDayForecast(View view)
     {
         Intent intent = new Intent(this, FiveDayForecastActivity.class);
