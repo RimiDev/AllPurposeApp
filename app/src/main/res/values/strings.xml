@@ -45,4 +45,20 @@
     <string name="acadCalendar">Academic Calendar</string>
     <string name="invalidYear">Invalid Year!</string>
     <string name="noInput">No semester was selected.</string>
+    <string name="similar">Similar match</string>
+    <string name="exact">Exact match</string>
+    <string name="search">Search</string>
+    <string name="teacherInfo">Teacher\'s Information</string>
+    <string name="name">Name</string>
+    <string name="office">Office</string>
+    <string name="local">Local</string>
+    <string name="website">Website</string>
+    <string name="bio">Biography</string>
+    <string name="position">Position</string>
+    <string name="department">Department</string>
+    <string name="sector">Sector</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

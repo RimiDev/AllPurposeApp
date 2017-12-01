@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-import cs.dawson.dawsonelectriccurrents.Database.DBHelper;
+import cs.dawson.dawsonelectriccurrents.database.DBHelper;
 import cs.dawson.dawsonelectriccurrents.MenuActivity;
 import cs.dawson.dawsonelectriccurrents.R;
 

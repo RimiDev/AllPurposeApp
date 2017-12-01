@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class Teacher implements Serializable {
     private String firstName;
     private String lastName;
+    private String fullName;
     private String email;
     private String office;
     private String local;
@@ -26,6 +27,7 @@ public class Teacher implements Serializable {
     public Teacher() {
         this.firstName = "";
         this.lastName = "";
+        this.fullName = "";
         this.email = "";
         this.office = "";
         this.local = "";
@@ -36,11 +38,25 @@ public class Teacher implements Serializable {
         this.sector = "";
     }
 
+    /**
+     * Constructor with parameters
+     * @param fn
+     * @param ln
+     * @param email
+     * @param office
+     * @param local
+     * @param website
+     * @param bio
+     * @param position
+     * @param department
+     * @param sector
+     */
     public Teacher(String fn, String ln, String email, String office,
                    String local, String website, String bio, String position,
                    String department, String sector) {
         this.firstName = fn;
         this.lastName = ln;
+        this.fullName = fn + " " + ln;
         this.email = email;
         this.office = office;
         this.local = local;
@@ -50,6 +66,8 @@ public class Teacher implements Serializable {
         this.department = department;
         this.sector = sector;
     }
+
+    // Getters and setters
 
     public String getFirstName() { return firstName; }
 
