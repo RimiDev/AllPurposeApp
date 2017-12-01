@@ -38,6 +38,17 @@
     <string name="aboutUs">Welcome to the Dawson Electric Currents team and our beautiful Dawson Friend Finder application.
         We are students in 3rd year comptuer science and oh boy are we lovin' it.
     </string>
+    <string name="five_day_forecast">Five day forecast</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="weather_condition">Weather condition</string>
+    <string name="weather_description">Weather description</string>
+    <string name="main_temperature">Main Temperature</string>
+    <string name="mininimum_temperature">Mininimum Temperature</string>
+    <string name="maximum_temperature">Maximum Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="uv_index">UV index</string>
     <string name="academicYear">Enter a year</string>
     <string name="winter">Winter Semester</string>
     <string name="fall">Fall Semester</string>
