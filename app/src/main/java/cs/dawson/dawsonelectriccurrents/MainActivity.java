@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.util.Log;
 
+import cs.dawson.dawsonelectriccurrents.cancelled.CancelledActivity;
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 
 import cs.dawson.dawsonelectriccurrents.notes.NotesActivity;

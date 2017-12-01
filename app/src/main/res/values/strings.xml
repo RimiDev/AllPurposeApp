@@ -66,4 +66,5 @@
     <string name="endTimePickerText">End time:</string>
     <string name="endTimePickerHint">Click here to enter the event\'s end time.</string>
     <string name="addEventBtnText">Add event</string>
+    <string name="cancelledClassUrl">https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml</string>
 </resources>
