@@ -31,7 +31,11 @@ import java.net.URL;
     public class WeatherRequest extends AsyncTask<String, String, String> {
         //Re-creating variables city and apiKey, to be used in this subclass.
         private String city;
+        private String countryCode;
         private String apiKey;
+        private String format;
+        private String latitude;
+        private String longitude;
 
         /**
          * A constructor that takes in the city that the user inputted in the previous activity
@@ -39,10 +43,11 @@ import java.net.URL;
          * @param city
          * @param apiKey
          */
-        public WeatherRequest(String city, String apiKey){
+        public WeatherRequest(String city, String apiKey, String format){
             this.city = city;
             this.apiKey = apiKey;
-            logIt("City in weatherRequest: " + this.city.toString());
+            this.format = format;
+            logIt("City in weatherRequest: " + this.city);
         }
 
         /**
@@ -72,19 +77,31 @@ import java.net.URL;
             //And they are set here. Without this, strangely weatherURLs' city/apikey will be null.
             String city = params[0];
             String apiKey = params[1];
+
+            logIt("countrycode;" + this.countryCode);
+            String weatherURL;
             //The weather URL which includes the user the city inputted in the previous activity
             //as well as the API key that was generated for me.
-            String weatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + this.city + this.apiKey;
+            if (this.format.equals(String.valueOf(1))) {
+                this.countryCode = params[2];
+                weatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + this.city + "," + this.countryCode + this.apiKey;
+            } else {
+                this.latitude = params[2];
+                this.longitude = params[3];
+                weatherURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + this.latitude + "&lon=" + this.longitude + this.apiKey;
+            }
             logIt("city in background: " + city);
             logIt("apiKey in background: " + apiKey);
-            logIt("background: "+ weatherURL);
+            logIt("background: " + weatherURL);
             //The results will be stored in this variable.
             String result = null;
             try {
+                logIt("here");
                 //Creating a URL with the weatherURL.
                 URL url = new URL(weatherURL);
                 //Opening the connection with the given url.
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                logIt("here");
 
                 //Creating an inputStream with the open connection.
                 InputStream input = new BufferedInputStream(urlConnection.getInputStream());
@@ -95,6 +112,7 @@ import java.net.URL;
                 logIt("result: " + result);
             } catch (Exception e) {
                 e.printStackTrace();
+                logIt("BLOCKED!");
             }
             //Returns the StringBuilder JSON file results to onPostExecute().
             return result;
@@ -110,6 +128,7 @@ import java.net.URL;
          */
         @Override
         protected void onPostExecute(String s) {
+            logIt("super");
             super.onPostExecute(s);
         }
 

@@ -38,6 +38,17 @@
     <string name="aboutUs">Welcome to the Dawson Electric Currents team and our beautiful Dawson Friend Finder application.
         We are students in 3rd year comptuer science and oh boy are we lovin' it.
     </string>
+    <string name="five_day_forecast">Five day forecast</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="weather_condition">Weather condition</string>
+    <string name="weather_description">Weather description</string>
+    <string name="main_temperature">Main Temperature</string>
+    <string name="mininimum_temperature">Mininimum Temperature</string>
+    <string name="maximum_temperature">Maximum Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="uv_index">UV index</string>
     <string name="academicYear">Enter a year</string>
     <string name="winter">Winter Semester</string>
     <string name="fall">Fall Semester</string>
@@ -57,8 +68,16 @@
     <string name="position">Position</string>
     <string name="department">Department</string>
     <string name="sector">Sector</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="eventActivityTitle">Add a new event</string>
+    <string name="eventTitleText">Event Title:</string>
+    <string name="eventTitleHint">Click here to enter the event\'s title.</string>
+    <string name="datePickerText">Date:</string>
+    <string name="datePickerHint">Click here to enter the event\'s date.</string>
+    <string name="startTimePickerText">Start time:</string>
+    <string name="startTimePickerHint">Click here to enter the event\'s start time.</string>
+    <string name="endTimePickerText">End time:</string>
+    <string name="endTimePickerHint">Click here to enter the event\'s end time.</string>
+    <string name="addEventBtnText">Add event</string>
 </resources>
