@@ -8,6 +8,7 @@
     <string name="findTeacherText">Find a Teacher</string>
     <string name="addCalendarText">Add to Calendar</string>
     <string name="notesText">Notes</string>
+    <string name="deleteNoteBtnText">Delete Note</string>
     <string name="enterNoteText">Enter your note here!</string>
     <string name="errorNotesText">Please enter a note in the field that is more than 10 characters!</string>
     <string name="addNoteText">Add Note</string>
@@ -80,4 +81,6 @@
     <string name="endTimePickerText">End time:</string>
     <string name="endTimePickerHint">Click here to enter the event\'s end time.</string>
     <string name="addEventBtnText">Add event</string>
+    <string name="noCancelledClasses">No Cancelled Classes!</string>
+    <string name="cancelledClassUrl">https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml</string>
 </resources>

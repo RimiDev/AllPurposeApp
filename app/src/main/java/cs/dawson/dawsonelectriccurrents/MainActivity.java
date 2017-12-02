@@ -10,6 +10,7 @@ import android.view.View;
 import android.util.Log;
 import android.widget.ImageView;
 
+import cs.dawson.dawsonelectriccurrents.cancelled.CancelledActivity;
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 
 import cs.dawson.dawsonelectriccurrents.notes.NotesActivity;
