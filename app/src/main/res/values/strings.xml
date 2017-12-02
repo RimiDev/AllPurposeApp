@@ -83,4 +83,8 @@
     <string name="addEventBtnText">Add event</string>
     <string name="noCancelledClasses">No Cancelled Classes!</string>
     <string name="cancelledClassUrl">https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml</string>
+    <string name="cancelledTitle">Title:</string>
+    <string name="cancelledTeacher">Teacher:</string>
+    <string name="cancelledCourse">Course number:</string>
+    <string name="cancelledDate">Date:</string>
 </resources>
