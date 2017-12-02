@@ -38,8 +38,11 @@ public class CancelledActivity extends MenuActivity
     private AdapterView.OnItemClickListener showCancelledClasses = new AdapterView.OnItemClickListener()
     {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        {
             Intent intent = new Intent(CancelledActivity.this, ShowCancelActivity.class);
+            intent.putExtra("ClassCancelled", cancelledClassList.get(position));
+
             startActivity(intent);
         }
     };
@@ -75,6 +78,7 @@ public class CancelledActivity extends MenuActivity
             else
             {
                 ListView cancelledListView = (ListView) findViewById(R.id.cancelledListView);
+                cancelledClassList = result;
 
                 ArrayAdapter<CancelledClass> adapter = new ArrayAdapter<CancelledClass>(CancelledActivity.this, R.layout.cancelled_class, result);
                 cancelledListView.setAdapter(adapter);
