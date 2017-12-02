@@ -13,7 +13,9 @@ public class RssParseHandler extends DefaultHandler
     private List<CancelledClass> items;
     private CancelledClass currentItem;
     private boolean parsingTitle;
-    private boolean parsingLink;
+    private boolean parsingCourse;
+    private boolean parsingTeacher;
+    private boolean parsingDateTimeCancelled;
 
     public RssParseHandler()
     {
@@ -31,8 +33,12 @@ public class RssParseHandler extends DefaultHandler
             currentItem = new CancelledClass();
         } else if ("title".equals(qName)) {
             parsingTitle = true;
-        } else if ("link".equals(qName)) {
-            parsingLink = true;
+        } else if ("course".equals(qName)) {
+            parsingCourse = true;
+        }else if ("teacher".equals(qName)) {
+            parsingTeacher = true;
+        }else if ("pubDate".equals(qName)) {
+            parsingDateTimeCancelled = true;
         }
     }
 
@@ -43,20 +49,47 @@ public class RssParseHandler extends DefaultHandler
             currentItem = null;
         } else if ("title".equals(qName)) {
             parsingTitle = false;
-        } else if ("link".equals(qName)) {
-            parsingLink = false;
+        } else if ("course".equals(qName)) {
+            parsingCourse = false;
+        }else if ("teacher".equals(qName)) {
+            parsingTeacher = false;
+        }else if ("pubDate".equals(qName)) {
+            parsingDateTimeCancelled = false;
         }
     }
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-        if (parsingTitle) {
+        if (parsingTitle)
+        {
             if (currentItem != null)
+            {
                 currentItem.setTitle(new String(ch, start, length));
-        } else if (parsingLink) {
-            if (currentItem != null) {
-                currentItem.setLink(new String(ch, start, length));
-                parsingLink = false;
+                parsingCourse = false;
+            }
+        }
+        else if (parsingCourse)
+        {
+            if (currentItem != null)
+            {
+                currentItem.setCourse(new String(ch, start, length));
+                parsingCourse = false;
+            }
+        }
+        else if (parsingTeacher)
+        {
+            if (currentItem != null)
+            {
+                currentItem.setTeacher(new String(ch, start, length));
+                parsingTeacher = false;
+            }
+        }
+        else if (parsingDateTimeCancelled)
+        {
+            if (currentItem != null)
+            {
+                currentItem.setDateTimeCancelled(new String(ch, start, length));
+                parsingDateTimeCancelled = false;
             }
         }
     }
