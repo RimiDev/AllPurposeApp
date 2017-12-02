@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-
 public class AcademicCalendarActivity extends AppCompatActivity {
 
     private static final String TAG = AcademicCalendarActivity.class.getName();

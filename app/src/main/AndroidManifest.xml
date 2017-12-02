@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -22,24 +22,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="cs.dawson.dawsonelectriccurrents.MenuActivity"
-            android:label="Menu">
-        </activity>
+            android:name=".MenuActivity"
+            android:label="Menu" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".CancelledActivity" />
         <activity android:name=".ShowCancelActivity" />
         <activity android:name=".FindTeacherActivity" />
-        <activity android:name=".ChooseTeacherActivity" />
-        <activity android:name=".TeacherContactActivity" />
         <activity android:name=".notes.NotesActivity" />
         <activity android:name=".notes.ItemNoteActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".WeatherActivity" />
         <activity android:name=".FindFriendActivity" />
         <activity android:name=".AcademicCalendarActivity" />
-        <activity android:name=".FindFreeFriends"></activity>
-        <activity android:name=".FiveDayForecastActivity"/>
+        <activity android:name=".FindFreeFriends" />
+        <activity android:name=".FiveDayForecastActivity" />
+        <activity android:name=".ChooseTeacherActivity" />
     </application>
 
 </manifest>

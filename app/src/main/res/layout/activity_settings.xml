@@ -7,101 +7,11 @@
     tools:context="cs.dawson.dawsonelectriccurrents.SettingsActivity">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/currentParameters"
-                android:layout_width="22dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/currSettings" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/firstNameTv"
-                android:layout_width="22dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/firstName" />
-
-            <TextView
-                android:id="@+id/firstNameSp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/lastNameTv"
-                android:layout_width="22dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/lastName" />
-
-            <TextView
-                android:id="@+id/lastNameSp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/emailTv"
-                android:layout_width="22dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/email" />
-
-            <TextView
-                android:id="@+id/emailSp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/passwordTv"
-                android:layout_width="22dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/password" />
-
-            <TextView
-                android:id="@+id/passwordSp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,7 +49,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/editSettings" />
+                    android:textSize="22dp"
+                    android:text="@string/Settings" />
             </LinearLayout>
 
             <LinearLayout
@@ -214,7 +125,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/passwordTv"
                     android:layout_width="66dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -226,8 +137,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="mypassword"
-                    android:inputType="textPersonName" />
+                    android:hint="********"
+                    android:inputType="textPassword" />
             </LinearLayout>
 
             <LinearLayout

@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     tools:context="cs.dawson.dawsonelectriccurrents.TeacherContactFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +28,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -39,9 +37,9 @@
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="@string/name"
                         android:textColor="#0000FF"
-                        android:textSize="20dp"
-                        android:text="@string/name" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/fullNameTv"
@@ -52,7 +50,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -74,7 +72,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -96,7 +94,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -118,7 +116,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -140,7 +138,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -162,7 +160,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -184,7 +182,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -206,7 +204,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">

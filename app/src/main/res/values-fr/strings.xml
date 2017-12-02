@@ -17,7 +17,7 @@
     <string name="email">Address Courriel</string>
     <string name="password">Mot de passe</string>
     <string name="lastUpdated">Derniere Mise a jour</string>
-    <string name="editSettings">Modifier les parametres</string>
+    <string name="Settings">Parametres</string>
     <string name="save">Enregistrer</string>
     <string name="currSettings">Parametres</string>
     <string name="exitSettings">Quitter Parametres</string>
@@ -54,4 +54,6 @@
     <string name="position">Position</string>
     <string name="department">Department</string>
     <string name="sector">Secteur</string>
+    <string name="teacherNames">Professeurs</string>
+    <string name="no">Non</string>
 </resources>

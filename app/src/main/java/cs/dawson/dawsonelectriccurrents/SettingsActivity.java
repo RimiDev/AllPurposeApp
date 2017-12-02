@@ -22,7 +22,7 @@ public class SettingsActivity extends MenuActivity {
     private final String USERS_PREFS = "user";
     private final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
+    private TextView password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +34,10 @@ public class SettingsActivity extends MenuActivity {
         SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
         if (prefs != null) {
             // Edit the textviews for the current shared preferences
-            ((TextView) findViewById(R.id.firstNameSp)).setText(prefs.getString("firstName", ""));
-            ((TextView) findViewById(R.id.lastNameSp)).setText(prefs.getString("lastName", ""));
-            ((TextView) findViewById(R.id.emailSp)).setText(prefs.getString("email", ""));
-            ((TextView) findViewById(R.id.passwordSp)).setText(prefs.getString("password", ""));
+            ((TextView) findViewById(R.id.editFirstName)).setText(prefs.getString("firstName", ""));
+            ((TextView) findViewById(R.id.editLastName)).setText(prefs.getString("lastName", ""));
+            ((TextView) findViewById(R.id.editEmail)).setText(prefs.getString("email", ""));
+            ((TextView) findViewById(R.id.editPassword)).setText(prefs.getString("password", ""));
             ((TextView) findViewById(R.id.lastUpdatedSp)).setText(prefs.getString("lastUpdated", ""));
         }
     }
@@ -92,7 +92,7 @@ public class SettingsActivity extends MenuActivity {
 
         builder.setTitle(R.string.exitSettings);
         builder.setMessage(R.string.exitDialog);
-        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {}});
         builder.setNegativeButton(R.string.discard, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
