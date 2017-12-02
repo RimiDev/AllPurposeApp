@@ -31,7 +31,7 @@ public class CancelledActivity extends MenuActivity
         setContentView(R.layout.activity_cancelled);
 
         RssAsyncTask task = new RssAsyncTask();
-        task.execute(getResources().getString(R.string.cancelledClassUrl));
+        task.execute(getString(R.string.cancelledClassUrl));
         Log.d("CancelledActivity", "Thread Name: " + Thread.currentThread().getName());
     }
 
@@ -73,7 +73,7 @@ public class CancelledActivity extends MenuActivity
             if(result.get(0).getTitle().equalsIgnoreCase("No classes cancelled."))
             {
                 TextView noCancelledClasses = (TextView)findViewById(R.id.noCancelledClassesView);
-                noCancelledClasses.setText(getResources().getString(R.string.noCancelledClasses));
+                noCancelledClasses.setText(R.string.noCancelledClasses);
             }
             else
             {

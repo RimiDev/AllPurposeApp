@@ -8,6 +8,7 @@
     <string name="findTeacherText">Find a Teacher</string>
     <string name="addCalendarText">Add to Calendar</string>
     <string name="notesText">Notes</string>
+    <string name="deleteNoteBtnText">Delete Note</string>
     <string name="enterNoteText">Enter your note here!</string>
     <string name="errorNotesText">Please enter a note in the field that is more than 10 characters!</string>
     <string name="addNoteText">Add Note</string>

@@ -8,7 +8,16 @@
         android:id="@+id/noteView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.8"
         android:textSize="24sp" >
     </TextView>
+
+    <Button
+        android:id="@+id/deleteNoteBtn"
+        android:layout_width="wrap_content"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content"
+        android:text="@string/deleteNoteBtnText" />
+
 
 </LinearLayout>
