@@ -3,32 +3,25 @@ package cs.dawson.dawsonelectriccurrents.cancelled;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
+import cs.dawson.dawsonelectriccurrents.MainActivity;
 import cs.dawson.dawsonelectriccurrents.MenuActivity;
 import cs.dawson.dawsonelectriccurrents.R;
 import cs.dawson.dawsonelectriccurrents.beans.CancelledClass;
 
 public class CancelledActivity extends MenuActivity
 {
-    private RecyclerView cancelledListView;
+    private ListView cancelledListView;
     private List<CancelledClass> cancelledClassList;
 
     @Override
@@ -37,137 +30,58 @@ public class CancelledActivity extends MenuActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancelled);
 
-        cancelledListView = (RecyclerView) findViewById(R.id.cancelledListView);
-        cancelledListView.setLayoutManager(new LinearLayoutManager(this));
-
-        AsyncFeed af = new AsyncFeed();
-        af.execute((Void)null);
+        RssAsyncTask task = new RssAsyncTask();
+        task.execute(getResources().getString(R.string.cancelledClassUrl));
+        Log.d("CancelledActivity", "Thread Name: " + Thread.currentThread().getName());
     }
 
-    private AdapterView.OnClickListener showCancelledClasses = new AdapterView.OnClickListener() {
+    private AdapterView.OnItemClickListener showCancelledClasses = new AdapterView.OnItemClickListener()
+    {
         @Override
-        public void onClick(View view)
-        {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(CancelledActivity.this, ShowCancelActivity.class);
             startActivity(intent);
         }
     };
 
-
-    private class AsyncFeed extends AsyncTask<Void, Void, Boolean>
+    private class RssAsyncTask extends AsyncTask<String, Void, List<CancelledClass>>
     {
-        private String urlLink;
-
         @Override
-        protected Boolean doInBackground(Void... voids)
+        protected List<CancelledClass> doInBackground(String... urls)
         {
             try
             {
-                URL url = new URL("https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml");
-                InputStream inputStream = url.openConnection().getInputStream();
-                cancelledClassList = getRssFeedData(inputStream);
-                return true;
+                RssFeeder rssReader = new RssFeeder(urls[0]);
+                return rssReader.getItems();
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Log.d("AsyncFeed", "doInBackgroundError: " + e.getMessage());
+                Log.e("Canclled", e.getMessage());
             }
-            return false;
+            return null;
         }
 
         @Override
-        protected void onPostExecute(Boolean success)
+        protected void onPostExecute(List<CancelledClass> result)
         {
-            if(success)
+            Log.d("CancelledActivity", "List Size: " + result.size() + " " + result.get(0).getTitle());
+
+            if(result.get(0).getTitle().equalsIgnoreCase("No classes cancelled."))
             {
-                cancelledListView.setOnClickListener(showCancelledClasses);
-                cancelledListView.setAdapter(new RssFeedListAdapter(cancelledClassList));
+                TextView noCancelledClasses = (TextView)findViewById(R.id.noCancelledClassesView);
+                noCancelledClasses.setText(getResources().getString(R.string.noCancelledClasses));
             }
-        }
-
-        private List<CancelledClass> getRssFeedData(InputStream inputStream)
-        {
-            List<CancelledClass> cancelledClassList = new ArrayList<>();
-            boolean isItem = false;
-
-            try
+            else
             {
-                String title = "", course = "", teacher = "", dateTimeCancelled = "";
-                URL url = new URL("https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml");
-                inputStream = url.openConnection().getInputStream();
-                XmlPullParser xmlParser = Xml.newPullParser();
-                xmlParser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                xmlParser.setInput(inputStream, null);
+                ListView cancelledListView = (ListView) findViewById(R.id.cancelledListView);
 
-                xmlParser.nextTag();
-                while (xmlParser.next() != XmlPullParser.END_DOCUMENT) {
-
-                    String result = "";
-                    int eventType = xmlParser.getEventType();
-                    String name = xmlParser.getName();
-                    if (name == null)
-                        continue;
-
-
-                    if (eventType == XmlPullParser.END_TAG) {
-                        if (name.equalsIgnoreCase("item"))
-                            isItem = false;
-                        continue;
-                    }
-
-
-
-                    if (eventType == XmlPullParser.START_TAG) {
-                        if (name.equalsIgnoreCase("item"))
-                        {
-                            isItem = true;
-                            continue;
-                        }
-                    }
-
-                    if (xmlParser.next() == XmlPullParser.TEXT) {
-                        result = xmlParser.getText();
-                        xmlParser.nextTag();
-                    }
-                    Log.d("CancelledActivity", "INSIDE");
-                    if (name.equalsIgnoreCase("title"))
-                        title = result;
-                    else if (name.equalsIgnoreCase("course"))
-                        course = result;
-                    else if (name.equalsIgnoreCase("teacher"))
-                        teacher = result;
-                    else if (name.equalsIgnoreCase("pubDate"))
-                        dateTimeCancelled = result;
-
-                    if (!title.equals("") && !course.equals("") && !teacher.equals("") && !dateTimeCancelled.equals("")) {
-                        if (isItem) {
-                            Log.d("CancelledActivity", title + " " + course + " " + teacher + " " + dateTimeCancelled);
-                            CancelledClass cc = new CancelledClass(title, course, teacher, dateTimeCancelled);
-                            cancelledClassList.add(cc);
-                        }
-
-                        title = "";
-                        course = "";
-                        teacher = "";
-                        dateTimeCancelled = "";
-                    }
-                }
-                inputStream.close();
-            } catch (Exception e) {
-                Log.d("AsyncFeed", "doInBackgroundError: " + e.getMessage());
-                try {
-                    throw e;
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                } catch (XmlPullParserException e1) {
-                    e1.printStackTrace();
-                }
+                ArrayAdapter<CancelledClass> adapter = new ArrayAdapter<CancelledClass>(CancelledActivity.this, R.layout.cancelled_class, result);
+                cancelledListView.setAdapter(adapter);
+                cancelledListView.setOnItemClickListener(showCancelledClasses);
             }
-            return cancelledClassList;
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
