@@ -3,10 +3,12 @@ package cs.dawson.dawsonelectriccurrents.notes;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -29,7 +31,7 @@ import cs.dawson.dawsonelectriccurrents.R;
 public class NotesActivity extends MenuActivity
 {
     private static DBHelper dbHelper ;
-    private SimpleCursorAdapter sCurAdapter;
+    private CustomNoteAdapter sCurAdapter;
     private Cursor cursor;
 
     /**
@@ -91,7 +93,10 @@ public class NotesActivity extends MenuActivity
             dbHelper.insertNote(note.substring(0, 8), note);
         }
         else
-            et.setText(R.string.errorNotesText);
+        {
+            et.setText("");
+            et.setHint(R.string.errorNotesText);
+        }
         refreshView();
     }
 
@@ -106,29 +111,9 @@ public class NotesActivity extends MenuActivity
         String[] from = { DBHelper.COL_SHORTNOTE };
         int[] to = { R.id.noteView };
 
-        sCurAdapter = new SimpleCursorAdapter(this, R.layout.note_row, cursor, from, to, 0);
+        sCurAdapter = new CustomNoteAdapter(this, R.layout.note_row, cursor, from, to);
         lv.setAdapter(sCurAdapter);
-        lv.setOnItemClickListener(displayNote);
     }
-
-    /**
-     * Event Listener which is called when one of the items in the List view has been pressed.
-     * Will start the ItemNoteActivity and pass the note information to the intent.
-     *
-     */
-    public AdapterView.OnItemClickListener displayNote = new AdapterView.OnItemClickListener()
-    {
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-        {
-            Cursor tempCursor = (Cursor) parent.getItemAtPosition(position);
-            String note = tempCursor.getString(2);
-
-            Intent intent = new Intent(NotesActivity.this, ItemNoteActivity.class);
-            intent.putExtra("note", note);
-            startActivity(intent);
-        }
-    };
-
     /**
      * Method which will reset the view in order to display all the notes when a new note is
      * added.

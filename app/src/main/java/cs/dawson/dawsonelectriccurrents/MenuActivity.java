@@ -1,6 +1,7 @@
 package cs.dawson.dawsonelectriccurrents;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -41,7 +42,9 @@ public class MenuActivity extends AppCompatActivity
 
     private void showDawson()
     {
-
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
+        startActivity(intent);
     }
 
     private void showSettings()

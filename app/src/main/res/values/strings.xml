@@ -8,6 +8,7 @@
     <string name="findTeacherText">Find a Teacher</string>
     <string name="addCalendarText">Add to Calendar</string>
     <string name="notesText">Notes</string>
+    <string name="deleteNoteBtnText">Delete Note</string>
     <string name="enterNoteText">Enter your note here!</string>
     <string name="errorNotesText">Please enter a note in the field that is more than 10 characters!</string>
     <string name="addNoteText">Add Note</string>
@@ -85,4 +86,10 @@
     <string name="invalidInput">No selection and/or missing a name/lastname field.</string>
     <string name="noteacherfound">No teachers were found.</string>
     <string name="Settings">No teachers were found.</string>
+    <string name="noCancelledClasses">No Cancelled Classes!</string>
+    <string name="cancelledClassUrl">https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml</string>
+    <string name="cancelledTitle">Title:</string>
+    <string name="cancelledTeacher">Teacher:</string>
+    <string name="cancelledCourse">Course number:</string>
+    <string name="cancelledDate">Date:</string>
 </resources>

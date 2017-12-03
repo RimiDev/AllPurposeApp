@@ -69,4 +69,26 @@
     <string name="invalidInput">Aucune selection et/ou nom/prenom manquant.</string>
     <string name="noteacherfound">Aucun professeur trouve.</string>
     <string name="Settings">Parametres.</string>
+    <string name="deleteNoteBtnText">Effacez la note</string>
+    <string name="enterNoteText">Entrez votre note ici!</string>
+    <string name="errorNotesText">Svp entrez une note avec 10 characteres ou plus.</string>
+    <string name="addNoteText">Ajoutez une note</string>
+    <string name="five_day_forecast">Prévision de cinq jours</string>
+    <string name="date">Date</string>
+    <string name="time">Temps</string>
+    <string name="weather_condition">Conditions météorologique</string>
+    <string name="weather_description">Description météorologique</string>
+    <string name="main_temperature">Température</string>
+    <string name="mininimum_temperature">Température minimal</string>
+    <string name="maximum_temperature">Température maximal</string>
+    <string name="humidity">Humidité</string>
+    <string name="wind_speed">Vitesse du vents</string>
+    <string name="uv_index">Indice UV</string>
+    <string name="hello_blank_fragment">Allo</string>
+    <string name="noCancelledClasses">Aucun cours annulé!</string>
+    <string name="cancelledClassUrl">https://www.dawsoncollege.qc.ca/wp-content/external-includes/cancellations/feed.xml</string>
+    <string name="cancelledTitle">Titre:</string>
+    <string name="cancelledTeacher">Professeur:</string>
+    <string name="cancelledCourse">Numéro de cours:</string>
+    <string name="cancelledDate">Date:</string>
 </resources>
