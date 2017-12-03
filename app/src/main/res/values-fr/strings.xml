@@ -17,7 +17,7 @@
     <string name="email">Address Courriel</string>
     <string name="password">Mot de passe</string>
     <string name="lastUpdated">Derniere Mise a jour</string>
-    <string name="Settings">Parametres</string>
+    <string name="editSettings">Modifier les parametres</string>
     <string name="save">Enregistrer</string>
     <string name="currSettings">Parametres</string>
     <string name="exitSettings">Quitter Parametres</string>
@@ -54,8 +54,19 @@
     <string name="position">Position</string>
     <string name="department">Department</string>
     <string name="sector">Secteur</string>
+    <string name="eventActivityTitle">Ajouter un nouvel evenement</string>
+    <string name="eventTitleText">Titre:</string>
+    <string name="eventTitleHint">Cliquer ici pour entrer le titre.</string>
+    <string name="datePickerText">Date:</string>
+    <string name="datePickerHint">Cliquer ici pour entrer la date.</string>
+    <string name="startTimePickerText">Heure de debut:</string>
+    <string name="startTimePickerHint">Cliquer ici pour entrer l\'heure du debut.</string>
+    <string name="endTimePickerText">Heure de fin:</string>
+    <string name="endTimePickerHint">Cliquer ici pour entrer l\'heure de la fin.</string>
+    <string name="addEventBtnText">Ajouter</string>
     <string name="teacherNames">Professeurs</string>
     <string name="no">Non</string>
-    <string name="invalidInput">Aucune selection et/ou prenom/nom manquant.</string>
-    <string name="noteacherfound">Aucun professeurs trouve.</string>
+    <string name="invalidInput">Aucune selection et/ou nom/prenom manquant.</string>
+    <string name="noteacherfound">Aucun professeur trouve.</string>
+    <string name="Settings">Parametres.</string>
 </resources>
