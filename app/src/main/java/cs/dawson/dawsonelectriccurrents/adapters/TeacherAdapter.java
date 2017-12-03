@@ -1,21 +1,17 @@
 package cs.dawson.dawsonelectriccurrents.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import android.widget.TextView;
 import android.util.Log;
 
 import cs.dawson.dawsonelectriccurrents.ChooseTeacherActivity;
 import cs.dawson.dawsonelectriccurrents.R;
-import cs.dawson.dawsonelectriccurrents.TeacherContactFragment;
 import cs.dawson.dawsonelectriccurrents.beans.Teacher;
 
 /**
@@ -25,16 +21,22 @@ import cs.dawson.dawsonelectriccurrents.beans.Teacher;
  * @version 1.0
  */
 
-public class TeacherAdapter extends BaseAdapter {
+public class TeacherAdapter extends ArrayAdapter<Teacher> {
     private static final String TAG = TeacherAdapter.class.getName();
     private Context context;
-    private ArrayList<String> teachers;
+    private ArrayList<Teacher> teachers;
     private static LayoutInflater inflater;
 
-    public TeacherAdapter(ChooseTeacherActivity cta, ArrayList<String> teachers) {
+    /**
+     * Constructor
+     * @param cta
+     * @param teachers
+     */
+    public TeacherAdapter(ChooseTeacherActivity cta, int layout, ArrayList<Teacher> teachers) {
+        super(cta, layout, teachers);
         this.context = cta;
         this.teachers = teachers;
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -44,7 +46,7 @@ public class TeacherAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Teacher getItem(int position) {
         return teachers.get(position);
     }
 
@@ -55,20 +57,20 @@ public class TeacherAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, final View convertView, ViewGroup parent) {
+        PlaceHolder pc = new PlaceHolder();
         View rowView = inflater.inflate(R.layout.list_teacher, null);
 
-        TextView tv = (TextView) rowView.findViewById(R.id.listItem);
+        pc.tName = (TextView)rowView.findViewById(R.id.listItem);
 
         // Display the current teacher in the UI
-        tv.setText(teachers.get(position));
-
-        // Container of the list of teachers
-        final List<Teacher> teacherList = new ArrayList<>();
+        Teacher t = teachers.get(position);
+        Log.i(TAG, "Teacher full name: " + t.getFullName());
+        pc.tName.setText(t.getFullName());
 
         /**
          * Setting an onClickListener on the current row view
          */
-        rowView.setOnClickListener(new View.OnClickListener() {
+        /*rowView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -83,9 +85,17 @@ public class TeacherAdapter extends BaseAdapter {
                 android.support.v4.app.FragmentManager manager = ((ChooseTeacherActivity)context).getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.academicCalendarFragment, fragment, fragment.getTag()).commit();
             }
-        });
+        });*/
 
         return rowView;
+    }
+
+    /**
+     * This class holds the View objects for 1 row
+     */
+    class PlaceHolder
+    {
+        TextView tName;
     }
 }
 

@@ -59,6 +59,7 @@
     <string name="sector">Sector</string>
     <string name="teacherNames">Teachers</string>
     <string name="no">No</string>
+    <string name="invalidInput">No selection and/or missing a name/lastname field.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
