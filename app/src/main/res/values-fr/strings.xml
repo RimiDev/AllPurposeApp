@@ -57,4 +57,5 @@
     <string name="teacherNames">Professeurs</string>
     <string name="no">Non</string>
     <string name="invalidInput">Aucune selection et/ou prenom/nom manquant.</string>
+    <string name="noteacherfound">Aucun professeurs trouve.</string>
 </resources>

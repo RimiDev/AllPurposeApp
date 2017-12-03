@@ -3,10 +3,7 @@ package cs.dawson.dawsonelectriccurrents;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +24,9 @@ public class ChooseTeacherActivity extends AppCompatActivity {
     private String selection;
     private String firstName;
     private String lastName;
-    private ArrayList<Teacher> allTeachers = new ArrayList<Teacher>();
+    private String fullName;
+    private ArrayList<String> allTeachersFullName;
+    private ArrayList<Teacher> teachers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,8 @@ public class ChooseTeacherActivity extends AppCompatActivity {
         loadInitialFragment();
         mDatabase = FirebaseDatabase.getInstance();
 
+        getAllTeachers();
+
         // Get the bundle
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -44,6 +45,8 @@ public class ChooseTeacherActivity extends AppCompatActivity {
             firstName = extras.getString("firstname");
             lastName = extras.getString("lastname");
         }
+
+        fullName = firstName + " " + lastName;
     }
 
     /**
@@ -70,10 +73,13 @@ public class ChooseTeacherActivity extends AppCompatActivity {
      */
     private void getAllTeachers() {
         final ChooseTeacherActivity currentActivity = this;
+        final ListView lv = (ListView)findViewById(R.id.listViewTeachers);
         Query query = mDatabase.getReference();
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                allTeachersFullName = new ArrayList<String>();
+                teachers = new ArrayList<Teacher>();
                 Log.i(TAG, "Data Snap - Getting all teachers");
                 Log.i(TAG, "Data Snap Shot count - " + dataSnapshot.getChildrenCount());
 
@@ -81,32 +87,113 @@ public class ChooseTeacherActivity extends AppCompatActivity {
 
                 while(iterator.hasNext()) {
                     DataSnapshot ds = iterator.next();
-                    Teacher t = new Teacher();
-                    /*Log.i(TAG, "Saving full name: " + ds.child("full_name").getValue());
-                    Log.i(TAG, "Saving first name: " + ds.child("first_name").getValue());
-                    Log.i(TAG, "Saving last name: " + ds.child("last_name").getValue());
-                    Log.i(TAG, "Saving email: " + ds.child("email").getValue());
-                    Log.i(TAG, "Saving office: " + ds.child("office").getValue());
-                    Log.i(TAG, "Saving department: " + ds.child("departments").child("0").getValue());
-                    Log.i(TAG, "Saving position: " + ds.child("positions").child("0").getValue());
-                    Log.i(TAG, "Saving sectors: " + ds.child("sectors").child("0").getValue());*/
 
-                    t.setFirstName((String)ds.child("first_name").getValue());
-                    t.setLastName((String)ds.child("last_name").getValue());
-                    t.setFullName((String)ds.child("full_name").getValue());
-                    t.setEmail((String)ds.child("email").getValue());
-                    t.setOffice((String)ds.child("office").getValue());
-                    t.setLocal((String)ds.child("local").getValue());
-                    t.setDepartment((String)ds.child("departments").child("0").getValue());
-                    t.setPosition((String)ds.child("positions").child("0").getValue());
-                    t.setSector((String)ds.child("sectors").child("0").getValue());
+                    String teacherFullName = (String)ds.child("full_name").getValue();
+                    // Check if office and local are in the database, because some teachers dont have
+                    String office = (String)ds.child("office").getValue();
+                    if (office == null) {
+                        office = "";
+                    } else {
+                        office = (String)ds.child("office").getValue();
+                    }
+                    String local = (String)ds.child("local").getValue();
+                    if (local == null) {
+                        local = "";
+                    } else {
+                        local = (String)ds.child("local").getValue();
+                    }
 
-                    //Log.i(TAG, "Teacher obj: " + t.toString());
-                    allTeachers.add(t);
-                    //Log.i(TAG, "Teacher size: " + allTeachers.size());
+                    // Check for similar names
+                    if (selection.equals("like")) {
+                        // Check if first name contains the users search
+                        if (!firstName.equals("") && lastName.equals("")) {
+                            String fn = teacherFullName.substring(0, teacherFullName.indexOf(" "));
+                            if (fn.toLowerCase().trim().contains(firstName.toLowerCase().trim())) {
+                                allTeachersFullName.add(teacherFullName);
+                                Teacher t = new Teacher((String)ds.child("first_name").getValue(), (String)ds.child("last_name").getValue(),
+                                        (String)ds.child("full_name").getValue(), (String)ds.child("email").getValue(),
+                                        office, local, (String)ds.child("departments").child("0").getValue(), (String)ds.child("positions").child("0").getValue(),
+                                        (String)ds.child("sectors").child("0").getValue());
+                                teachers.add(t);
+                            }
+                        // Check if the last name contains the user search
+                        } else if (firstName.equals("") && !lastName.equals("")) {
+                            String ln = teacherFullName.substring(teacherFullName.indexOf(" ") + 1);
+                            if (ln.toLowerCase().trim().contains(lastName.toLowerCase().trim())) {
+                                allTeachersFullName.add(teacherFullName);
+                                Teacher t = new Teacher((String)ds.child("first_name").getValue(), (String)ds.child("last_name").getValue(),
+                                        (String)ds.child("full_name").getValue(), (String)ds.child("email").getValue(),
+                                        office, local, (String)ds.child("departments").child("0").getValue(), (String)ds.child("positions").child("0").getValue(),
+                                        (String)ds.child("sectors").child("0").getValue());
+                                teachers.add(t);
+                            }
+                        // Both fields were set
+                        } else if (!firstName.equals("") && !lastName.equals("")) {
+                            if (teacherFullName.toLowerCase().trim().contains(fullName.toLowerCase().trim())) {
+                                allTeachersFullName.add(teacherFullName);
+                                Teacher t = new Teacher((String)ds.child("first_name").getValue(), (String)ds.child("last_name").getValue(),
+                                        (String)ds.child("full_name").getValue(), (String)ds.child("email").getValue(),
+                                        office, local, (String)ds.child("departments").child("0").getValue(), (String)ds.child("positions").child("0").getValue(),
+                                        (String)ds.child("sectors").child("0").getValue());
+                                teachers.add(t);
+                            }
+                        }
+                    // Check for exact names
+                    } else if (selection.equals("exact")) {
+                        // Check if first name contains the users search
+                        if (!firstName.equals("") && lastName.equals("")) {
+                            String fn = teacherFullName.substring(0, teacherFullName.indexOf(" "));
+                            if (fn.toLowerCase().trim().equals(firstName.toLowerCase().trim())) {
+                                allTeachersFullName.add(teacherFullName);
+                                Teacher t = new Teacher((String)ds.child("first_name").getValue(), (String)ds.child("last_name").getValue(),
+                                        (String)ds.child("full_name").getValue(), (String)ds.child("email").getValue(),
+                                        office, local, (String)ds.child("departments").child("0").getValue(), (String)ds.child("positions").child("0").getValue(),
+                                        (String)ds.child("sectors").child("0").getValue());
+                                teachers.add(t);
+                            }
+                        // Check if the last name contains the user search
+                        } else if (firstName.equals("") && !lastName.equals("")) {
+                            String ln = teacherFullName.substring(teacherFullName.indexOf(" ") + 1);
+                            if (ln.toLowerCase().trim().equals(lastName.toLowerCase().trim())) {
+                                allTeachersFullName.add(teacherFullName);
+                                Teacher t = new Teacher((String)ds.child("first_name").getValue(), (String)ds.child("last_name").getValue(),
+                                        (String)ds.child("full_name").getValue(), (String)ds.child("email").getValue(),
+                                        office, local, (String)ds.child("departments").child("0").getValue(), (String)ds.child("positions").child("0").getValue(),
+                                        (String)ds.child("sectors").child("0").getValue());
+                                teachers.add(t);
+                            }
+                            // Both fields were set
+                        } else if (!firstName.equals("") && !lastName.equals("")) {
+                            if (teacherFullName.toLowerCase().trim().equals(fullName.toLowerCase().trim())) {
+                                allTeachersFullName.add(teacherFullName);
+                                Teacher t = new Teacher((String)ds.child("first_name").getValue(), (String)ds.child("last_name").getValue(),
+                                        (String)ds.child("full_name").getValue(), (String)ds.child("email").getValue(),
+                                        office, local, (String)ds.child("departments").child("0").getValue(), (String)ds.child("positions").child("0").getValue(),
+                                        (String)ds.child("sectors").child("0").getValue());
+                                teachers.add(t);
 
-                    //test
-                    testArrayTeacher(allTeachers);
+                            }
+                        }
+                    } // End if else
+                } // End while iterator
+
+                // Start fragment if results == 1
+                if (teachers.size() == 1) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fullname", teachers.get(0).getFullName());
+                    bundle.putString("email", teachers.get(0).getEmail());
+                    bundle.putString("office", teachers.get(0).getOffice());
+                    bundle.putString("local", teachers.get(0).getLocal());
+                    bundle.putString("position", teachers.get(0).getPosition());
+                    bundle.putString("department", teachers.get(0).getDepartment());
+                    bundle.putString("sector", teachers.get(0).getSector());
+                    TeacherContactFragment fragment = new TeacherContactFragment();
+                    fragment.setArguments(bundle);
+                    android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
+                } else {
+                    // Set the adapter to the list view
+                    lv.setAdapter(new TeacherAdapter(currentActivity, allTeachersFullName, dataSnapshot, selection, firstName, lastName));
                 }
             }
 
@@ -118,16 +205,5 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                         + " - Message : " + databaseError.getMessage());
             }
         });
-    }
-
-    private void testArrayTeacher(ArrayList<Teacher> list) {
-        final ChooseTeacherActivity currentActivity = this;
-        final ListView lv = (ListView)findViewById(R.id.listViewTeachers);
-        if (list.size() == 0) {
-            ((TextView)findViewById(R.id.test4)).setText("FUCKING BULLSHIT");
-        } else {
-            ((TextView)findViewById(R.id.test4)).setText("SIZE IS FUCKING " + list.size());
-            lv.setAdapter(new TeacherAdapter(currentActivity, R.id.listViewTeachers, list));
-        }
     }
 }
