@@ -30,8 +30,8 @@
         </activity>
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".CancelledActivity" />
-        <activity android:name=".ShowCancelActivity" />
+        <activity android:name=".cancelled.CancelledActivity" />
+        <activity android:name=".cancelled.ShowCancelActivity" />
         <activity android:name=".FindTeacherActivity" />
         <activity android:name=".ChooseTeacherActivity" />
         <activity android:name=".notes.NotesActivity" />

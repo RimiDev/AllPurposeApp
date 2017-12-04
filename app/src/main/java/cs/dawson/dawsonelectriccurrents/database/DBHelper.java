@@ -137,4 +137,10 @@ public class DBHelper extends SQLiteOpenHelper
         long code = getWritableDatabase().insert(TABLE_NOTES, null, cv);
         return code;
     }
+
+    public int removeNote(int id)
+    {
+        return getWritableDatabase().delete(TABLE_NOTES, COL_ID + "=?",
+                new String[] { String.valueOf(id) });
+    }
 }
