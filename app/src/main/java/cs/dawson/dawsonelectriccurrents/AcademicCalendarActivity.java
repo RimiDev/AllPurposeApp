@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-
 public class AcademicCalendarActivity extends AppCompatActivity {
 
     private static final String TAG = AcademicCalendarActivity.class.getName();
@@ -40,7 +39,7 @@ public class AcademicCalendarActivity extends AppCompatActivity {
     /**
      * Loads the initial webview with the current semester
      */
-    public void loadInitialCalendar() {
+    private void loadInitialCalendar() {
         CalendarWVFragment fragment = new CalendarWVFragment();
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.academicCalendarFragment, fragment, fragment.getTag()).commit();
@@ -49,7 +48,7 @@ public class AcademicCalendarActivity extends AppCompatActivity {
     /**
      * Sends the data to the fragment
      */
-    public void sendDataToFragment() {
+    private void sendDataToFragment() {
         String semester = getSemesterValue();
         if (validateAllInput()) {
             Bundle bundle = new Bundle();
@@ -67,7 +66,7 @@ public class AcademicCalendarActivity extends AppCompatActivity {
      *
      * @return
      */
-    public boolean validateAllInput() {
+    private boolean validateAllInput() {
         String year = ((EditText) findViewById(R.id.yearInput)).getText().toString();
         Log.i(TAG, "Year: " + year);
 
@@ -90,7 +89,7 @@ public class AcademicCalendarActivity extends AppCompatActivity {
      * @param year
      * @return
      */
-    public boolean validateYear(String year) {
+    private boolean validateYear(String year) {
         try {
             int yearInt = Integer.parseInt(year);
             Log.i(TAG, "Year input: " + yearInt);
@@ -110,7 +109,7 @@ public class AcademicCalendarActivity extends AppCompatActivity {
      *
      * @return
      */
-    public String getSemesterValue() {
+    private String getSemesterValue() {
         String semester = "";
         int id = rg.getCheckedRadioButtonId();
         Log.i(TAG, "RadioGroup ID: " + id);
@@ -128,7 +127,7 @@ public class AcademicCalendarActivity extends AppCompatActivity {
     /**
      * Pops a toast message to validate the year
      */
-    public void errorMessage() {
+    private void errorMessage() {
         Toast.makeText(this, R.string.invalidYear,
                 Toast.LENGTH_LONG).show();
 

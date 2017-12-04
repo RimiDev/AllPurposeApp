@@ -64,6 +64,14 @@
     <string name="endTimePickerText">Heure de fin:</string>
     <string name="endTimePickerHint">Cliquer ici pour entrer l\'heure de la fin.</string>
     <string name="addEventBtnText">Ajouter</string>
+    <string name="teacherNames">Professeurs</string>
+    <string name="no">Non</string>
+    <string name="invalidInput">Aucune selection et/ou nom/prenom manquant.</string>
+    <string name="noteacherfound">Aucun professeur trouve.</string>
+    <string name="Settings">Parametres.</string>
+    <string name="from">De</string>
+    <string name="sendemail">Envoyer un email</string>
+    <string name="call">Appeler</string>
     <string name="deleteNoteBtnText">Effacez la note</string>
     <string name="enterNoteText">Entrez votre note ici!</string>
     <string name="errorNotesText">Svp entrez une note avec 10 characteres ou plus.</string>

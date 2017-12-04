@@ -15,8 +15,6 @@ public class Teacher implements Serializable {
     private String email;
     private String office;
     private String local;
-    private String website;
-    private String bio;
     private String position;
     private String department;
     private String sector;
@@ -31,8 +29,6 @@ public class Teacher implements Serializable {
         this.email = "";
         this.office = "";
         this.local = "";
-        this.website = "";
-        this.bio = "";
         this.position = "";
         this.department = "";
         this.sector = "";
@@ -45,23 +41,18 @@ public class Teacher implements Serializable {
      * @param email
      * @param office
      * @param local
-     * @param website
-     * @param bio
      * @param position
      * @param department
      * @param sector
      */
-    public Teacher(String fn, String ln, String email, String office,
-                   String local, String website, String bio, String position,
-                   String department, String sector) {
+    public Teacher(String fn, String ln, String fullN, String email, String office,
+                   String local, String position, String department, String sector) {
         this.firstName = fn;
         this.lastName = ln;
-        this.fullName = fn + " " + ln;
+        this.fullName = fullN;
         this.email = email;
         this.office = office;
         this.local = local;
-        this.website = website;
-        this.bio = bio;
         this.position = position;
         this.department = department;
         this.sector = sector;
@@ -77,7 +68,9 @@ public class Teacher implements Serializable {
 
     public void setLastName(String ln) { this.lastName = ln; }
 
-    public String getFullName() { return firstName + " " + lastName; }
+    public String getFullName() { return fullName; }
+
+    public void setFullName(String fn) { this.fullName = fn; }
 
     public String getEmail() { return email; }
 
@@ -90,14 +83,6 @@ public class Teacher implements Serializable {
     public String getLocal() { return local; }
 
     public void setLocal(String local) { this.local = local; }
-
-    public String getWebsite() { return website; }
-
-    public void setWebsite(String website) { this.website = website; }
-
-    public String getBio() { return bio; }
-
-    public void setBio(String bio) { this.bio = bio; }
 
     public String getPosition() { return position; }
 
@@ -141,12 +126,6 @@ public class Teacher implements Serializable {
         if (!this.getLocal().equals(other.getLocal())) {
             return false;
         }
-        if (!this.getWebsite().equals(other.getWebsite())) {
-            return false;
-        }
-        if (!this.getBio().equals(other.getBio())) {
-            return false;
-        }
         if (!this.getPosition().equals(other.getPosition())) {
             return false;
         }
@@ -162,9 +141,8 @@ public class Teacher implements Serializable {
     @Override
     public String toString() {
         return "Teacher{First name: " + firstName + ", Last name: " + lastName +
-                "Full name: " + firstName + " " + lastName + ", Email: " + email +
-                ", Office: " + office + ", Local: " + local + ", Website: " + website +
-                ", Bio: " + bio + ", Position: " + position + ", Department: " +
+                "Full name: " + fullName + ", Email: " + email +
+                ", Office: " + office + ", Local: " + local + ", Position: " + position + ", Department: " +
                 department + ", Sector: " + sector + "}";
     }
 

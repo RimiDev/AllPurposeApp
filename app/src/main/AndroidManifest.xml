@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
     <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -33,7 +34,6 @@
         <activity android:name=".cancelled.ShowCancelActivity" />
         <activity android:name=".FindTeacherActivity" />
         <activity android:name=".ChooseTeacherActivity" />
-        <activity android:name=".TeacherContactActivity" />
         <activity android:name=".notes.NotesActivity" />
         <activity android:name=".notes.ItemNoteActivity" />
         <activity android:name=".CalendarActivity" />

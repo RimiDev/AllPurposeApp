@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/smoothbg"
     tools:context="cs.dawson.dawsonelectriccurrents.ChooseTeacherActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/teacherNames"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/teacherNames"
+        android:textColor="#98AFC7"
+        android:gravity="center"
+        android:textSize="22sp" />
+
+    <ListView
+        android:id="@+id/listViewTeachers"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:textColor="#98AFC7"></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/findTeacherFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="cs.dawson.dawsonelectriccurrents.InitialFragment">
+        </fragment>
+    </LinearLayout>
+
+</LinearLayout>

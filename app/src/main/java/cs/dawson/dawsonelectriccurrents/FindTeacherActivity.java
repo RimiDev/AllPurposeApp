@@ -1,58 +1,40 @@
 package cs.dawson.dawsonelectriccurrents;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+/**
+ * Activity containing all the functionality to search for teachers
+ * @author Kevin
+ * @version 1.0
+ */
 public class FindTeacherActivity extends MenuActivity {
 
     private static final String TAG = FindTeacherActivity.class.getName();
-    public Button search;
+    public ImageButton search;
     private EditText firstNameInput;
     private EditText lastNameInput;
     private RadioGroup rg;
-
-    // For testing purposes, will delete after
-    private Button one;
-    private Button two;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_teacher);
 
-        // for testing
-        loadInitialFragment();
-        // for testing
-
-        search = (Button)findViewById(R.id.searchTeacherBtn);
+        search = (ImageButton)findViewById(R.id.searchTeacherBtn);
         firstNameInput = (EditText)findViewById(R.id.firstNameTeacher);
         lastNameInput = (EditText) findViewById(R.id.lastNameTeacher);
         rg = (RadioGroup)findViewById(R.id.radioGroupTeacher);
-
-        // ---------------------------------------------------------- Testing
-        one = (Button)findViewById(R.id.f1);
-        two = (Button)findViewById(R.id.f2);
-
-        one.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openChooseTeacher();
-            }
-        });
-
-        two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openTeacherInformation();
-            }
-        });
-
-        // ---------------------------------------------------------- Testing
     }
 
     @Override
@@ -71,34 +53,71 @@ public class FindTeacherActivity extends MenuActivity {
     /**
      * Searches for the teacher
      */
-    public void searchTeacher() {
-
+    public void searchTeacher(View view) {
+        if (validateFields()) {
+            String selection = getSelectionValue();
+            String fn = firstNameInput.getText().toString();
+            String ln = lastNameInput.getText().toString();
+            Intent intent = new Intent(this, ChooseTeacherActivity.class);
+            intent.putExtra("selection", selection);
+            intent.putExtra("firstname", fn);
+            intent.putExtra("lastname", ln);
+            startActivity(intent);
+        } else {
+            errorMessage();
+        }
     }
 
     /**
-     * Opens the choose teacher fragment
+     * Validates if all required fields are filled up
+     * @return
      */
-    public void openChooseTeacher() {
-        ChooseTeacherFragment fragment = new ChooseTeacherFragment();
-        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
+    private boolean validateFields() {
+
+        String fn = firstNameInput.getText().toString();
+        String ln = lastNameInput.getText().toString();
+        Log.i(TAG, "Firstname Teacher: " + fn);
+        Log.i(TAG, "Lastname Teacher: " + ln);
+        boolean valid = false;
+
+        if (!fn.equals("") || !ln.equals("")) {
+            valid = true;
+        }
+
+        // Checks if any radio button was selected
+        if (rg.getCheckedRadioButtonId() == -1) {
+            valid = false;
+        }
+
+        return valid;
     }
 
     /**
-     * Opens the teacher information fragment
+     * Returns the search selection
+     *
+     * @return
      */
-    public void openTeacherInformation() {
-        TeacherContactFragment fragment = new TeacherContactFragment();
-        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
+    public String getSelectionValue() {
+        String selection = "";
+        int id = rg.getCheckedRadioButtonId();
+        Log.i(TAG, "RadioGroup ID: " + id);
+        Log.i(TAG, "Like ID: " + R.id.like);
+        Log.i(TAG, "Exact ID: " + R.id.exact);
+
+        if (id == R.id.like)
+            selection = "like";
+        else if (id == R.id.exact)
+            selection = "exact";
+
+        return selection;
     }
 
     /**
-     * Loads the initial fragment for the find teacher
+     * Pops a toast message to validate the year
      */
-    public void loadInitialFragment() {
-        BlankFragment fragment = new BlankFragment();
-        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
+    public void errorMessage() {
+        Toast.makeText(this, R.string.invalidInput,
+                Toast.LENGTH_LONG).show();
+
     }
 }
