@@ -1,5 +1,7 @@
 package cs.dawson.dawsonelectriccurrents.beans;
 
+import android.text.Html;
+
 import java.io.Serializable;
 
 /**
@@ -72,7 +74,7 @@ public class Teacher implements Serializable {
 
     public void setFullName(String fn) { this.fullName = fn; }
 
-    public String getEmail() { return email; }
+    public String getEmail() { return Html.fromHtml(email).toString(); }
 
     public void setEmail(String email) { this.email = email; }
 

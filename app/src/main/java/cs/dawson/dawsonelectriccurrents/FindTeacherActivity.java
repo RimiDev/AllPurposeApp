@@ -38,6 +38,9 @@ public class FindTeacherActivity extends MenuActivity {
         firstNameInput = (EditText)findViewById(R.id.firstNameTeacher);
         lastNameInput = (EditText) findViewById(R.id.lastNameTeacher);
         rg = (RadioGroup)findViewById(R.id.radioGroupTeacher);
+
+        // Set initial value for radio group
+        rg.check(R.id.like);
     }
 
     @Override
