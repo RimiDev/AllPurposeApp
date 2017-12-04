@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 
 import java.io.Serializable;
 
+import cs.dawson.dawsonelectriccurrents.FindTeacherActivity;
 import cs.dawson.dawsonelectriccurrents.MenuActivity;
 import cs.dawson.dawsonelectriccurrents.R;
 import cs.dawson.dawsonelectriccurrents.TeacherContactFragment;
@@ -57,12 +58,9 @@ public class ShowCancelActivity extends MenuActivity implements Serializable{
     }
 
     public void getTeacherInformation(View view){
-
-        Bundle bundle = new Bundle();
-        bundle.putString("fullname", cancelledClass.getTeacher());
-        TeacherContactFragment fragment = new TeacherContactFragment();
-        fragment.setArguments(bundle);
-        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
+        Intent intent = new Intent(ShowCancelActivity.this, FindTeacherActivity.class);
+        intent.putExtra("Teacher", cancelledClass.getTeacher());
+        intent.putExtra("SearchDatabase", true);
+        startActivity(intent);
     }
 }

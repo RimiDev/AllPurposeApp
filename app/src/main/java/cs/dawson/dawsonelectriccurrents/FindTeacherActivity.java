@@ -26,10 +26,20 @@ public class FindTeacherActivity extends MenuActivity {
     private EditText lastNameInput;
     private RadioGroup rg;
 
+    private String teacherName;
+    private boolean searchDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_teacher);
+
+        // Get the bundle
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            teacherName = extras.getString("Teacher");
+            searchDatabase = extras.getBoolean("ShowDatabase");
+        }
 
         search = (ImageButton)findViewById(R.id.searchTeacherBtn);
         firstNameInput = (EditText)findViewById(R.id.firstNameTeacher);
@@ -62,6 +72,8 @@ public class FindTeacherActivity extends MenuActivity {
             intent.putExtra("selection", selection);
             intent.putExtra("firstname", fn);
             intent.putExtra("lastname", ln);
+            intent.putExtra("teacherName", teacherName);
+            intent.putExtra("ShowDatabase", searchDatabase);
             startActivity(intent);
         } else {
             errorMessage();
