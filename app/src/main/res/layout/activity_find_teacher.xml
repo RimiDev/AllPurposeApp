@@ -4,14 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/findbg"
     tools:context="cs.dawson.dawsonelectriccurrents.FindTeacherActivity">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#98AFC7"
+                android:textSize="22dp"
+                android:gravity="center"
+                android:text="@string/search" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#98AFC7"
                 android:text="@string/firstName" />
 
             <EditText
@@ -32,6 +51,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Patricia"
+                android:textColor="#98AFC7"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -45,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#98AFC7"
                 android:text="@string/lastName" />
 
             <EditText
@@ -54,21 +75,24 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Campbell"
+                android:textColor="#98AFC7"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
         <RadioGroup
+            android:id="@+id/radioGroupTeacher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:id="@+id/radioGroupTeacher">
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#98AFC7"
+                android:buttonTint="#98AFC7"
                 android:text="@string/similar" />
 
             <RadioButton
@@ -76,21 +100,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#98AFC7"
+                android:buttonTint="#98AFC7"
                 android:text="@string/exact" />
         </RadioGroup>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="25dp">
 
-            <Button
+            <ImageButton
                 android:id="@+id/searchTeacherBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="searchTeacher"
-                android:text="@string/search" />
+                android:background="@drawable/search"
+                android:onClick="searchTeacher" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

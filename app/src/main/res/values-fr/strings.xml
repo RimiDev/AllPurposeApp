@@ -69,4 +69,7 @@
     <string name="invalidInput">Aucune selection et/ou nom/prenom manquant.</string>
     <string name="noteacherfound">Aucun professeur trouve.</string>
     <string name="Settings">Parametres.</string>
+    <string name="from">De</string>
+    <string name="sendemail">Envoyer un email</string>
+    <string name="call">Appeler</string>
 </resources>

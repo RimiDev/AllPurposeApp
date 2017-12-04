@@ -1,11 +1,15 @@
 package cs.dawson.dawsonelectriccurrents;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -16,6 +20,12 @@ import org.w3c.dom.Text;
  */
 
 public class TeacherContactFragment extends Fragment {
+
+    private static final String TAG = TeacherContactFragment.class.getName();
+    private String email;
+    private String local;
+    private TextView emailTv;
+    private TextView localTv;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,6 +40,29 @@ public class TeacherContactFragment extends Fragment {
             ((TextView)view.findViewById(R.id.positionTv)).setText(this.getArguments().getString("position").toString());
             ((TextView)view.findViewById(R.id.departmentTv)).setText(this.getArguments().getString("department").toString());
             ((TextView)view.findViewById(R.id.sectorTv)).setText(this.getArguments().getString("sector").toString());
+            email = this.getArguments().getString("email");
+            local = this.getArguments().getString("local");
+            emailTv = (TextView)view.findViewById(R.id.emailTeacherTv);
+            localTv = (TextView)view.findViewById(R.id.localTv);
+            emailTv.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Intent sendEMail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null));
+                    sendEMail.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.from) + " " + getResources().getString(R.string.app_name));
+                    getActivity().startActivity(Intent.createChooser(sendEMail, getResources().getString(R.string.sendemail)));
+                }
+            });
+
+            localTv.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Intent call = new Intent(Intent.ACTION_DIAL);
+                    call.setData(Uri.parse("tel:" + local));
+                    getActivity().startActivity(Intent.createChooser(call, getResources().getString(R.string.call)));
+                }
+            });
         }
 
         return view;

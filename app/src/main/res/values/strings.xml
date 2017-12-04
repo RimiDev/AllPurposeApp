@@ -84,5 +84,8 @@
     <string name="no">No</string>
     <string name="invalidInput">No selection and/or missing a name/lastname field.</string>
     <string name="noteacherfound">No teachers were found.</string>
-    <string name="Settings">No teachers were found.</string>
+    <string name="Settings">Settings</string>
+    <string name="from">From</string>
+    <string name="sendemail">Send Email</string>
+    <string name="call">Call</string>
 </resources>

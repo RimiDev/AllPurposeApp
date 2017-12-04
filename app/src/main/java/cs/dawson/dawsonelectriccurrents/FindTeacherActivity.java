@@ -1,6 +1,7 @@
 package cs.dawson.dawsonelectriccurrents;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import android.widget.Toast;
 public class FindTeacherActivity extends MenuActivity {
 
     private static final String TAG = FindTeacherActivity.class.getName();
-    public Button search;
+    public ImageButton search;
     private EditText firstNameInput;
     private EditText lastNameInput;
     private RadioGroup rg;
@@ -29,7 +31,7 @@ public class FindTeacherActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_teacher);
 
-        search = (Button)findViewById(R.id.searchTeacherBtn);
+        search = (ImageButton)findViewById(R.id.searchTeacherBtn);
         firstNameInput = (EditText)findViewById(R.id.firstNameTeacher);
         lastNameInput = (EditText) findViewById(R.id.lastNameTeacher);
         rg = (RadioGroup)findViewById(R.id.radioGroupTeacher);

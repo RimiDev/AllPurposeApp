@@ -7,14 +7,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/contactbg">
 
         <TextView
             android:id="@+id/noteachersfound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="#0000FF"
+            android:textColor="#98AFC7"
             android:textSize="30dp" />
 
         <TextView
@@ -23,7 +24,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/teacherInfo"
-            android:textColor="#0000FF"
+            android:textColor="#98AFC7"
             android:textSize="30dp" />
 
         <ScrollView
@@ -46,7 +47,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
                         android:text="@string/name"
-                        android:textColor="#0000FF"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp" />
 
                     <TextView
@@ -54,6 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"/>
                 </LinearLayout>
 
@@ -68,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
                         android:text="@string/email"
-                        android:textColor="#0000FF"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp" />
 
                     <TextView
@@ -76,6 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp" />
                 </LinearLayout>
 
@@ -89,7 +92,7 @@
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
-                        android:textColor="#0000FF"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"
                         android:text="@string/office" />
 
@@ -98,6 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"/>
                 </LinearLayout>
 
@@ -111,7 +115,7 @@
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
-                        android:textColor="#0000FF"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"
                         android:text="@string/local" />
 
@@ -120,6 +124,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"/>
                 </LinearLayout>
 
@@ -133,7 +138,7 @@
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
-                        android:textColor="#0000FF"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"
                         android:text="@string/position" />
 
@@ -142,6 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"/>
                 </LinearLayout>
 
@@ -155,7 +161,7 @@
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
-                        android:textColor="#0000FF"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"
                         android:text="@string/department" />
 
@@ -164,6 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"/>
                 </LinearLayout>
 
@@ -177,7 +184,7 @@
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".25"
-                        android:textColor="#0000FF"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"
                         android:text="@string/sector" />
 
@@ -186,6 +193,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
+                        android:textColor="#98AFC7"
                         android:textSize="20dp"/>
                 </LinearLayout>
             </LinearLayout>
