@@ -46,8 +46,8 @@ public class ChooseTeacherActivity extends AppCompatActivity {
             selection = extras.getString("selection");
             firstName = extras.getString("firstname");
             lastName = extras.getString("lastname");
-            teacherName = extras.getString("teacherName");
-            searchDb = extras.getBoolean("ShowDatabase");
+            teacherName = extras.getString("Teacher");
+            searchDb = extras.getBoolean("SearchDatabase");
         }
 
         fullName = firstName + " " + lastName;

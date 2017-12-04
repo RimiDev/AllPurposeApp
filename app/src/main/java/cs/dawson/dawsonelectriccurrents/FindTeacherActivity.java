@@ -34,13 +34,6 @@ public class FindTeacherActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_teacher);
 
-        // Get the bundle
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            teacherName = extras.getString("Teacher");
-            searchDatabase = extras.getBoolean("ShowDatabase");
-        }
-
         search = (ImageButton)findViewById(R.id.searchTeacherBtn);
         firstNameInput = (EditText)findViewById(R.id.firstNameTeacher);
         lastNameInput = (EditText) findViewById(R.id.lastNameTeacher);
