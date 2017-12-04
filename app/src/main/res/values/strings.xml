@@ -35,7 +35,10 @@
     <string name="cityhint">City</string>
     <string name="uvindexlabel">UV index</string>
     <string name="dayforecastlabel">5 day forecast</string>
-    <string name="teamMates">Maxime Lacasse,  Alessandro Ciotola, Hannah Ly and Kevin</string>
+    <string name="maxText">Maxime Lacasse</string>
+    <string name="aleText">Alessandro Ciotola</string>
+    <string name="hannahText">Hannah Ly</string>
+    <string name="kevinText">Kevin Bui</string>
     <string name="aboutUs">Welcome to the Dawson Electric Currents team and our beautiful Dawson Friend Finder application.
         We are students in 3rd year comptuer science and oh boy are we lovin' it.
     </string>
