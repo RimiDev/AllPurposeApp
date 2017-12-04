@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 import cs.dawson.dawsonelectriccurrents.MenuActivity;
 import cs.dawson.dawsonelectriccurrents.R;
-import cs.dawson.dawsonelectriccurrents.TeacherContactActivity;
+import cs.dawson.dawsonelectriccurrents.TeacherContactFragment;
 import cs.dawson.dawsonelectriccurrents.beans.CancelledClass;
 
 public class ShowCancelActivity extends MenuActivity implements Serializable{
@@ -57,8 +57,12 @@ public class ShowCancelActivity extends MenuActivity implements Serializable{
     }
 
     public void getTeacherInformation(View view){
-        Intent intent = new Intent(ShowCancelActivity.this, TeacherContactActivity.class);
-        intent.putExtra("TeacherName", cancelledClass.getTeacher());
-        startActivity(intent);
+        /*
+        Bundle bundle = new Bundle();
+        bundle.putString("fullname", classCancelled.getTeacher());
+        TeacherContactFragment fragment = new TeacherContactFragment();
+        fragment.setArguments(bundle);
+        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();*/
     }
 }
