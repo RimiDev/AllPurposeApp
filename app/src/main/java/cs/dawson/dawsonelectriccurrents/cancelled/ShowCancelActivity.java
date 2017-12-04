@@ -57,12 +57,12 @@ public class ShowCancelActivity extends MenuActivity implements Serializable{
     }
 
     public void getTeacherInformation(View view){
-        /*
+
         Bundle bundle = new Bundle();
-        bundle.putString("fullname", classCancelled.getTeacher());
+        bundle.putString("fullname", cancelledClass.getTeacher());
         TeacherContactFragment fragment = new TeacherContactFragment();
         fragment.setArguments(bundle);
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();*/
+        manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
     }
 }
