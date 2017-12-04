@@ -85,12 +85,15 @@ import java.net.URL;
             if (this.format.equals(String.valueOf(1))) {
                 this.countryCode = params[2];
                 weatherURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + this.city + "," + this.countryCode + this.apiKey;
-            } else {
+            } else if (this.format.equals(String.valueOf(2))) {
                 this.latitude = params[2];
                 this.longitude = params[3];
                 weatherURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + this.latitude + "&lon=" + this.longitude + this.apiKey;
+            } else {
+                this.latitude = params[1];
+                this.longitude = params[2];
+                weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + this.latitude + "&lon=" + this.longitude + this.apiKey;
             }
-            logIt("city in background: " + city);
             logIt("apiKey in background: " + apiKey);
             logIt("background: " + weatherURL);
             //The results will be stored in this variable.

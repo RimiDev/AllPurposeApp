@@ -1,6 +1,8 @@
 package cs.dawson.dawsonelectriccurrents.adapters;
 
 import android.content.Context;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +49,8 @@ public class SpinnerAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.country_spinner, null);
         TextView names = (TextView) view.findViewById(R.id.textView);
+        names.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
+        names.setGravity(Gravity.CENTER);
         names.setText(countryNames.get(i));
         return view;
     }

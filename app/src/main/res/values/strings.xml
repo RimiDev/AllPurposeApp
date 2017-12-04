@@ -29,9 +29,9 @@
     <string name="heroku">Heroku</string>
     <string name="findFriend">Find Friends</string>
     <string name="findFreeFriendsText">Find Free Friends</string>
-    <string name="currentweather">Current weather</string>
+    <string name="weatherSearch">Weather Search</string>
     <string name="weatherapi">Weather API</string>
-    <string name="citylabel">Please enter the city you want the weather from</string>
+    <string name="citylabel">Please enter the city and select the country you wish to see the forecast of</string>
     <string name="cityhint">City</string>
     <string name="uvindexlabel">UV index</string>
     <string name="dayforecastlabel">5 day forecast</string>

@@ -41,7 +41,10 @@
         <activity android:name=".FindFriendActivity" />
         <activity android:name=".AcademicCalendarActivity" />
         <activity android:name=".FindFreeFriends"></activity>
-        <activity android:name=".FiveDayForecastActivity"/>
+        <activity android:name=".FiveDayForecastActivity"
+                  android:theme="@style/weather">>
+
+        </activity>
     </application>
 
 </manifest>

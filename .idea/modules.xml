@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EleCurrents.iml" filepath="$PROJECT_DIR$/EleCurrents.iml" />
       <module fileurl="file://H:\School\F17\Android\DawsonApp\EleCurrents\EleCurrents.iml" filepath="H:\School\F17\Android\DawsonApp\EleCurrents\EleCurrents.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EleCurrents.iml" filepath="$PROJECT_DIR$/EleCurrents.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://H:\School\F17\Android\DawsonApp\EleCurrents\app\app.iml" filepath="H:\School\F17\Android\DawsonApp\EleCurrents\app\app.iml" />
     </modules>
