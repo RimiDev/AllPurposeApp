@@ -121,7 +121,7 @@ public class MainActivity extends MenuActivity
     }
 
     public void startFindFriends(View view) {
-        Intent intent = new Intent(this,FindFriendActivity.class);
+        Intent intent = new Intent(this,FindFriendCourseActivity.class);
         startActivity(intent);
     }
 
@@ -182,11 +182,6 @@ public class MainActivity extends MenuActivity
 
 
                     currentTempTextView.setText(currentTemperature);
-
-
-
-                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: "
-                            + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
                 }else{
                     // GPS or Network is not enabled
                     // Ask user to enable through a dialog.
