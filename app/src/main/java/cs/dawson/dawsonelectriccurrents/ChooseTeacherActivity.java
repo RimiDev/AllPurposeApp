@@ -29,13 +29,15 @@ public class ChooseTeacherActivity extends AppCompatActivity {
     private boolean searchDb;
     private ArrayList<String> allTeachersFullName;
     private ArrayList<Teacher> teachers;
+    TeacherContactFragment tcf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_teacher);
-        // Loads the initial fragment
+
         loadInitialFragment();
+
         mDatabase = FirebaseDatabase.getInstance();
 
         getAllTeachers();
@@ -189,14 +191,12 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                     bundle.putString("position", teachers.get(0).getPosition());
                     bundle.putString("department", teachers.get(0).getDepartment());
                     bundle.putString("sector", teachers.get(0).getSector());
-                    TeacherContactFragment fragment = new TeacherContactFragment();
-                    fragment.setArguments(bundle);
+                    tcf = new TeacherContactFragment();
+                    tcf.setArguments(bundle);
                     android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-                    manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
+                    manager.beginTransaction().replace(R.id.findTeacherFragment, tcf, tcf.getTag()).commit();
                 } else if (teachers.size() == 0) {
-                    TeacherContactFragment fragment = new TeacherContactFragment();
-                    android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-                    manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
+                    loadInitialFragment();
                 } else {
                     // Set the adapter to the list view
                     lv.setAdapter(new TeacherAdapter(currentActivity, allTeachersFullName, teachers));

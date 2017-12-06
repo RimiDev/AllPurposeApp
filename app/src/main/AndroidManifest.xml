@@ -33,7 +33,8 @@
         <activity android:name=".cancelled.CancelledActivity" />
         <activity android:name=".cancelled.ShowCancelActivity" />
         <activity android:name=".FindTeacherActivity" />
-        <activity android:name=".ChooseTeacherActivity" />
+        <activity android:name=".ChooseTeacherActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".notes.NotesActivity" />
         <activity android:name=".notes.ItemNoteActivity" />
         <activity android:name=".CalendarActivity" />

@@ -5,7 +5,9 @@
     tools:context="cs.dawson.dawsonelectriccurrents.cancelled.ShowCancelActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/cancelbg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,11 +19,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="35"
+            android:textSize="24dp"
             android:text="@string/cancelledTitle" />
 
         <TextView
             android:id="@+id/tvTextTitle"
             android:layout_width="0dp"
+            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="65" />
 
@@ -35,6 +39,7 @@
         <TextView
             android:id="@+id/tvCourse"
             android:layout_width="0dp"
+            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/cancelledCourse" />
@@ -42,6 +47,7 @@
         <TextView
             android:id="@+id/tvTextCourse"
             android:layout_width="0dp"
+            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="65" />
     </LinearLayout>
@@ -54,6 +60,7 @@
         <TextView
             android:id="@+id/tvTeacher"
             android:layout_width="0dp"
+            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/cancelledTeacher" />
@@ -63,6 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="65"
+            android:textSize="24dp"
             android:onClick="getTeacherInformation"/>
     </LinearLayout>
 
@@ -74,6 +82,7 @@
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="0dp"
+            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/cancelledDate" />
@@ -81,6 +90,7 @@
         <TextView
             android:id="@+id/tvTextDate"
             android:layout_width="0dp"
+            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="65" />
     </LinearLayout>

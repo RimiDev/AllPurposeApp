@@ -138,7 +138,31 @@ public class SettingsActivity extends MenuActivity {
             public void onClick(DialogInterface dialogInterface, int i) {}}).show();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstaneState) {
+        super.onSaveInstanceState(savedInstaneState);
 
+        savedInstaneState.putString("firstname", ((EditText) findViewById(R.id.editFirstName)).getText().toString());
+        savedInstaneState.putString("lastname", ((EditText) findViewById(R.id.editLastName)).getText().toString());
+        savedInstaneState.putString("email", ((EditText) findViewById(R.id.editEmail)).getText().toString());
+        savedInstaneState.putString("password", ((EditText) findViewById(R.id.editPassword)).getText().toString());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String fn = savedInstanceState.getString("firstname");
+        String ln = savedInstanceState.getString("lastname");
+        String email = savedInstanceState.getString("email");
+        String pw = savedInstanceState.getString("password");
+
+        ((TextView) findViewById(R.id.editFirstName)).setText(fn);
+        ((TextView) findViewById(R.id.editLastName)).setText(ln);
+        ((TextView) findViewById(R.id.editEmail)).setText(email);
+        ((TextView) findViewById(R.id.editPassword)).setText(pw);
+
+    }
 
 
 }
