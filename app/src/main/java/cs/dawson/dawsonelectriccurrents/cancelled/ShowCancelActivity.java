@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 
 import java.io.Serializable;
 
+import cs.dawson.dawsonelectriccurrents.ChooseTeacherActivity;
 import cs.dawson.dawsonelectriccurrents.FindTeacherActivity;
 import cs.dawson.dawsonelectriccurrents.MenuActivity;
 import cs.dawson.dawsonelectriccurrents.R;
@@ -58,7 +59,7 @@ public class ShowCancelActivity extends MenuActivity implements Serializable{
     }
 
     public void getTeacherInformation(View view){
-        Intent intent = new Intent(ShowCancelActivity.this, FindTeacherActivity.class);
+        Intent intent = new Intent(ShowCancelActivity.this, ChooseTeacherActivity.class);
         intent.putExtra("Teacher", cancelledClass.getTeacher());
         intent.putExtra("SearchDatabase", true);
         startActivity(intent);

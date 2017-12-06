@@ -25,6 +25,8 @@ public class ChooseTeacherActivity extends AppCompatActivity {
     private String firstName;
     private String lastName;
     private String fullName;
+    private String teacherName;
+    private boolean searchDb;
     private ArrayList<String> allTeachersFullName;
     private ArrayList<Teacher> teachers;
 
@@ -44,18 +46,11 @@ public class ChooseTeacherActivity extends AppCompatActivity {
             selection = extras.getString("selection");
             firstName = extras.getString("firstname");
             lastName = extras.getString("lastname");
+            teacherName = extras.getString("Teacher");
+            searchDb = extras.getBoolean("SearchDatabase");
         }
 
         fullName = firstName + " " + lastName;
-    }
-
-    /**
-     * Opens the teacher information fragment
-     */
-    private void openTeacherInformation() {
-        TeacherContactFragment fragment = new TeacherContactFragment();
-        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
     }
 
     /**
@@ -103,8 +98,15 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                         local = (String)ds.child("local").getValue();
                     }
 
-                    // Check for similar names
-                    if (selection.equals("like")) {
+                    if (searchDb) {
+                        if (teacherName.equals(teacherFullName)) {
+                            Teacher t = new Teacher((String)ds.child("first_name").getValue(), (String)ds.child("last_name").getValue(),
+                                    (String)ds.child("full_name").getValue(), (String)ds.child("email").getValue(),
+                                    office, local, (String)ds.child("departments").child("0").getValue(), (String)ds.child("positions").child("0").getValue(),
+                                    (String)ds.child("sectors").child("0").getValue());
+                            teachers.add(t);
+                        }
+                    } else if (selection.equals("like")) {
                         // Check if first name contains the users search
                         if (!firstName.equals("") && lastName.equals("")) {
                             String fn = teacherFullName.substring(0, teacherFullName.indexOf(" "));
@@ -116,7 +118,7 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                                         (String)ds.child("sectors").child("0").getValue());
                                 teachers.add(t);
                             }
-                        // Check if the last name contains the user search
+                            // Check if the last name contains the user search
                         } else if (firstName.equals("") && !lastName.equals("")) {
                             String ln = teacherFullName.substring(teacherFullName.indexOf(" ") + 1);
                             if (ln.toLowerCase().trim().contains(lastName.toLowerCase().trim())) {
@@ -127,7 +129,7 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                                         (String)ds.child("sectors").child("0").getValue());
                                 teachers.add(t);
                             }
-                        // Both fields were set
+                            // Both fields were set
                         } else if (!firstName.equals("") && !lastName.equals("")) {
                             if (teacherFullName.toLowerCase().trim().contains(fullName.toLowerCase().trim())) {
                                 allTeachersFullName.add(teacherFullName);
@@ -138,7 +140,7 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                                 teachers.add(t);
                             }
                         }
-                    // Check for exact names
+                        // Check for exact names
                     } else if (selection.equals("exact")) {
                         // Check if first name contains the users search
                         if (!firstName.equals("") && lastName.equals("")) {
@@ -151,7 +153,7 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                                         (String)ds.child("sectors").child("0").getValue());
                                 teachers.add(t);
                             }
-                        // Check if the last name contains the user search
+                            // Check if the last name contains the user search
                         } else if (firstName.equals("") && !lastName.equals("")) {
                             String ln = teacherFullName.substring(teacherFullName.indexOf(" ") + 1);
                             if (ln.toLowerCase().trim().equals(lastName.toLowerCase().trim())) {
@@ -191,9 +193,13 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                     fragment.setArguments(bundle);
                     android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
                     manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
+                } else if (teachers.size() == 0) {
+                    TeacherContactFragment fragment = new TeacherContactFragment();
+                    android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.findTeacherFragment, fragment, fragment.getTag()).commit();
                 } else {
                     // Set the adapter to the list view
-                    lv.setAdapter(new TeacherAdapter(currentActivity, allTeachersFullName, dataSnapshot, selection, firstName, lastName));
+                    lv.setAdapter(new TeacherAdapter(currentActivity, allTeachersFullName, teachers));
                 }
             }
 

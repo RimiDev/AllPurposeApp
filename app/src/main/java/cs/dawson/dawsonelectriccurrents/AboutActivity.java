@@ -1,9 +1,12 @@
 package cs.dawson.dawsonelectriccurrents;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class AboutActivity extends MenuActivity {
 
@@ -11,6 +14,42 @@ public class AboutActivity extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+    }
+
+    public void showCreatorBlurb(View view)
+    {
+        String name = "";
+        switch (view.getId())
+        {
+            case R.id.maxTextView:
+                name = getString(R.string.maxText);
+                break;
+            case R.id.aleTextView:
+                name = getString(R.string.aleText);
+                break;
+            case R.id.hannahTextView:
+                name = getString(R.string.hannahText);
+                break;
+            case R.id.kevinTextView:
+                name = getString(R.string.kevinText);
+                break;
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Some message")
+                .setTitle(name);
+
+        builder.setNegativeButton(R.string.discard, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                //When the button is Pressed, dismiss the dialog.
+            }
+        });
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
     @Override

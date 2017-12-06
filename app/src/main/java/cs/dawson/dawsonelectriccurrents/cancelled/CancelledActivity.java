@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cs.dawson.dawsonelectriccurrents.MainActivity;
@@ -80,7 +81,12 @@ public class CancelledActivity extends MenuActivity
                 ListView cancelledListView = (ListView) findViewById(R.id.cancelledListView);
                 cancelledClassList = result;
 
-                ArrayAdapter<CancelledClass> adapter = new ArrayAdapter<CancelledClass>(CancelledActivity.this, R.layout.cancelled_class, result);
+                List<String> courses = new ArrayList<>();
+                for(int i = 0; i < result.size(); i++)
+                    courses.add(result.get(i).getTitle() + " " + result.get(i).getCourse());
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(CancelledActivity.this,
+                        R.layout.cancelled_class, courses);
                 cancelledListView.setAdapter(adapter);
                 cancelledListView.setOnItemClickListener(showCancelledClasses);
             }

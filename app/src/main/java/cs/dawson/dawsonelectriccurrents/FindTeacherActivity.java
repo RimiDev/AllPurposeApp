@@ -26,6 +26,9 @@ public class FindTeacherActivity extends MenuActivity {
     private EditText lastNameInput;
     private RadioGroup rg;
 
+    private String teacherName;
+    private boolean searchDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,8 @@ public class FindTeacherActivity extends MenuActivity {
             intent.putExtra("selection", selection);
             intent.putExtra("firstname", fn);
             intent.putExtra("lastname", ln);
+            intent.putExtra("teacherName", teacherName);
+            intent.putExtra("ShowDatabase", searchDatabase);
             startActivity(intent);
         } else {
             errorMessage();
