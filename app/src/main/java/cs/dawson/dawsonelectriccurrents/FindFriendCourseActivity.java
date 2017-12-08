@@ -31,9 +31,7 @@ public class FindFriendCourseActivity extends MenuActivity
         if(!isAvailable)
             friendAvailable.setText(R.string.notAvailableText);
         else
-        {
             friendAvailable.setText(R.string.availableText + " Course: " + " Section: ");
-        }
     }
 
 
