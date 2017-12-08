@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_vertical"
-    android:background="@drawable/cancelbg">
+    android:gravity="center_vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +24,6 @@
         <TextView
             android:id="@+id/tvTextTitle"
             android:layout_width="0dp"
-            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_weight="65" />
@@ -40,7 +38,6 @@
         <TextView
             android:id="@+id/tvCourse"
             android:layout_width="0dp"
-            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:textSize="20sp"
@@ -49,7 +46,6 @@
         <TextView
             android:id="@+id/tvTextCourse"
             android:layout_width="0dp"
-            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_weight="65" />
@@ -63,7 +59,6 @@
         <TextView
             android:id="@+id/tvTeacher"
             android:layout_width="0dp"
-            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_weight="35"
@@ -73,7 +68,6 @@
             android:id="@+id/tvTextTeacher"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_weight="65"
             android:textSize="24dp"
             android:onClick="getTeacherInformation"/>
@@ -87,7 +81,6 @@
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="0dp"
-            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_weight="35"
@@ -96,7 +89,6 @@
         <TextView
             android:id="@+id/tvTextDate"
             android:layout_width="0dp"
-            android:textSize="24dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_weight="65" />

@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/smoothbg"
     tools:context="cs.dawson.dawsonelectriccurrents.AboutActivity"
     android:weightSum="1">
 
@@ -69,7 +68,7 @@
         android:id="@+id/aboutImageView"
         android:layout_width="match_parent"
         android:textColor="#FFFFFF"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/aboutphoto" />
 

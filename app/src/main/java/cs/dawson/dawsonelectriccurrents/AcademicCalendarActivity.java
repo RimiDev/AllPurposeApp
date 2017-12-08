@@ -29,14 +29,11 @@ public class AcademicCalendarActivity extends MenuActivity {
     private static final String WINTER = "winter";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_calendar);
-        if (savedInstanceState != null) {
-            loadInitialCalendar();
-        } else {
-            loadInitialCalendar();
-        }
+
         yearInput = (EditText) findViewById(R.id.yearInput);
         rg = (RadioGroup) findViewById(R.id.radioGroup);
         rg.check(R.id.fallRadioBtn);
@@ -166,11 +163,12 @@ public class AcademicCalendarActivity extends MenuActivity {
         int radioBtnSelection = savedInstanceState.getInt(RADIO);
 
         ((TextView) findViewById(R.id.yearInput)).setText(year);
-        if (radioBtnSelection == R.id.fallRadioBtn){
+        if (radioBtnSelection == R.id.fallRadioBtn) {
             rg.check(R.id.fallRadioBtn);
         } else if (radioBtnSelection == R.id.winterRadioBtn) {
             rg.check(R.id.winterRadioBtn);
         }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
