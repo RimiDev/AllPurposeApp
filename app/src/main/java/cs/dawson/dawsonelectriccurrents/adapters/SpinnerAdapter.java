@@ -21,18 +21,18 @@ import cs.dawson.dawsonelectriccurrents.R;
 
 public class SpinnerAdapter extends BaseAdapter {
     Context context;
-    ArrayList<String> countryNames;
+    ArrayList<String> array;
     LayoutInflater inflter;
 
-    public SpinnerAdapter(Context applicationContext, ArrayList<String> countryNames) {
+    public SpinnerAdapter(Context applicationContext, ArrayList<String> array) {
         this.context = applicationContext;
-        this.countryNames = countryNames;
+        this.array = array;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return countryNames.size();
+        return array.size();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class SpinnerAdapter extends BaseAdapter {
         TextView names = (TextView) view.findViewById(R.id.textView);
         names.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
         names.setGravity(Gravity.CENTER);
-        names.setText(countryNames.get(i));
+        names.setText(array.get(i));
         return view;
     }
 

@@ -24,13 +24,14 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
     private Options option;
     private FriendFinderDBHelper database;
     private String data[];
+    private String email;
     private final String USER_PREFS = "user";
 
     private static final String USERID = "userId";
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
     private static final String EMAIL = "email";
-    private static final String PASSWORD = "password";
+    private static final String PW = "pw";
     private static final String LASTUPDATED = "lastUpdated";
 
     /**
@@ -52,13 +53,13 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
      * @param option
      * @param context
      * @param database
-     * @param data
+     * @param email
      */
-    public void UserLoader(Options option, Activity context, FriendFinderDBHelper database, String[] data) {
+    public UserLoader(Options option, Activity context, FriendFinderDBHelper database, String email) {
         this.option = option;
         this.activity = context;
         this.database = database;
-        this.data = data;
+        this.email = email;
     }
 
     @Override
@@ -89,7 +90,7 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
         e.putString(FIRSTNAME, currUser.getFirstName());
         e.putString(LASTNAME, currUser.getLastName());
         e.putString(EMAIL, currUser.getEmail());
-        e.putString(PASSWORD, currUser.getPassword());
+        e.putString(PW, currUser.getPassword());
         e.putString(LASTUPDATED, currUser.getLastUpdated());
         e.commit();
         return list;

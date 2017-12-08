@@ -22,12 +22,11 @@ public class SettingsActivity extends MenuActivity {
     private final String USERS_PREFS = "user";
     private final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private TextView password;
 
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
     private static final String EMAIL = "email";
-    private static final String PASSWORD = "password";
+    private static final String PW = "pw";
     private static final String LASTUPDATED = "lastUpdated";
 
     @Override
@@ -43,7 +42,7 @@ public class SettingsActivity extends MenuActivity {
             ((TextView) findViewById(R.id.editFirstName)).setText(prefs.getString(FIRSTNAME, ""));
             ((TextView) findViewById(R.id.editLastName)).setText(prefs.getString(LASTNAME, ""));
             ((TextView) findViewById(R.id.editEmail)).setText(prefs.getString(EMAIL, ""));
-            ((TextView) findViewById(R.id.editPassword)).setText(prefs.getString(PASSWORD, ""));
+            ((TextView) findViewById(R.id.editPassword)).setText(prefs.getString(PW, ""));
             ((TextView) findViewById(R.id.lastUpdatedSp)).setText(prefs.getString(LASTUPDATED, ""));
         }
     }
@@ -64,13 +63,13 @@ public class SettingsActivity extends MenuActivity {
         String firstName = ((EditText) findViewById(R.id.editFirstName)).getText().toString();
         String lastName = ((EditText) findViewById(R.id.editLastName)).getText().toString();
         String email = ((EditText) findViewById(R.id.editEmail)).getText().toString();
-        String password = ((EditText) findViewById(R.id.editPassword)).getText().toString();
+        String pw = ((EditText) findViewById(R.id.editPassword)).getText().toString();
 
-        if (validateInformation(firstName, lastName, email, password)) {
+        if (validateInformation(firstName, lastName, email, pw)) {
             if (getSharedPreferences(USERS_PREFS, MODE_PRIVATE).getString(EMAIL, "") != "") {
-                new UserLoader(MODIFY_USER, this, database, new String[] { firstName, lastName, email, password }).execute();
+                new UserLoader(MODIFY_USER, this, database, new String[] { firstName, lastName, email, pw }).execute();
             } else {
-                new UserLoader(ADD_USER, this, database, new String[] { firstName, lastName, email, password}).execute();
+                new UserLoader(ADD_USER, this, database, new String[] { firstName, lastName, email, pw}).execute();
             }
             finish();
         } else {
@@ -151,7 +150,7 @@ public class SettingsActivity extends MenuActivity {
         savedInstaneState.putString(FIRSTNAME, ((EditText) findViewById(R.id.editFirstName)).getText().toString());
         savedInstaneState.putString(LASTNAME, ((EditText) findViewById(R.id.editLastName)).getText().toString());
         savedInstaneState.putString(EMAIL, ((EditText) findViewById(R.id.editEmail)).getText().toString());
-        savedInstaneState.putString(PASSWORD, ((EditText) findViewById(R.id.editPassword)).getText().toString());
+        savedInstaneState.putString(PW, ((EditText) findViewById(R.id.editPassword)).getText().toString());
     }
 
     @Override
@@ -161,7 +160,7 @@ public class SettingsActivity extends MenuActivity {
         String fn = savedInstanceState.getString(FIRSTNAME);
         String ln = savedInstanceState.getString(LASTNAME);
         String email = savedInstanceState.getString(EMAIL);
-        String pw = savedInstanceState.getString(PASSWORD);
+        String pw = savedInstanceState.getString(PW);
 
         ((TextView) findViewById(R.id.editFirstName)).setText(fn);
         ((TextView) findViewById(R.id.editLastName)).setText(ln);

@@ -23,7 +23,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "FriendFinderDBHelper";
     private static final String DB_NAME = "friendfinder.db";
-    private static final int DB_VERSION = 4;
+    private static final int DB_VERSION = 5;
 
     // User Table components
     public static final String TABLE_USERS = "USERS";
@@ -31,7 +31,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FIRSTNAME = "FNAME";
     public static final String COLUMN_LASTNAME = "LNAME";
     public static final String COLUMN_EMAIL = "EMAIL";
-    public static final String COLUMN_PASSWORD = "PASSWORD";
+    public static final String COLUMN_USERPW = "USERPW";
     public static final String COLUMN_LASTUPDATED = "LASTUPDATED";
 
     private static final String TABLE1_CREATE_USERS =
@@ -40,7 +40,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
                     COLUMN_FIRSTNAME + " TEXT NOT NULL," +
                     COLUMN_LASTNAME + " TEXT NOT NULL," +
                     COLUMN_EMAIL + " TEXT NOT NULL," +
-                    COLUMN_PASSWORD + " TEXT NOT NULL," +
+                    COLUMN_USERPW + " TEXT NOT NULL," +
                     COLUMN_LASTUPDATED + " TEXT NOT NULL DEFAULT current_timestamp" +
                     ");";
 
@@ -78,7 +78,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
         content.put(COLUMN_FIRSTNAME, user[0]);
         content.put(COLUMN_LASTNAME, user[1]);
         content.put(COLUMN_EMAIL, user[2]);
-        content.put(COLUMN_PASSWORD, user[3]);
+        content.put(COLUMN_USERPW, user[3]);
         content.put(COLUMN_LASTUPDATED, new SimpleDateFormat("yyy-MM-dd HH:mm:ss").format(new Date()));
 
         // Insert
@@ -98,7 +98,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
         content.put(COLUMN_FIRSTNAME, user[0]);
         content.put(COLUMN_LASTNAME, user[1]);
         content.put(COLUMN_EMAIL, user[2]);
-        content.put(COLUMN_PASSWORD, user[3]);
+        content.put(COLUMN_USERPW, user[3]);
         content.put(COLUMN_LASTUPDATED, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 
         String whereClause = COLUMN_USERID + "=?";
@@ -117,7 +117,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
         ArrayList<User> list = new ArrayList<User>();
         SQLiteDatabase database = getReadableDatabase();
 
-        String[] col = { COLUMN_USERID, COLUMN_FIRSTNAME, COLUMN_LASTNAME, COLUMN_EMAIL, COLUMN_PASSWORD, COLUMN_LASTUPDATED };
+        String[] col = { COLUMN_USERID, COLUMN_FIRSTNAME, COLUMN_LASTNAME, COLUMN_EMAIL, COLUMN_USERPW, COLUMN_LASTUPDATED };
         Cursor cursor = database.query(TABLE_USERS, col, COLUMN_EMAIL + "=?", new String[] {email}, null, null, null);
 
         while (cursor.moveToNext()) {
@@ -125,7 +125,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
             String fname = cursor.getString(cursor.getColumnIndex(COLUMN_FIRSTNAME));
             String lname = cursor.getString(cursor.getColumnIndex(COLUMN_LASTNAME));
             String mail = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
-            String password = cursor.getColumnName(cursor.getColumnIndex(COLUMN_PASSWORD));
+            String password = cursor.getString(cursor.getColumnIndex(COLUMN_USERPW));
             String lastUpdated = cursor.getString(cursor.getColumnIndex(COLUMN_LASTUPDATED));
             User user = new User(id, fname, lname, mail, password, lastUpdated);
             list.add(user);

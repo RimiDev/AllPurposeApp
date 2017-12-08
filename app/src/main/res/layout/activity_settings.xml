@@ -134,12 +134,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/passwordTv"
+                    android:id="@+id/pwTv"
                     android:layout_width="66dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="#000000"
-                    android:text="@string/password" />
+                    android:text="@string/userpw"
+                    android:textColor="#000000" />
 
                 <EditText
                     android:id="@+id/editPassword"
@@ -149,7 +149,7 @@
                     android:ems="10"
                     android:hint="********"
                     android:textColor="#000000"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"/>
             </LinearLayout>
 
             <LinearLayout
