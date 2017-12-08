@@ -21,10 +21,10 @@ public class FindFriendActivity extends MenuActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friend);
 
-        /*HttpURLConnection httpConnection = null;
+        HttpURLConnection httpConnection = null;
         try
         {
-            URL url = new URL("http://dawson.app/api/api/allfriends?email=alessandromciotola@gmail.com&password=123456");
+            URL url = new URL("http://dawsonfriendfinder2017.herokuapp.com/api/api/allfriends?email=alessandromciotola@gmail.com&password=123456");
             httpConnection = (HttpURLConnection) url.openConnection();
             InputStream is = httpConnection.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
@@ -44,7 +44,7 @@ public class FindFriendActivity extends MenuActivity
         finally
         {
             httpConnection.disconnect();
-        }*/
+        }
     }
 
     @Override
