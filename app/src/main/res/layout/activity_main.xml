@@ -6,8 +6,7 @@
     tools:context="cs.dawson.dawsonelectriccurrents.MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/notesbg">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,6 +48,7 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/classCancelledBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
@@ -57,9 +57,11 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/classcancellation"
-                android:onClick="startClassCancelled" />
+                android:onClick="startActivityIntent"/>
 
+                
             <ImageButton
+                android:id="@+id/findTeacherBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
@@ -68,7 +70,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/findteacher"
-                android:onClick="startFindTeacher" />
+                android:onClick="startActivityIntent" />
 
         </LinearLayout>
 
@@ -79,6 +81,7 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/addCalendarBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
@@ -87,9 +90,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/addcalendar"
-                android:onClick="startAddCalendar" />
+                android:onClick="startActivityIntent" />
 
             <ImageButton
+                android:id="@+id/notesBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
@@ -98,7 +102,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/notes"
-                android:onClick="startNotes" />
+                android:onClick="startActivityIntent" />
 
         </LinearLayout>
 
@@ -109,6 +113,7 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/weatherBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
@@ -117,9 +122,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/weather"
-                android:onClick="startWeather" />
+                android:onClick="startActivityIntent" />
 
             <ImageButton
+                android:id="@+id/academicCalendarBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
@@ -128,7 +134,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/academiccalendar"
-                android:onClick="startAcademicCalendar" />
+                android:onClick="startActivityIntent" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -138,6 +145,7 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/findFriendBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -145,9 +153,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/findfriends"
-                android:onClick="startFindFriends" />
+                android:onClick="startActivityIntent" />
 
             <ImageButton
+                android:id="@+id/findFreeFriendBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
@@ -155,7 +164,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/findfreefriends"
-                android:onClick="startFindFreeFriends" />
+                android:onClick="startActivityIntent" />
         </LinearLayout>
 
         <TextView

@@ -5,8 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="cs.dawson.dawsonelectriccurrents.FindFriendActivity">
+    tools:context="cs.dawson.dawsonelectriccurrents.FindFriendCourseActivity">
 
-
+    <TextView
+        android:id="@+id/availableView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:textSize="28sp">
+    </TextView>
 
 </LinearLayout>

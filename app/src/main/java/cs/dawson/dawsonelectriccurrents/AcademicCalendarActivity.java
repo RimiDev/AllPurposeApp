@@ -5,6 +5,8 @@ import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AcademicCalendarActivity extends AppCompatActivity {
+public class AcademicCalendarActivity extends MenuActivity {
 
     private static final String TAG = AcademicCalendarActivity.class.getName();
     private ImageButton load;
@@ -27,14 +29,11 @@ public class AcademicCalendarActivity extends AppCompatActivity {
     private static final String WINTER = "winter";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_calendar);
-        if (savedInstanceState != null) {
-            loadInitialCalendar();
-        } else {
-            loadInitialCalendar();
-        }
+
         yearInput = (EditText) findViewById(R.id.yearInput);
         rg = (RadioGroup) findViewById(R.id.radioGroup);
         rg.check(R.id.fallRadioBtn);
@@ -164,12 +163,23 @@ public class AcademicCalendarActivity extends AppCompatActivity {
         int radioBtnSelection = savedInstanceState.getInt(RADIO);
 
         ((TextView) findViewById(R.id.yearInput)).setText(year);
-        if (radioBtnSelection == R.id.fallRadioBtn){
+        if (radioBtnSelection == R.id.fallRadioBtn) {
             rg.check(R.id.fallRadioBtn);
         } else if (radioBtnSelection == R.id.winterRadioBtn) {
             rg.check(R.id.winterRadioBtn);
         }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        return super.onOptionsItemSelected(item);
     }
 }
