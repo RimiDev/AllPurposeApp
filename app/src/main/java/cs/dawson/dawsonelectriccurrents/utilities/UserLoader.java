@@ -26,6 +26,13 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
     private String data[];
     private final String USER_PREFS = "user";
 
+    private static final String USERID = "userId";
+    private static final String FIRSTNAME = "firstname";
+    private static final String LASTNAME = "lastname";
+    private static final String EMAIL = "email";
+    private static final String PASSWORD = "password";
+    private static final String LASTUPDATED = "lastUpdated";
+
     /**
      * Constructor
      * @param option
@@ -78,12 +85,12 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
         // Save in shared preferences
         SharedPreferences prefs = activity.getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor e = prefs.edit();
-        e.putInt("userId", currUser.getUserId());
-        e.putString("firstName", currUser.getFirstName());
-        e.putString("lastName", currUser.getLastName());
-        e.putString("email", currUser.getEmail());
-        e.putString("password", currUser.getPassword());
-        e.putString("lastUpdated", currUser.getLastUpdated());
+        e.putInt(USERID, currUser.getUserId());
+        e.putString(FIRSTNAME, currUser.getFirstName());
+        e.putString(LASTNAME, currUser.getLastName());
+        e.putString(EMAIL, currUser.getEmail());
+        e.putString(PASSWORD, currUser.getPassword());
+        e.putString(LASTUPDATED, currUser.getLastUpdated());
         e.commit();
         return list;
     }

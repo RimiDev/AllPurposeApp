@@ -94,4 +94,7 @@
     <string name="cancelledTeacher">Professeur:</string>
     <string name="cancelledCourse">Numéro de cours:</string>
     <string name="cancelledDate">Date:</string>
+    <string name="error">Erreur</string>
+    <string name="invalid">Donnees Incorrectes</string>
+    <string name="ok">Ok</string>
 </resources>

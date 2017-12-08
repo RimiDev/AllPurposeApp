@@ -6,6 +6,7 @@
     tools:context="cs.dawson.dawsonelectriccurrents.CalendarActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/calendarbg"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,6 +20,7 @@
             android:layout_weight="0.1"
             android:text="@string/eventActivityTitle"
             android:textSize="25dp"
+            android:textStyle="bold"
             android:textAlignment="center"/>
 
         <LinearLayout

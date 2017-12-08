@@ -12,6 +12,9 @@ public class CalendarWVFragment extends Fragment {
     private static final String TAG = CalendarWVFragment.class.getName();
     private String url;
 
+    private static final String YEAR = "year";
+    private static final String SEMESTER = "semester";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -21,12 +24,13 @@ public class CalendarWVFragment extends Fragment {
         if (this.getArguments() == null) {
             url = "https://www.dawsoncollege.qc.ca/registrar/fall-2017-day-division/";
         } else {
-            String year = this.getArguments().getString("year").toString();
-            String semester = this.getArguments().getString("semester").toString();
+            String year = this.getArguments().getString(YEAR).toString();
+            String semester = this.getArguments().getString(SEMESTER).toString();
             url = "https://www.dawsoncollege.qc.ca/registrar/" + semester + "-" + year + "-day-division/";
         }
         wv.loadUrl(url);
 
         return view;
     }
+
 }

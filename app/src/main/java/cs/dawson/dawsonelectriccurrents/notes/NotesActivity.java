@@ -44,7 +44,6 @@ public class NotesActivity extends MenuActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
-        dbHelper = DBHelper.getDBHelper(this);
 
        showNotes();
     }
@@ -106,6 +105,7 @@ public class NotesActivity extends MenuActivity
      */
     private void showNotes()
     {
+        dbHelper = DBHelper.getDBHelper(this);
         ListView lv = (ListView) findViewById(R.id.noteList);
         cursor = dbHelper.getNotes();
         String[] from = { DBHelper.COL_SHORTNOTE };

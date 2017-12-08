@@ -63,10 +63,7 @@ public class MainActivity extends MenuActivity
         database.getWritableDatabase();
 
         SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
-        String fullName = prefs.getString("firstName", "") + " " + prefs.getString("lastName", "");
-        Log.i(TAG, "Full name is: " + fullName);
-
-        if (fullName == null || fullName.trim().equals("")){
+        if (prefs == null){
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         }
