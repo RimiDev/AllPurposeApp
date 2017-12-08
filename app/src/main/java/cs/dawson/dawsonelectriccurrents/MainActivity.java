@@ -85,48 +85,37 @@ public class MainActivity extends MenuActivity
         startActivity(intent);
     }
 
-    public void startClassCancelled(View view)
+    public void startActivityIntent(View view)
     {
-        Intent intent = new Intent(this, CancelledActivity.class);
-        startActivity(intent);
-    }
+        Intent intent = new Intent(this, MainActivity.class);
+        switch (view.getId())
+        {
+            case R.id.classCancelledBtn:
+                intent = new Intent(this, CancelledActivity.class);
+                break;
+            case R.id.findTeacherBtn:
+                intent = new Intent(this, FindTeacherActivity.class);
+                break;
+            case R.id.addCalendarBtn:
+                intent = new Intent(this, CalendarActivity.class);
+                break;
+            case R.id.notesBtn:
+                intent = new Intent(this, NotesActivity.class);
+                break;
+            case R.id.weatherBtn:
+                intent = new Intent(this, WeatherActivity.class);
+                break;
+            case R.id.academicCalendarBtn:
+                intent = new Intent(this, AcademicCalendarActivity.class);
+                break;
+            case R.id.findFriendBtn:
+                intent = new Intent(this, FindFriendActivity.class);
+                break;
+            case R.id.findFreeFriendBtn:
+                intent = new Intent(this, FindFreeFriends.class);
+                break;
+        }
 
-    public void startFindTeacher(View view)
-    {
-        Intent intent = new Intent(this, FindTeacherActivity.class);
-        startActivity(intent);
-    }
-
-    public void startAddCalendar(View view)
-    {
-        Intent intent = new Intent(this, CalendarActivity.class);
-        startActivity(intent);
-    }
-
-    public void startNotes(View view)
-    {
-        Intent intent = new Intent(this, NotesActivity.class);
-        startActivity(intent);
-    }
-
-    public void startWeather(View view)
-    {
-        Intent intent = new Intent(this, WeatherActivity.class);
-        startActivity(intent);
-    }
-
-    public void startAcademicCalendar(View view) {
-        Intent intent = new Intent(this,AcademicCalendarActivity.class);
-        startActivity(intent);
-    }
-
-    public void startFindFriends(View view) {
-        Intent intent = new Intent(this,FindFriendActivity.class);
-        startActivity(intent);
-    }
-
-    public void startFindFreeFriends(View view) {
-        Intent intent = new Intent(this,FindFreeFriends.class);
         startActivity(intent);
     }
 
@@ -182,11 +171,6 @@ public class MainActivity extends MenuActivity
 
 
                     currentTempTextView.setText(currentTemperature);
-
-
-
-                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: "
-                            + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
                 }else{
                     // GPS or Network is not enabled
                     // Ask user to enable through a dialog.

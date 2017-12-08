@@ -32,6 +32,14 @@ public class TeacherContactFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_teacher_contact, container, false);
         if (this.getArguments() == null) {
             ((TextView)view.findViewById(R.id.noteachersfound)).setText(R.string.noteacherfound);
+            (view.findViewById(R.id.nameStatic)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.emailStatic)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.officeStatic)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.localStatic)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.positionStatic)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.departmentStatic)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.sectorStatic)).setVisibility(View.INVISIBLE);
+            (view.findViewById(R.id.teacherInfoTv)).setVisibility(View.INVISIBLE);
         } else {
             ((TextView)view.findViewById(R.id.fullNameTv)).setText(this.getArguments().getString("fullname").toString());
             ((TextView)view.findViewById(R.id.emailTeacherTv)).setText(this.getArguments().getString("email").toString());
