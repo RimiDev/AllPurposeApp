@@ -20,11 +20,19 @@ public class AcademicCalendarActivity extends AppCompatActivity {
     private EditText yearInput;
     private RadioGroup rg;
 
+    private static final String YEAR = "year";
+    private static final String SEMESTER = "semester";
+    private static final String RADIO = "radio";
+    private static final String FALL = "fall";
+    private static final String WINTER = "winter";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_calendar);
         if (savedInstanceState != null) {
+            loadInitialCalendar();
+        } else {
             loadInitialCalendar();
         }
         yearInput = (EditText) findViewById(R.id.yearInput);
@@ -59,8 +67,8 @@ public class AcademicCalendarActivity extends AppCompatActivity {
         String semester = getSemesterValue();
         if (validateAllInput()) {
             Bundle bundle = new Bundle();
-            bundle.putString("year", yearInput.getText().toString());
-            bundle.putString("semester", semester);
+            bundle.putString(YEAR, yearInput.getText().toString());
+            bundle.putString(SEMESTER, semester);
             CalendarWVFragment fragment = new CalendarWVFragment();
             fragment.setArguments(bundle);
             android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
@@ -75,7 +83,7 @@ public class AcademicCalendarActivity extends AppCompatActivity {
      */
     private boolean validateAllInput() {
         String year = ((EditText) findViewById(R.id.yearInput)).getText().toString();
-        Log.i(TAG, "Year: " + year);
+        Log.i(TAG, YEAR + ": " + year);
 
         if (rg.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, R.string.noInput,
@@ -124,9 +132,9 @@ public class AcademicCalendarActivity extends AppCompatActivity {
         Log.i(TAG, "Winter ID: " + R.id.winterRadioBtn);
 
         if (id == R.id.fallRadioBtn)
-            semester = "fall";
+            semester = FALL;
         else if (id == R.id.winterRadioBtn)
-            semester = "winter";
+            semester = WINTER;
 
         return semester;
     }
@@ -144,16 +152,16 @@ public class AcademicCalendarActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstaneState) {
         super.onSaveInstanceState(savedInstaneState);
 
-        savedInstaneState.putString("year", ((EditText) findViewById(R.id.yearInput)).getText().toString());
-        savedInstaneState.putInt("radio", rg.getCheckedRadioButtonId());
+        savedInstaneState.putString(YEAR, ((EditText) findViewById(R.id.yearInput)).getText().toString());
+        savedInstaneState.putInt(RADIO, rg.getCheckedRadioButtonId());
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        String year = savedInstanceState.getString("year");
-        int radioBtnSelection = savedInstanceState.getInt("radio");
+        String year = savedInstanceState.getString(YEAR);
+        int radioBtnSelection = savedInstanceState.getInt(RADIO);
 
         ((TextView) findViewById(R.id.yearInput)).setText(year);
         if (radioBtnSelection == R.id.fallRadioBtn){

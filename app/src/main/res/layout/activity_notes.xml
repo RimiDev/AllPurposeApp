@@ -5,7 +5,7 @@
     tools:context="cs.dawson.dawsonelectriccurrents.notes.NotesActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/noteslist"
+    android:background="@drawable/notesbg"
     android:orientation="vertical">
 
     <EditText

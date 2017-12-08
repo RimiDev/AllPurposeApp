@@ -1,22 +1,17 @@
 package cs.dawson.dawsonelectriccurrents.cancelled;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.Serializable;
 
 import cs.dawson.dawsonelectriccurrents.ChooseTeacherActivity;
-import cs.dawson.dawsonelectriccurrents.FindTeacherActivity;
 import cs.dawson.dawsonelectriccurrents.MenuActivity;
 import cs.dawson.dawsonelectriccurrents.R;
-import cs.dawson.dawsonelectriccurrents.TeacherContactFragment;
 import cs.dawson.dawsonelectriccurrents.beans.CancelledClass;
 
 public class ShowCancelActivity extends MenuActivity implements Serializable{
