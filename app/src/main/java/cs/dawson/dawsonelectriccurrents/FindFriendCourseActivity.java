@@ -24,7 +24,7 @@ public class FindFriendCourseActivity extends MenuActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friend_course);
 
-        String email = getIntent().getExtras().getString("friendEmail");
+        //String email = getIntent().getExtras().getString("friendEmail");
 
         TextView friendAvailable = (TextView) findViewById(R.id.availableView);
 
