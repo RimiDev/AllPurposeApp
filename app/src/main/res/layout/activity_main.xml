@@ -47,17 +47,19 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/classCancelledBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="startClassCancelled"
+                android:onClick="startActivityIntent"
                 android:text="@string/classCancelText" />
 
             <Button
+                android:id="@+id/findTeacherBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="startFindTeacher"
+                android:onClick="startActivityIntent"
                 android:text="@string/findTeacherText" />
         </LinearLayout>
 
@@ -68,17 +70,19 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/addCalendarBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="startAddCalendar"
+                android:onClick="startActivityIntent"
                 android:text="@string/addCalendarText" />
 
             <Button
+                android:id="@+id/notesBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="startNotes"
+                android:onClick="startActivityIntent"
                 android:text="@string/notesText" />
         </LinearLayout>
 
@@ -89,17 +93,19 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/weatherBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="startWeather"
+                android:onClick="startActivityIntent"
                 android:text="@string/weatherText" />
 
             <Button
+                android:id="@+id/academicCalendarBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="startAcademicCalendar"
+                android:onClick="startActivityIntent"
                 android:text="@string/academicCalText" />
         </LinearLayout>
 
@@ -110,17 +116,19 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/findFriendBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="startFindFriends"
+                android:onClick="startActivityIntent"
                 android:text="@string/findFriend" />
 
             <Button
+                android:id="@+id/findFreeFriendBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="startFindFreeFriends"
+                android:onClick="startActivityIntent"
                 android:text="@string/findFreeFriendsText" />
         </LinearLayout>
 

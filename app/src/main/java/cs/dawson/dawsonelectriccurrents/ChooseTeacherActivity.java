@@ -3,6 +3,8 @@ package cs.dawson.dawsonelectriccurrents;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +19,7 @@ import java.util.Iterator;
 import cs.dawson.dawsonelectriccurrents.adapters.TeacherAdapter;
 import cs.dawson.dawsonelectriccurrents.beans.Teacher;
 
-public class ChooseTeacherActivity extends AppCompatActivity {
+public class ChooseTeacherActivity extends MenuActivity {
 
     private static final String TAG = ChooseTeacherActivity.class.getName();
     protected FirebaseDatabase mDatabase;
@@ -211,5 +213,18 @@ public class ChooseTeacherActivity extends AppCompatActivity {
                         + " - Message : " + databaseError.getMessage());
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        return super.onOptionsItemSelected(item);
     }
 }
