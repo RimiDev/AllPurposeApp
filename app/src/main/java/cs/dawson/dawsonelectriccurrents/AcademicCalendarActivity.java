@@ -1,5 +1,7 @@
 package cs.dawson.dawsonelectriccurrents;
 
+import android.app.Fragment;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,24 +10,34 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AcademicCalendarActivity extends MenuActivity {
 
     private static final String TAG = AcademicCalendarActivity.class.getName();
-    private Button load;
+    private ImageButton load;
     private EditText yearInput;
     private RadioGroup rg;
 
+    private static final String YEAR = "year";
+    private static final String SEMESTER = "semester";
+    private static final String RADIO = "radio";
+    private static final String FALL = "fall";
+    private static final String WINTER = "winter";
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_calendar);
-        loadInitialCalendar();
+
         yearInput = (EditText) findViewById(R.id.yearInput);
         rg = (RadioGroup) findViewById(R.id.radioGroup);
-        load = (Button) findViewById(R.id.loadBtn);
+        rg.check(R.id.fallRadioBtn);
+        load = (ImageButton) findViewById(R.id.loadBtn);
         load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,8 +66,8 @@ public class AcademicCalendarActivity extends MenuActivity {
         String semester = getSemesterValue();
         if (validateAllInput()) {
             Bundle bundle = new Bundle();
-            bundle.putString("year", yearInput.getText().toString());
-            bundle.putString("semester", semester);
+            bundle.putString(YEAR, yearInput.getText().toString());
+            bundle.putString(SEMESTER, semester);
             CalendarWVFragment fragment = new CalendarWVFragment();
             fragment.setArguments(bundle);
             android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
@@ -70,7 +82,7 @@ public class AcademicCalendarActivity extends MenuActivity {
      */
     private boolean validateAllInput() {
         String year = ((EditText) findViewById(R.id.yearInput)).getText().toString();
-        Log.i(TAG, "Year: " + year);
+        Log.i(TAG, YEAR + ": " + year);
 
         if (rg.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, R.string.noInput,
@@ -119,9 +131,9 @@ public class AcademicCalendarActivity extends MenuActivity {
         Log.i(TAG, "Winter ID: " + R.id.winterRadioBtn);
 
         if (id == R.id.fallRadioBtn)
-            semester = "fall";
+            semester = FALL;
         else if (id == R.id.winterRadioBtn)
-            semester = "winter";
+            semester = WINTER;
 
         return semester;
     }
@@ -133,6 +145,29 @@ public class AcademicCalendarActivity extends MenuActivity {
         Toast.makeText(this, R.string.invalidYear,
                 Toast.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstaneState) {
+        super.onSaveInstanceState(savedInstaneState);
+
+        savedInstaneState.putString(YEAR, ((EditText) findViewById(R.id.yearInput)).getText().toString());
+        savedInstaneState.putInt(RADIO, rg.getCheckedRadioButtonId());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String year = savedInstanceState.getString(YEAR);
+        int radioBtnSelection = savedInstanceState.getInt(RADIO);
+
+        ((TextView) findViewById(R.id.yearInput)).setText(year);
+        if (radioBtnSelection == R.id.fallRadioBtn) {
+            rg.check(R.id.fallRadioBtn);
+        } else if (radioBtnSelection == R.id.winterRadioBtn) {
+            rg.check(R.id.winterRadioBtn);
+        }
     }
 
     @Override

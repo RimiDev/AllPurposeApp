@@ -24,6 +24,12 @@ public class SettingsActivity extends MenuActivity {
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     private TextView password;
 
+    private static final String FIRSTNAME = "firstname";
+    private static final String LASTNAME = "lastname";
+    private static final String EMAIL = "email";
+    private static final String PASSWORD = "password";
+    private static final String LASTUPDATED = "lastUpdated";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +40,11 @@ public class SettingsActivity extends MenuActivity {
         SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
         if (prefs != null) {
             // Edit the textviews for the current shared preferences
-            ((TextView) findViewById(R.id.editFirstName)).setText(prefs.getString("firstName", ""));
-            ((TextView) findViewById(R.id.editLastName)).setText(prefs.getString("lastName", ""));
-            ((TextView) findViewById(R.id.editEmail)).setText(prefs.getString("email", ""));
-            ((TextView) findViewById(R.id.editPassword)).setText(prefs.getString("password", ""));
-            ((TextView) findViewById(R.id.lastUpdatedSp)).setText(prefs.getString("lastUpdated", ""));
+            ((TextView) findViewById(R.id.editFirstName)).setText(prefs.getString(FIRSTNAME, ""));
+            ((TextView) findViewById(R.id.editLastName)).setText(prefs.getString(LASTNAME, ""));
+            ((TextView) findViewById(R.id.editEmail)).setText(prefs.getString(EMAIL, ""));
+            ((TextView) findViewById(R.id.editPassword)).setText(prefs.getString(PASSWORD, ""));
+            ((TextView) findViewById(R.id.lastUpdatedSp)).setText(prefs.getString(LASTUPDATED, ""));
         }
     }
 
@@ -61,7 +67,7 @@ public class SettingsActivity extends MenuActivity {
         String password = ((EditText) findViewById(R.id.editPassword)).getText().toString();
 
         if (validateInformation(firstName, lastName, email, password)) {
-            if (getSharedPreferences(USERS_PREFS, MODE_PRIVATE).getString("email", "") != "") {
+            if (getSharedPreferences(USERS_PREFS, MODE_PRIVATE).getString(EMAIL, "") != "") {
                 new UserLoader(MODIFY_USER, this, database, new String[] { firstName, lastName, email, password }).execute();
             } else {
                 new UserLoader(ADD_USER, this, database, new String[] { firstName, lastName, email, password}).execute();
@@ -131,14 +137,38 @@ public class SettingsActivity extends MenuActivity {
     private void showInvalidInput() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Error");
-        builder.setMessage("Invalid input");
-        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.error);
+        builder.setMessage(R.string.invalid);
+        builder.setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {}}).show();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstaneState) {
+        super.onSaveInstanceState(savedInstaneState);
 
+        savedInstaneState.putString(FIRSTNAME, ((EditText) findViewById(R.id.editFirstName)).getText().toString());
+        savedInstaneState.putString(LASTNAME, ((EditText) findViewById(R.id.editLastName)).getText().toString());
+        savedInstaneState.putString(EMAIL, ((EditText) findViewById(R.id.editEmail)).getText().toString());
+        savedInstaneState.putString(PASSWORD, ((EditText) findViewById(R.id.editPassword)).getText().toString());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String fn = savedInstanceState.getString(FIRSTNAME);
+        String ln = savedInstanceState.getString(LASTNAME);
+        String email = savedInstanceState.getString(EMAIL);
+        String pw = savedInstanceState.getString(PASSWORD);
+
+        ((TextView) findViewById(R.id.editFirstName)).setText(fn);
+        ((TextView) findViewById(R.id.editLastName)).setText(ln);
+        ((TextView) findViewById(R.id.editEmail)).setText(email);
+        ((TextView) findViewById(R.id.editPassword)).setText(pw);
+
+    }
 
 
 }

@@ -5,7 +5,8 @@
     tools:context="cs.dawson.dawsonelectriccurrents.cancelled.ShowCancelActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,8 +68,8 @@
             android:id="@+id/tvTextTeacher"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_weight="65"
+            android:textSize="24dp"
             android:onClick="getTeacherInformation"/>
     </LinearLayout>
 

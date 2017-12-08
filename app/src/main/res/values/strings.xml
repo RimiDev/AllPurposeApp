@@ -102,6 +102,9 @@
     <string name="cancelledTeacher">Teacher:</string>
     <string name="cancelledCourse">Course number:</string>
     <string name="cancelledDate">Date:</string>
+    <string name="error">Error</string>
+    <string name="invalid">Invalid Input</string>
+    <string name="ok">Ok</string>
     <string name="searchFriendCourse">Search Friend Courses</string>
     <string name="notAvailableText">This friend is not available!</string>
     <string name="availableText">This friend is currently in: </string>

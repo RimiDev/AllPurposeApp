@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public class CustomNoteAdapter extends SimpleCursorAdapter
     {
         super.bindView(view, context, cursor);
         TextView tv = (TextView)view.findViewById(R.id.noteView);
-        Button btn = (Button) view.findViewById(R.id.deleteNoteBtn);
+        ImageButton btn = (ImageButton) view.findViewById(R.id.deleteNoteBtn);
         noteCursor = cursor;
 
         tv.setOnClickListener(new View.OnClickListener()
