@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="35"
-            android:textSize="24dp"
+            android:textSize="20sp"
             android:text="@string/cancelledTitle" />
 
         <TextView
@@ -27,6 +27,7 @@
             android:layout_width="0dp"
             android:textSize="24dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_weight="65" />
 
     </LinearLayout>
@@ -42,6 +43,7 @@
             android:textSize="24dp"
             android:layout_height="wrap_content"
             android:layout_weight="35"
+            android:textSize="20sp"
             android:text="@string/cancelledCourse" />
 
         <TextView
@@ -49,6 +51,7 @@
             android:layout_width="0dp"
             android:textSize="24dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_weight="65" />
     </LinearLayout>
 
@@ -62,6 +65,7 @@
             android:layout_width="0dp"
             android:textSize="24dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_weight="35"
             android:text="@string/cancelledTeacher" />
 
@@ -69,6 +73,7 @@
             android:id="@+id/tvTextTeacher"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_weight="65"
             android:textSize="24dp"
             android:onClick="getTeacherInformation"/>
@@ -84,6 +89,7 @@
             android:layout_width="0dp"
             android:textSize="24dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_weight="35"
             android:text="@string/cancelledDate" />
 
@@ -92,6 +98,7 @@
             android:layout_width="0dp"
             android:textSize="24dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_weight="65" />
     </LinearLayout>
 </LinearLayout>
