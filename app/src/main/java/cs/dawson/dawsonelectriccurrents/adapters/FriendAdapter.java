@@ -31,8 +31,6 @@ public class FriendAdapter extends BaseAdapter {
     private ArrayList<String> email;
     private static LayoutInflater inflater;
 
-    private static final String FULLNAME = "fullname";
-
     /**
      * Constructor
      * @param fba
@@ -71,12 +69,8 @@ public class FriendAdapter extends BaseAdapter {
         // Display the current teacher in the UI
         pc.fName.setText(names.get(position));
 
-
-
         //Container of the list of Teachers from the search
         final List<Teacher> searchedTeachers = new ArrayList<>();
-
-
 
         /**
          * Setting an onClickListener on the current row view

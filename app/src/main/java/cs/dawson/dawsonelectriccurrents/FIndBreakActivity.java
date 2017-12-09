@@ -53,6 +53,7 @@ public class FIndBreakActivity extends MenuActivity {
     private static final String BUNDLE_END = "endtime";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "pw";
+    private static final String NOFRIENDS = "User has no friends.";
 
     private ArrayList<String> friendListNames;
     private ArrayList<String> friendListEmails;
@@ -91,26 +92,27 @@ public class FIndBreakActivity extends MenuActivity {
 
     }
 
-
+    /**
+     * Fills the list view with friends
+     */
     public void fillListView()
     {
         ListView friendsListView = (ListView) findViewById(R.id.listViewFriends);
 
-        if(friendListNames.get(0).equalsIgnoreCase("User has no friends.")){
+        if(friendListNames.get(0).equalsIgnoreCase(NOFRIENDS)){
             TextView noFriendsTV = (TextView) findViewById(R.id.listItem);
-            noFriendsTV.setText("No friends");
+            noFriendsTV.setText(getResources().getString(R.string.nofriendsonbreak));
         }
         else
         {
             FriendAdapter adapter = new FriendAdapter(this, friendListNames, friendListEmails);
             friendsListView.setAdapter(adapter);
-            //EMAIL SHIT
-            //friendsListView.setOnItemClickListener(showFriends);
         }
     }
 
-
-
+    /**
+     * Fetches from an API query and fills up an arraylist of name and arraylist of emails
+     */
     private class FriendsBreakASyncTask extends AsyncTask<String, Void, ArrayList<String>>
     {
         @Override
@@ -121,7 +123,6 @@ public class FIndBreakActivity extends MenuActivity {
                     + "&endtime=" + endTime;
             
             logIt("URLFRIENDS: " + friendUrl);
-
 
             try
             {
@@ -181,7 +182,6 @@ public class FIndBreakActivity extends MenuActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
-
 
     /**
      * Method to easily log to logcat

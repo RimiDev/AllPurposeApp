@@ -28,12 +28,31 @@ import cs.dawson.dawsonelectriccurrents.notes.NotesActivity;
 import cs.dawson.dawsonelectriccurrents.weatherrequest.GPSTracker;
 import cs.dawson.dawsonelectriccurrents.weatherrequest.WeatherRequest;
 
+/**
+ * This is the startup activity which launches if the user has credentials
+ * @author Kevin Bui
+ * @author Alessandro Ciotola
+ * @author Hannah Ly
+ * @author Maxime Lacasse
+ * @version 1.0
+ */
+
 public class MainActivity extends MenuActivity
 {
     private final static String TAG = MainActivity.class.getName();
     private FriendFinderDBHelper database;
     private final String USERS_PREFS = "user";
     private ImageView dawsonLogo;
+    private String email;
+    private String fname;
+    private String lname;
+    private String pw;
+
+    // Keys
+    private static final String EMAIL = "email";
+    private static final String FIRSTNAME = "firstname";
+    private static final String LASTNAME = "lastname";
+    private static final String PASSWORD = "pw";
 
     //Current weather variables
     private static final int REQUEST_CODE_PERMISSION = 2;
@@ -58,12 +77,20 @@ public class MainActivity extends MenuActivity
         //If the device doesn't have location on, it will ask the user to turn it on.
         onCurrentWeatherStartUp();
 
-
         database = new FriendFinderDBHelper(this);
         database.getWritableDatabase();
 
         SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
-        if (prefs == null){
+        email = prefs.getString(EMAIL, "");
+        fname = prefs.getString(FIRSTNAME, "");
+        lname = prefs.getString(LASTNAME, "");
+        pw = prefs.getString(PASSWORD, "");
+        Log.i(TAG, "EMAIL: " + email);
+        Log.i(TAG, "FNAME: " + fname);
+        Log.i(TAG, "LNAME: " + lname);
+        Log.i(TAG, "PW: " + pw);
+        if (prefs == null || email == null || email.equals("") || fname == null || fname.equals("") ||
+                lname == null || lname.equals("") || pw == null || pw.equals("")){
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         }

@@ -102,4 +102,5 @@
     <string name="maxInfo">3rd year Comp sci student.</string>
     <string name="hannahInfo">3rd year Comp sci student.</string>
     <string name="kevinInfo">Etudiant en science de l\'informatique qui aime l\'halterophilie et rire de Alessandro Ciotola.</string>
+    <string name="nofriendsonbreak">Aucun ami en pause durant la periode de temps donne</string>
 </resources>
