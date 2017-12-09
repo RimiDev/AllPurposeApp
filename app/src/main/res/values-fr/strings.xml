@@ -98,9 +98,13 @@
     <string name="invalid">Donnees Incorrectes</string>
     <string name="ok">Ok</string>
     <string name="daySelection">Selectionner la journee: </string>
-    <string name="aleInfo">3rd year Comp sci student.</string>
-    <string name="maxInfo">3rd year Comp sci student.</string>
-    <string name="hannahInfo">3rd year Comp sci student.</string>
+    <string name="aleInfo">Etudiant en science de l\'informatique qui aime jouer a CS:GO et les licornes.</string>
+    <string name="maxInfo">Je veux juste faire du cash et vivre une vie de riche.</string>
+    <string name="hannahInfo">Je suis la presidente du club de jeux video.  Vietnamienne de culture mais sauvage au coeur.</string>
     <string name="kevinInfo">Etudiant en science de l\'informatique qui aime l\'halterophilie et rire de Alessandro Ciotola.</string>
     <string name="nofriendsonbreak">Aucun ami en pause durant la periode de temps donne</string>
+    <string name="searchFriendCourse">Trouver un ami</string>
+    <string name="notAvailableText">Cet ami n\'est pas disponible!</string>
+    <string name="availableText">Cet ami est presentement en:</string>
+    <string name="weatherSearch">Recherche Temperature</string>
 </resources>
