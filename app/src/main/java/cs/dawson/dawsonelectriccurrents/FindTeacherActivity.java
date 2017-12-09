@@ -27,9 +27,6 @@ public class FindTeacherActivity extends MenuActivity {
     private EditText lastNameInput;
     private RadioGroup rg;
 
-    private String teacherName;
-    private boolean searchDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +66,6 @@ public class FindTeacherActivity extends MenuActivity {
             intent.putExtra("selection", selection);
             intent.putExtra("firstname", fn);
             intent.putExtra("lastname", ln);
-            intent.putExtra("teacherName", teacherName);
-            intent.putExtra("ShowDatabase", searchDatabase);
             startActivity(intent);
         } else {
             errorMessage();
@@ -130,6 +125,10 @@ public class FindTeacherActivity extends MenuActivity {
 
     }
 
+    /**
+     * Saves the state of the application in a bundle
+     * @param savedInstaneState
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstaneState) {
         super.onSaveInstanceState(savedInstaneState);
@@ -139,6 +138,10 @@ public class FindTeacherActivity extends MenuActivity {
         savedInstaneState.putInt("radio", rg.getCheckedRadioButtonId());
     }
 
+    /**
+     * Restores the state of the application when the state is changed
+     * @param savedInstanceState
+     */
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);

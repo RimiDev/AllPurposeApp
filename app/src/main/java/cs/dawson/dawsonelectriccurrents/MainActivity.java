@@ -12,21 +12,24 @@ import android.view.View;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-
 import cs.dawson.dawsonelectriccurrents.cancelled.CancelledActivity;
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
-
 import cs.dawson.dawsonelectriccurrents.notes.NotesActivity;
 import cs.dawson.dawsonelectriccurrents.weatherrequest.GPSTracker;
 import cs.dawson.dawsonelectriccurrents.weatherrequest.WeatherRequest;
+
+/**
+ * This is the startup activity which launches if the user has credentials
+ * @author Kevin Bui
+ * @author Alessandro Ciotola
+ * @author Hannah Ly
+ * @author Maxime Lacasse
+ * @version 1.0
+ */
 
 public class MainActivity extends MenuActivity
 {
@@ -34,6 +37,16 @@ public class MainActivity extends MenuActivity
     private FriendFinderDBHelper database;
     private final String USERS_PREFS = "user";
     private ImageView dawsonLogo;
+    private String email;
+    private String fname;
+    private String lname;
+    private String pw;
+
+    // Keys
+    private static final String EMAIL = "email";
+    private static final String FIRSTNAME = "firstname";
+    private static final String LASTNAME = "lastname";
+    private static final String PASSWORD = "pw";
 
     //Current weather variables
     private static final int REQUEST_CODE_PERMISSION = 2;
@@ -58,17 +71,29 @@ public class MainActivity extends MenuActivity
         //If the device doesn't have location on, it will ask the user to turn it on.
         onCurrentWeatherStartUp();
 
-
         database = new FriendFinderDBHelper(this);
         database.getWritableDatabase();
 
         SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
-        if (prefs == null){
+        email = prefs.getString(EMAIL, "");
+        fname = prefs.getString(FIRSTNAME, "");
+        lname = prefs.getString(LASTNAME, "");
+        pw = prefs.getString(PASSWORD, "");
+        Log.i(TAG, "EMAIL: " + email);
+        Log.i(TAG, "FNAME: " + fname);
+        Log.i(TAG, "LNAME: " + lname);
+        Log.i(TAG, "PW: " + pw);
+        if (prefs == null || email == null || email.equals("") || fname == null || fname.equals("") ||
+                lname == null || lname.equals("") || pw == null || pw.equals("")){
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         }
     }
 
+    /**
+     * Starts the dawson page into a browser
+     * @param view
+     */
     public void startDawsonPage(View view)
     {
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -76,12 +101,20 @@ public class MainActivity extends MenuActivity
         startActivity(intent);
     }
 
+    /**
+     * Starts the about activity
+     * @param view
+     */
     public void startAbout(View view)
     {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts the activity from the user selection
+     * @param view
+     */
     public void startActivityIntent(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
@@ -136,6 +169,9 @@ public class MainActivity extends MenuActivity
     }
 
 
+    /**
+     * Displays the current weather on the main activity
+     */
     public void onCurrentWeatherStartUp(){
 
         //The API key that was genereated for my account on https://openweathermap.org/
@@ -179,8 +215,12 @@ public class MainActivity extends MenuActivity
         }
     }
 
+    /**
+     * Parses a json object and returns the current temperature
+     * @param jsonCurTempResults
+     * @return
+     */
     public String parseJSONandReturnCurrentTemperature(String jsonCurTempResults) {
-
 
         String currentTemperature = null;
 
@@ -190,14 +230,9 @@ public class MainActivity extends MenuActivity
                 //Create a JSONArray with the String JSON results from 'doInBackground' method.
                 JSONObject jsonObject = new JSONObject(jsonCurTempResults);
 
-                    //Grabbing the weather value
-//                     JSONArray weather = jsonObject.getJSONArray("weather");
-//                     JSONObject weatherDesc = weather.getJSONObject(0);
-//                     weatherDetails[0] = weatherDesc.getString("description");
-
-                    //Grabbing the current temperature
-                    JSONObject main = jsonObject.getJSONObject("main");
-                    currentTemperature = main.getString("temp");
+                //Grabbing the current temperature
+                JSONObject main = jsonObject.getJSONObject("main");
+                currentTemperature = main.getString("temp");
 
                 //Grabbing the first item to then grab the weather.
             } catch (JSONException e) {
@@ -205,14 +240,11 @@ public class MainActivity extends MenuActivity
             }
 
             return convertKelvtoCelcius(currentTemperature);
-
         }
 
         return convertKelvtoCelcius(currentTemperature);
 
     } // end of parseCurrentTemperature
-
-
 
     /**
      * This method is used to convert the information that is given to us by the weather api (kelvin)
@@ -226,7 +258,6 @@ public class MainActivity extends MenuActivity
         celcius -= 273.15;
         NumberFormat formatter = new DecimalFormat("#0.00");
         return String.valueOf(formatter.format(celcius) + "C°");
-
     }
 
 
@@ -239,7 +270,4 @@ public class MainActivity extends MenuActivity
         final String TAG = "---------MAIN: ";
         Log.d(TAG, msg);
     }
-
-
-
 }

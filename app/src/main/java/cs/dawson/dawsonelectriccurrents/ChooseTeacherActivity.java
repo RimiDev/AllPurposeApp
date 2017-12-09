@@ -20,6 +20,13 @@ import java.util.Iterator;
 import cs.dawson.dawsonelectriccurrents.adapters.TeacherAdapter;
 import cs.dawson.dawsonelectriccurrents.beans.Teacher;
 
+/**
+ * This class displays a listview of all the teachers that match a search
+ * Once clicked, it will launch an activity with the teacher's contact information
+ * @author Kevin Bui
+ * @version 1.0
+ */
+
 public class ChooseTeacherActivity extends MenuActivity {
 
     private static final String TAG = ChooseTeacherActivity.class.getName();
@@ -33,6 +40,7 @@ public class ChooseTeacherActivity extends MenuActivity {
     private ArrayList<String> allTeachersFullName;
     private ArrayList<Teacher> teachers;
 
+    // Keys
     private static final String SELECTION = "selection";
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
@@ -59,6 +67,7 @@ public class ChooseTeacherActivity extends MenuActivity {
 
         mDatabase = FirebaseDatabase.getInstance();
 
+        // Fetches all the teachers from the firebase database
         getAllTeachers();
 
         // Get the bundle

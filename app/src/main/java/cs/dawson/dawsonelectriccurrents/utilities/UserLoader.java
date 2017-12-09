@@ -24,13 +24,15 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
     private Options option;
     private FriendFinderDBHelper database;
     private String data[];
+    private String email;
     private final String USER_PREFS = "user";
 
+    // Keys
     private static final String USERID = "userId";
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
     private static final String EMAIL = "email";
-    private static final String PASSWORD = "password";
+    private static final String PW = "pw";
     private static final String LASTUPDATED = "lastUpdated";
 
     /**
@@ -52,15 +54,22 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
      * @param option
      * @param context
      * @param database
-     * @param data
+     * @param email
      */
-    public void UserLoader(Options option, Activity context, FriendFinderDBHelper database, String[] data) {
+    public UserLoader(Options option, Activity context, FriendFinderDBHelper database, String email) {
         this.option = option;
         this.activity = context;
         this.database = database;
-        this.data = data;
+        this.email = email;
     }
 
+    /**
+     * Returns an ArrayList of the user(s) with the specified email
+     * Not that multiple users should ever be sent, be we do not have email as primary key, so I guess
+     * on a rare occassion this could happen.
+     * @param voids
+     * @return
+     */
     @Override
     protected ArrayList<User> doInBackground(Void... voids) {
         ArrayList<User> list = null;
@@ -77,6 +86,7 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
                 break;
         }
 
+        // Get the current user
         list = database.retrieverUserByEmail(data[2]);
         Log.i(TAG, "Email: " + data[2]);
         User currUser = list.get(0);
@@ -89,7 +99,7 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
         e.putString(FIRSTNAME, currUser.getFirstName());
         e.putString(LASTNAME, currUser.getLastName());
         e.putString(EMAIL, currUser.getEmail());
-        e.putString(PASSWORD, currUser.getPassword());
+        e.putString(PW, currUser.getPassword());
         e.putString(LASTUPDATED, currUser.getLastUpdated());
         e.commit();
         return list;
