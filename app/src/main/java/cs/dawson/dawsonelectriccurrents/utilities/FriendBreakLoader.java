@@ -116,8 +116,8 @@ public class FriendBreakLoader extends AsyncTask<String, Void, ArrayList<String>
     {
         ListView friendsListView = (ListView) context.findViewById(R.id.listViewFriends);
 
-        if(names.get(0).equalsIgnoreCase(NOFRIENDS)){
-            TextView noFriendsTV = (TextView) context.findViewById(R.id.listItem);
+        if(names == null || names.get(0).equalsIgnoreCase(NOFRIENDS)){
+            TextView noFriendsTV = (TextView) context.findViewById(R.id.noFriendsBreaks);
             noFriendsTV.setText(context.getResources().getString(R.string.nofriendsonbreak));
         }
         else
