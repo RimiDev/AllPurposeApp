@@ -16,21 +16,22 @@
         <ImageView
             android:id="@+id/dawsonLogo"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:adjustViewBounds="true"
             android:onClick="startDawsonPage"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/dawsonlogo" />
 
         <ImageView
             android:id="@+id/teamLogo"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="0.5"
             android:adjustViewBounds="true"
-            android:scaleType="center"
             android:onClick="startAbout"
+            android:scaleType="center"
             app:srcCompat="@drawable/elecurrents" />
 
     </LinearLayout>
@@ -42,86 +43,128 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="77dp"
             android:layout_weight="0.2"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
+                android:id="@+id/classCancelledBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="0.5"
-                android:onClick="startClassCancelled"
-                android:text="@string/classCancelText" />
+                android:background="@drawable/classcancellation"
+                android:onClick="startActivityIntent"/>
 
-            <Button
+                
+            <ImageButton
+                android:id="@+id/findTeacherBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="0.5"
-                android:onClick="startFindTeacher"
-                android:text="@string/findTeacherText" />
+                android:background="@drawable/findteacher"
+                android:onClick="startActivityIntent" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="77dp"
             android:layout_weight="0.2"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
+                android:id="@+id/addCalendarBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
-                android:onClick="startAddCalendar"
-                android:text="@string/addCalendarText" />
+                android:background="@drawable/addcalendar"
+                android:onClick="startActivityIntent" />
 
-            <Button
+            <ImageButton
+                android:id="@+id/notesBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
-                android:onClick="startNotes"
-                android:text="@string/notesText" />
+                android:background="@drawable/notes"
+                android:onClick="startActivityIntent" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="77dp"
             android:layout_weight="0.2"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
+                android:id="@+id/weatherBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
-                android:onClick="startWeather"
-                android:text="@string/weatherText" />
+                android:background="@drawable/weather"
+                android:onClick="startActivityIntent" />
 
-            <Button
+            <ImageButton
+                android:id="@+id/academicCalendarBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
-                android:onClick="startAcademicCalendar"
-                android:text="@string/academicCalText" />
+                android:background="@drawable/academiccalendar"
+                android:onClick="startActivityIntent" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="77dp"
             android:layout_weight="0.2"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
+                android:id="@+id/findFriendBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
-                android:onClick="startFindFriends"
-                android:text="@string/findFriend" />
+                android:background="@drawable/findfriends"
+                android:onClick="startActivityIntent" />
 
-            <Button
+            <ImageButton
+                android:id="@+id/findFreeFriendBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.5"
-                android:onClick="startFindFreeFriends"
-                android:text="@string/findFreeFriendsText" />
+                android:background="@drawable/findfreefriends"
+                android:onClick="startActivityIntent" />
         </LinearLayout>
 
         <TextView
@@ -131,6 +174,7 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textSize="30sp"
+            android:textColor="@color/white"
             android:text="@string/currentTempText" />
 
     </LinearLayout>

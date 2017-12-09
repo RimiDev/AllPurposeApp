@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -26,9 +27,6 @@ public class FindTeacherActivity extends MenuActivity {
     private EditText lastNameInput;
     private RadioGroup rg;
 
-    private String teacherName;
-    private boolean searchDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +36,9 @@ public class FindTeacherActivity extends MenuActivity {
         firstNameInput = (EditText)findViewById(R.id.firstNameTeacher);
         lastNameInput = (EditText) findViewById(R.id.lastNameTeacher);
         rg = (RadioGroup)findViewById(R.id.radioGroupTeacher);
+
+        // Set initial value for radio group
+        rg.check(R.id.like);
     }
 
     @Override
@@ -65,8 +66,6 @@ public class FindTeacherActivity extends MenuActivity {
             intent.putExtra("selection", selection);
             intent.putExtra("firstname", fn);
             intent.putExtra("lastname", ln);
-            intent.putExtra("teacherName", teacherName);
-            intent.putExtra("ShowDatabase", searchDatabase);
             startActivity(intent);
         } else {
             errorMessage();
@@ -123,6 +122,42 @@ public class FindTeacherActivity extends MenuActivity {
     public void errorMessage() {
         Toast.makeText(this, R.string.invalidInput,
                 Toast.LENGTH_LONG).show();
+
+    }
+
+    /**
+     * Saves the state of the application in a bundle
+     * @param savedInstaneState
+     */
+    @Override
+    public void onSaveInstanceState(Bundle savedInstaneState) {
+        super.onSaveInstanceState(savedInstaneState);
+
+        savedInstaneState.putString("firstname", ((EditText) findViewById(R.id.firstNameTeacher)).getText().toString());
+        savedInstaneState.putString("lastname", ((EditText) findViewById(R.id.lastNameTeacher)).getText().toString());
+        savedInstaneState.putInt("radio", rg.getCheckedRadioButtonId());
+    }
+
+    /**
+     * Restores the state of the application when the state is changed
+     * @param savedInstanceState
+     */
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String fn = savedInstanceState.getString("firstname");
+        String ln = savedInstanceState.getString("lastname");
+        int radioBtnSelection = savedInstanceState.getInt("radio");
+
+        ((TextView) findViewById(R.id.firstNameTeacher)).setText(fn);
+        ((TextView) findViewById(R.id.lastNameTeacher)).setText(ln);
+
+        if (radioBtnSelection == R.id.like){
+            rg.check(R.id.like);
+        } else if (radioBtnSelection == R.id.exact) {
+            rg.check(R.id.exact);
+        }
 
     }
 }

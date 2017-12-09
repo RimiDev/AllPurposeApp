@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cs.dawson.dawsonelectriccurrents.AcademicCalendarActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cs.dawson.dawsonelectriccurrents.AcademicCalendarActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +40,7 @@
 
             <RadioGroup
                 android:id="@+id/radioGroup"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
@@ -72,20 +68,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/loadBtn"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/loadButton" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/search"/>
+
         </LinearLayout>
         <fragment
             android:id="@+id/academicCalendarFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="cs.dawson.dawsonelectriccurrents.CalendarWVFragment">
+            class="cs.dawson.dawsonelectriccurrents.CalendarWVFragment">
         </fragment>
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

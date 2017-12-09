@@ -7,17 +7,15 @@
     <TextView
         android:id="@+id/noteView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_weight="0.8"
-        android:textSize="24sp" >
-    </TextView>
+        android:textSize="24sp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/deleteNoteBtn"
         android:layout_width="wrap_content"
-        android:layout_weight="0.2"
         android:layout_height="wrap_content"
-        android:text="@string/deleteNoteBtnText" />
-
+        android:layout_weight="0.2"
+        android:background="@drawable/delete" />
 
 </LinearLayout>

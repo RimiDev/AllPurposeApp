@@ -1,5 +1,7 @@
 package cs.dawson.dawsonelectriccurrents.beans;
 
+import android.text.Html;
+
 import java.io.Serializable;
 
 /**
@@ -60,19 +62,19 @@ public class Teacher implements Serializable {
 
     // Getters and setters
 
-    public String getFirstName() { return firstName; }
+    public String getFirstName() { return Html.fromHtml(firstName).toString(); }
 
     public void setFirstName(String fn) { this.firstName = fn; }
 
-    public String getLastName() { return lastName; }
+    public String getLastName() { return Html.fromHtml(lastName).toString(); }
 
     public void setLastName(String ln) { this.lastName = ln; }
 
-    public String getFullName() { return fullName; }
+    public String getFullName() { return Html.fromHtml(fullName).toString(); }
 
     public void setFullName(String fn) { this.fullName = fn; }
 
-    public String getEmail() { return email; }
+    public String getEmail() { return Html.fromHtml(email).toString(); }
 
     public void setEmail(String email) { this.email = email; }
 

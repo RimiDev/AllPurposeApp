@@ -33,11 +33,13 @@ public class WeatherActivity extends MenuActivity {
 
         countryNames = getCountryNames();
 
-
         //Calling my custom adapter for displaying the country names.
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getApplicationContext(),countryNames);
 
         countrySpinner.setAdapter(spinnerAdapter);
+
+        countrySpinner.setSelection(36);
+
     }
 
     @Override

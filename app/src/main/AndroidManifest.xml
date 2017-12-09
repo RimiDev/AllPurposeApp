@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -25,27 +25,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="cs.dawson.dawsonelectriccurrents.MenuActivity"
-            android:label="Menu">
-        </activity>
+            android:name=".MenuActivity"
+            android:label="Menu" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".cancelled.CancelledActivity" />
         <activity android:name=".cancelled.ShowCancelActivity" />
         <activity android:name=".FindTeacherActivity" />
-        <activity android:name=".ChooseTeacherActivity" />
+        <activity
+            android:name=".ChooseTeacherActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".notes.NotesActivity" />
         <activity android:name=".notes.ItemNoteActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".WeatherActivity" />
         <activity android:name=".FindFriendActivity" />
-        <activity android:name=".AcademicCalendarActivity" />
-        <activity android:name=".FindFreeFriends"></activity>
-        <activity android:name=".FiveDayForecastActivity"
-                  android:theme="@style/weather">
-
+        <activity
+            android:name=".AcademicCalendarActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".FindFreeFriends" />
+        <activity
+            android:name=".FiveDayForecastActivity"
+            android:theme="@style/weather">
+            >
         </activity>
-        <activity android:name=".FindFriendCourseActivity"/>
+        <activity android:name=".TeacherContactActivity" />
+        <activity android:name=".FindFriendCourseActivity" />
+        <activity android:name=".FIndBreakActivity" />
+        <activity android:name=".cancelled.ShowCancelledFriends"></activity>
     </application>
 
 </manifest>

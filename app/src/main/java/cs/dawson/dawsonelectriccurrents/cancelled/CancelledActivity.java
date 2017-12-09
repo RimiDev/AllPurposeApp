@@ -15,14 +15,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cs.dawson.dawsonelectriccurrents.MainActivity;
 import cs.dawson.dawsonelectriccurrents.MenuActivity;
 import cs.dawson.dawsonelectriccurrents.R;
 import cs.dawson.dawsonelectriccurrents.beans.CancelledClass;
 
+/**
+ * CancelledActivity which is responsible for displaying a list
+ * of all the courses that are cancelled by using an RSSFeed.
+ *
+ */
 public class CancelledActivity extends MenuActivity
 {
-    private ListView cancelledListView;
     private List<CancelledClass> cancelledClassList;
 
     @Override
@@ -45,6 +48,20 @@ public class CancelledActivity extends MenuActivity
             intent.putExtra("ClassCancelled", cancelledClassList.get(position));
 
             startActivity(intent);
+        }
+    };
+
+    private AdapterView.OnItemLongClickListener searchFriends = new AdapterView.OnItemLongClickListener()
+    {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l)
+        {
+            Intent intent = new Intent(CancelledActivity.this, ShowCancelledFriends.class);
+            intent.putExtra("course", cancelledClassList.get(position));
+
+            startActivity(intent);
+
+            return true;
         }
     };
 
@@ -89,6 +106,7 @@ public class CancelledActivity extends MenuActivity
                         R.layout.cancelled_class, courses);
                 cancelledListView.setAdapter(adapter);
                 cancelledListView.setOnItemClickListener(showCancelledClasses);
+                cancelledListView.setOnItemLongClickListener(searchFriends);
             }
         }
     }

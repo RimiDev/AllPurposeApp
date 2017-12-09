@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/findbg"
     tools:context="cs.dawson.dawsonelectriccurrents.FindTeacherActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
@@ -25,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#98AFC7"
+                android:textColor="#000000"
                 android:textSize="22dp"
                 android:gravity="center"
                 android:text="@string/search" />
@@ -41,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#98AFC7"
+                android:textColor="#000000"
                 android:text="@string/firstName" />
 
             <EditText
@@ -51,7 +50,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Patricia"
-                android:textColor="#98AFC7"
+                android:textColor="#000000"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -65,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#98AFC7"
+                android:textColor="#000000"
                 android:text="@string/lastName" />
 
             <EditText
@@ -75,7 +74,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Campbell"
-                android:textColor="#98AFC7"
+                android:textColor="#000000"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -91,8 +90,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#98AFC7"
-                android:buttonTint="#98AFC7"
+                android:textColor="#000000"
+                android:buttonTint="#000000"
+                android:checked="true"
                 android:text="@string/similar" />
 
             <RadioButton
@@ -100,8 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#98AFC7"
-                android:buttonTint="#98AFC7"
+                android:textColor="#000000"
+                android:buttonTint="#000000"
                 android:text="@string/exact" />
         </RadioGroup>
 
@@ -122,4 +122,4 @@
                 android:onClick="searchTeacher" />
         </LinearLayout>
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
