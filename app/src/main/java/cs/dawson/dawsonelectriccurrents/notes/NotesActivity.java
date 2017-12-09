@@ -49,6 +49,9 @@ public class NotesActivity extends MenuActivity
         setContentView(R.layout.activity_notes);
 
        showNotes();
+
+       Toast.makeText(this, R.string.deleteNote,
+                Toast.LENGTH_LONG).show();
     }
 
     /**

@@ -115,5 +115,6 @@
     <string name="currentweather">Current Weather</string>
     <string name="cityhint">City</string>
     <string name="teamMates">Partenaires</string>
+    <string name="deleteNote">To delete a note, hold and press the note.</string>
 
 </resources>

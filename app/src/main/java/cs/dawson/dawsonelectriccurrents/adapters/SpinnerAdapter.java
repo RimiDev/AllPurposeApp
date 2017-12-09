@@ -47,7 +47,7 @@ public class SpinnerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.country_spinner, null);
+        view = inflter.inflate(R.layout.spinner, null);
         TextView names = (TextView) view.findViewById(R.id.textView);
         names.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
         names.setGravity(Gravity.CENTER);

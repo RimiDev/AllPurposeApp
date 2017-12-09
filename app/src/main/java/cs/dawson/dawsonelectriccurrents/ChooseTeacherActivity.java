@@ -40,7 +40,7 @@ public class ChooseTeacherActivity extends MenuActivity {
     private ArrayList<String> allTeachersFullName;
     private ArrayList<Teacher> teachers;
 
-    // Keys
+    // Declare the keys
     private static final String SELECTION = "selection";
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
@@ -80,11 +80,12 @@ public class ChooseTeacherActivity extends MenuActivity {
             searchDb = extras.getBoolean(SEARCHDATABASE);
         }
 
+        // Set the full name
         fullName = firstName + " " + lastName;
     }
 
     /**
-     * Opens the teacher information fragment
+     * Opens the teacher information activity if no teacher were found in the user search
      */
     private void loadInitialActivity() {
         Intent teacherContact = new Intent(getApplicationContext(), TeacherContactActivity.class);
@@ -92,7 +93,7 @@ public class ChooseTeacherActivity extends MenuActivity {
     }
 
     /**
-     * Gets all the teachers
+     * Gets all the teachers in the firebase database into an ArrayList of Strings
      * @return
      */
     private void getAllTeachers() {
@@ -237,6 +238,13 @@ public class ChooseTeacherActivity extends MenuActivity {
         });
     }
 
+    /**
+     * Method which calls the super method on onCreateOptionsMenu to display the menu. Required
+     * so code to show the menu will not have to be repeated for each activity.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -244,6 +252,13 @@ public class ChooseTeacherActivity extends MenuActivity {
         return true;
     }
 
+    /**
+     * Method which calls the super method on onOptionsItemSelected to add functionality to the menu
+     * buttons without having to repeat the code for each activity.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

@@ -127,15 +127,15 @@ public class FindTeacherActivity extends MenuActivity {
 
     /**
      * Saves the state of the application in a bundle
-     * @param savedInstaneState
+     * @param savedInstanceState
      */
     @Override
-    public void onSaveInstanceState(Bundle savedInstaneState) {
-        super.onSaveInstanceState(savedInstaneState);
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
 
-        savedInstaneState.putString("firstname", ((EditText) findViewById(R.id.firstNameTeacher)).getText().toString());
-        savedInstaneState.putString("lastname", ((EditText) findViewById(R.id.lastNameTeacher)).getText().toString());
-        savedInstaneState.putInt("radio", rg.getCheckedRadioButtonId());
+        savedInstanceState.putString("firstname", ((EditText) findViewById(R.id.firstNameTeacher)).getText().toString());
+        savedInstanceState.putString("lastname", ((EditText) findViewById(R.id.lastNameTeacher)).getText().toString());
+        savedInstanceState.putInt("radio", rg.getCheckedRadioButtonId());
     }
 
     /**
@@ -150,9 +150,11 @@ public class FindTeacherActivity extends MenuActivity {
         String ln = savedInstanceState.getString("lastname");
         int radioBtnSelection = savedInstanceState.getInt("radio");
 
+        // Sets the textview
         ((TextView) findViewById(R.id.firstNameTeacher)).setText(fn);
         ((TextView) findViewById(R.id.lastNameTeacher)).setText(ln);
 
+        // Checks the correct radio button
         if (radioBtnSelection == R.id.like){
             rg.check(R.id.like);
         } else if (radioBtnSelection == R.id.exact) {
