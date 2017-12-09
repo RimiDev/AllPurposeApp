@@ -27,7 +27,6 @@
         <activity
             android:name=".MenuActivity"
             android:label="Menu" />
-
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".cancelled.CancelledActivity" />
@@ -41,19 +40,19 @@
         <activity android:name=".CalendarActivity" />
         <activity android:name=".WeatherActivity" />
         <activity android:name=".FindFriendActivity" />
-
-        <activity android:name=".AcademicCalendarActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"/>
-
+        <activity
+            android:name=".AcademicCalendarActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".FindFreeFriends" />
         <activity
             android:name=".FiveDayForecastActivity"
             android:theme="@style/weather">
             >
         </activity>
-        <activity android:name=".TeacherContactActivity"></activity>
+        <activity android:name=".TeacherContactActivity" />
         <activity android:name=".FindFriendCourseActivity" />
-        <activity android:name=".FIndBreakActivity"></activity>
+        <activity android:name=".FIndBreakActivity" />
+        <activity android:name=".cancelled.ShowCancelledFriends"></activity>
     </application>
 
 </manifest>
