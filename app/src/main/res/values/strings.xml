@@ -39,7 +39,9 @@
     <string name="aleText" translatable="false">Alessandro Ciotola</string>
     <string name="hannahText" translatable="false">Hannah Ly</string>
     <string name="kevinText" translatable="false">Kevin Bui</string>
-    <string name="aboutUs">Welcome to the Dawson Electric Currents team\'s Dawson Friend Finder application. We are students on their 3rd year in Computer Science at Dawson. The goal of this project was for us to code an application that could be used by Dawson students to find information about classes, teachers and their friends who are also using this app!</string>
+    <string name="aboutUs">Welcome to the Dawson Electric Currents team\'s Dawson Friend Finder application. We are students on their
+        3rd year in Computer Science at Dawson. The goal of this project was for us to code an application that could be used by Dawson students
+        to find information about classes, teachers and their friends who are also using this app!</string>
     <string name="aleInfo">3rd year Comp sci student that enjoys CS:GO.</string>
     <string name="maxInfo">I just want to make money and live a rich life.</string>
     <string name="hannahInfo">President of the gaming club and enjoys eating.</string>

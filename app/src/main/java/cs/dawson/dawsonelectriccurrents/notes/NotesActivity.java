@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import cs.dawson.dawsonelectriccurrents.FindFriendActivity;
 import cs.dawson.dawsonelectriccurrents.FindFriendCourseActivity;
