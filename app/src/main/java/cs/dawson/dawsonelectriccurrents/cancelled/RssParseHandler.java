@@ -8,8 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 import cs.dawson.dawsonelectriccurrents.beans.CancelledClass;
 
+/**
+ * Class which takes the items from the RSSFeed, gets the data from the feed and stores them
+ * inside a CancelledClass object.
+ * Created by: Alessandro Ciotola
+ *
+ */
 public class RssParseHandler extends DefaultHandler
 {
+    private static final String ITEM = "item";
+    private static final String TITLE = "title";
+    private static final String COURSE = "course";
+    private static final String TEACHER = "teacher";
+    private static final String PUBDATE = "pubDate";
     private List<CancelledClass> items;
     private CancelledClass currentItem;
     private boolean parsingTitle;
@@ -17,49 +28,87 @@ public class RssParseHandler extends DefaultHandler
     private boolean parsingTeacher;
     private boolean parsingDateTimeCancelled;
 
+    /**
+     * No param constructor which initializes the ArrayList.
+     */
     public RssParseHandler()
     {
         items = new ArrayList<CancelledClass>();
     }
 
+    /**
+     * Method which returns a List of items
+     *
+     * @return
+     */
     public List<CancelledClass> getItems()
     {
         return items;
     }
 
+    /**
+     * Method which checks if the beginning of the current element is an element which will
+     * be used for the CancelledClass object.
+     *
+     * @param uri
+     * @param localName
+     * @param qName
+     * @param attributes
+     * @throws SAXException
+     */
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        if ("item".equals(qName)) {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException
+    {
+        if (ITEM.equals(qName)) {
             currentItem = new CancelledClass();
-        } else if ("title".equals(qName)) {
+        } else if (TITLE.equals(qName)) {
             parsingTitle = true;
-        } else if ("course".equals(qName)) {
+        } else if (COURSE.equals(qName)) {
             parsingCourse = true;
-        }else if ("teacher".equals(qName)) {
+        }else if (TEACHER.equals(qName)) {
             parsingTeacher = true;
-        }else if ("pubDate".equals(qName)) {
+        }else if (PUBDATE.equals(qName)) {
             parsingDateTimeCancelled = true;
         }
     }
 
+    /**
+     * Method which checks if the end of the current element is an element which will
+     * be used for the CancelledClass object.
+     *
+     * @param uri
+     * @param localName
+     * @param qName
+     * @throws SAXException
+     */
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-        if ("item".equals(qName)) {
+    public void endElement(String uri, String localName, String qName) throws SAXException
+    {
+        if (ITEM.equals(qName)) {
             items.add(currentItem);
             currentItem = null;
-        } else if ("title".equals(qName)) {
+        } else if (TITLE.equals(qName)) {
             parsingTitle = false;
-        } else if ("course".equals(qName)) {
+        } else if (COURSE.equals(qName)) {
             parsingCourse = false;
-        }else if ("teacher".equals(qName)) {
+        }else if (TEACHER.equals(qName)) {
             parsingTeacher = false;
-        }else if ("pubDate".equals(qName)) {
+        }else if (PUBDATE.equals(qName)) {
             parsingDateTimeCancelled = false;
         }
     }
 
+    /**
+     * Method which sets the fields of the CancelledClass object.
+     *
+     * @param ch
+     * @param start
+     * @param length
+     * @throws SAXException
+     */
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {
+    public void characters(char[] ch, int start, int length) throws SAXException
+    {
         if (parsingTitle)
         {
             if (currentItem != null)

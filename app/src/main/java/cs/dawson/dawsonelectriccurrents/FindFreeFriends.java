@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -27,10 +26,14 @@ public class FindFreeFriends extends MenuActivity
     private Spinner endSpinner;
     private ArrayList<String> listDay;
     private ArrayList<String> listTime;
-    private ImageButton searchBtn;
 
     // Declare the keys
     private final static String DAY = "day";
+    private final static String MONDAY = "Monday";
+    private final static String TUESDAY = "Monday";
+    private final static String WEDNESDAY = "Monday";
+    private final static String THURSDAY = "Monday";
+    private final static String FRIDAY = "Monday";
     private final static String START = "starttime";
     private final static String END = "endtime";
 
@@ -43,7 +46,6 @@ public class FindFreeFriends extends MenuActivity
         daySpinner = (Spinner) findViewById(R.id.daySpinner);
         startSpinner = (Spinner) findViewById(R.id.timeStartSpinner);
         endSpinner = (Spinner) findViewById(R.id.endTimeSpinner);
-        searchBtn = (ImageButton) findViewById(R.id.searchButton);
 
         // Sets the list of days
         listDay = getDays();
@@ -65,11 +67,11 @@ public class FindFreeFriends extends MenuActivity
      */
     private ArrayList<String> getDays() {
         ArrayList<String> days = new ArrayList<>();
-        days.add("Monday");
-        days.add("Tuesday");
-        days.add("Wednesday");
-        days.add("Thursday");
-        days.add("Friday");
+        days.add(MONDAY);
+        days.add(TUESDAY);
+        days.add(WEDNESDAY);
+        days.add(THURSDAY);
+        days.add(FRIDAY);
         return days;
     }
 
