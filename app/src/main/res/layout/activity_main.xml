@@ -174,7 +174,7 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textSize="30sp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/currentTempText" />
 
     </LinearLayout>
