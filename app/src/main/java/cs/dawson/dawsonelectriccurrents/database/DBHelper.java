@@ -11,12 +11,8 @@ import android.util.Log;
 /**
  * DBHelper class which is responsible for creating the database and tables required for
  * the Notes section of the application. Contains methods required to get a specific note from
- * the database or insert a new note into the database.
- *
+ * the database or insert a new note into the database. *
  * @author Alessandro Ciotola
- * @author Hannah Ly
- * @author Kevin Bui
- * @author Maxime Lacasse
  * @version 2017/11/25
  *
  */
@@ -138,6 +134,12 @@ public class DBHelper extends SQLiteOpenHelper
         return code;
     }
 
+    /**
+     * Method which will remove a note from the database
+     *
+     * @param id
+     * @return
+     */
     public int removeNote(int id)
     {
         return getWritableDatabase().delete(TABLE_NOTES, COL_ID + "=?",

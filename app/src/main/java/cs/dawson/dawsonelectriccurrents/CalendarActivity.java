@@ -20,16 +20,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import org.w3c.dom.Text;
-
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class CalendarActivity extends MenuActivity {
-    private EditText etTitle;
+public class CalendarActivity extends MenuActivity
+{
+    private static final String EVENTCREATED = "The event was created.";
+    private static final String TIMEZONE  = "America/Montreal";
+	private EditText etTitle;
     private TextView datePickerTV;
     private TextView startTimePickerTV;
     private TextView endTimePickerTV;
@@ -250,23 +251,22 @@ public class CalendarActivity extends MenuActivity {
         }
         else{
             Calendar startTime = Calendar.getInstance();
-            startTime.set(year, month, day, startHour, startMinute);
-            start = startTime.getTimeInMillis();
-            Calendar endTime = Calendar.getInstance();
-            endTime.set(year, month, day, endHour, endMinute);
-            end = endTime.getTimeInMillis();
+			startTime.set(year, month, day, startHour, startMinute);
+			start = startTime.getTimeInMillis();
+			Calendar endTime = Calendar.getInstance();
+			endTime.set(year, month, day, endHour, endMinute);
+			end = endTime.getTimeInMillis();
 
-            ContentResolver cr = getContentResolver();
-            ContentValues values = new ContentValues();
-            values.put(CalendarContract.Events.DTSTART, start);
-            values.put(CalendarContract.Events.DTEND, end);
-            values.put(CalendarContract.Events.EVENT_TIMEZONE, "America/Montreal");
-            values.put(CalendarContract.Events.TITLE, etTitle.getText().toString());
-            values.put(CalendarContract.Events.CALENDAR_ID, calID);
-            Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
+			ContentResolver cr = getContentResolver();
+			ContentValues values = new ContentValues();
+			values.put(CalendarContract.Events.DTSTART, start);
+			values.put(CalendarContract.Events.DTEND, end);
+			values.put(CalendarContract.Events.EVENT_TIMEZONE, TIMEZONE);
+			values.put(CalendarContract.Events.TITLE, etTitle.getText().toString());
+			values.put(CalendarContract.Events.CALENDAR_ID, calID);
+			Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
 
-            //Toast.makeText(this, "The event was created.", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, startTimePickerTV.getText(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, EVENTCREATED, Toast.LENGTH_SHORT).show();
         }
-    }
+	}
 }

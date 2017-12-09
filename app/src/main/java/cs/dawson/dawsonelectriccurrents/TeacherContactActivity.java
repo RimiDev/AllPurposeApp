@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,7 +16,7 @@ import android.widget.TextView;
  * @version 1.0
  */
 
-public class TeacherContactActivity extends AppCompatActivity {
+public class TeacherContactActivity extends MenuActivity {
 
     private static final String TAG = TeacherContactActivity.class.getName();
     private String email;
@@ -140,5 +142,32 @@ public class TeacherContactActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.positionTv)).setText(pos);
         ((TextView) findViewById(R.id.departmentTv)).setText(dep);
         ((TextView) findViewById(R.id.sectorTv)).setText(sec);
+    }
+
+    /**
+     * Method which calls the super method on onCreateOptionsMenu to display the menu. Required
+     * so code to show the menu will not have to be repeated for each activity.
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    /**
+     * Method which calls the super method on onOptionsItemSelected to add functionality to the menu
+     * buttons without having to repeat the code for each activity.
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        return super.onOptionsItemSelected(item);
     }
 }

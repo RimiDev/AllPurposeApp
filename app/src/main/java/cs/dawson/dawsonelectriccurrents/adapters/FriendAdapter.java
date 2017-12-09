@@ -22,8 +22,11 @@ import cs.dawson.dawsonelectriccurrents.beans.Teacher;
  * @version 1.0
  */
 
-public class FriendAdapter extends BaseAdapter {
+public class FriendAdapter extends BaseAdapter
+{
     private static final String TAG = FriendAdapter.class.getName();
+    private static final String MAILTO = "mailto";
+
     private Context context;
     private ArrayList<String> names;
     private ArrayList<String> email;
@@ -78,7 +81,7 @@ public class FriendAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
-                Intent sendEMail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email.get(position), null));
+                Intent sendEMail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(MAILTO, email.get(position), null));
                 sendEMail.putExtra(Intent.EXTRA_SUBJECT, context.getResources().getString(R.string.from) + " " + context.getResources().getString(R.string.app_name));
                 context.startActivity(Intent.createChooser(sendEMail, context.getResources().getString(R.string.sendemail)));
             }
