@@ -10,9 +10,15 @@
     <TextView
         android:id="@+id/availableView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:textSize="28sp">
+        android:textSize="26sp">
     </TextView>
+
+    <TextView
+        android:id="@+id/classInfoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"/>
 
 </LinearLayout>

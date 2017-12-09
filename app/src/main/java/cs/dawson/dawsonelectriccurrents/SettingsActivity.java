@@ -27,7 +27,7 @@ public class SettingsActivity extends MenuActivity {
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
     private static final String EMAIL = "email";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD = "pw";
     private static final String LASTUPDATED = "lastUpdated";
 
     @Override

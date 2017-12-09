@@ -125,7 +125,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
             String fname = cursor.getString(cursor.getColumnIndex(COLUMN_FIRSTNAME));
             String lname = cursor.getString(cursor.getColumnIndex(COLUMN_LASTNAME));
             String mail = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
-            String password = cursor.getColumnName(cursor.getColumnIndex(COLUMN_PASSWORD));
+            String password = cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD));
             String lastUpdated = cursor.getString(cursor.getColumnIndex(COLUMN_LASTUPDATED));
             User user = new User(id, fname, lname, mail, password, lastUpdated);
             list.add(user);

@@ -1,9 +1,10 @@
-package cs.dawson.dawsonelectriccurrents;
+package cs.dawson.dawsonelectriccurrents.cancelled;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -24,17 +24,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
-import cs.dawson.dawsonelectriccurrents.cancelled.CancelledActivity;
+import cs.dawson.dawsonelectriccurrents.FindFriendActivity;
+import cs.dawson.dawsonelectriccurrents.FindFriendCourseActivity;
+import cs.dawson.dawsonelectriccurrents.MenuActivity;
+import cs.dawson.dawsonelectriccurrents.R;
+import cs.dawson.dawsonelectriccurrents.beans.CancelledClass;
 
-public class FindFriendActivity extends MenuActivity
+public class ShowCancelledFriends extends MenuActivity
 {
     private ArrayList<String> friendListNames;
     private ArrayList<String> friendListEmails;
+    private String course;
+    private String section;
     private String email;
     private String password;
 
@@ -42,41 +46,20 @@ public class FindFriendActivity extends MenuActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_friend);
+        setContentView(R.layout.activity_show_cancelled_friends);
 
-        FriendsAsyncTask task = new FriendsAsyncTask();
+        CancelledClass cancelledClass = (CancelledClass) getIntent().getSerializableExtra("course");
+        String[] title = cancelledClass.getTitle().split("\\s+");
+        course = title[0];
+        section = title[1];
+
+        Log.d("SHOWCANCELLEDFRIENDS", "onCreate: " + course + " " + section);
+
+        CancelledFriendsAsyncTask task = new CancelledFriendsAsyncTask();
         task.execute();
     }
 
-    public void fillListView()
-    {
-        ListView friendsListView = (ListView) findViewById(R.id.friendsListView);
-
-        if(friendListNames == null || friendListNames.get(0).equalsIgnoreCase("User has no friends.")){
-            TextView noFriendsTV = (TextView) findViewById(R.id.noFriendTV);
-            noFriendsTV.setText("No friends");
-        }
-        else
-        {
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.cancelled_class, friendListNames);
-            friendsListView.setAdapter(adapter);
-            friendsListView.setOnItemClickListener(showFriends);
-        }
-    }
-
-    private AdapterView.OnItemClickListener showFriends = new AdapterView.OnItemClickListener()
-    {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-        {
-            Intent intent = new Intent(FindFriendActivity.this, FindFriendCourseActivity.class);
-            intent.putExtra("friendEmail", friendListEmails.get(position));
-
-            startActivity(intent);
-        }
-    };
-
-    private class FriendsAsyncTask extends AsyncTask<String, Void, ArrayList<String>>
+    private class CancelledFriendsAsyncTask extends AsyncTask<String, Void, ArrayList<String>>
     {
         @Override
         protected ArrayList<String> doInBackground(String... urls)
@@ -88,10 +71,10 @@ public class FindFriendActivity extends MenuActivity
                 password = prefs.getString("pw", "");
             }
 
-            Log.d("FINDFRIEND", "doInBackground: " + email + " " + password);
+            String friendUrl = "http://dawsonfriendfinder2017.herokuapp.com/api/api/coursefriends?" +
+                    "email=" + email + "&password=" + password + "&course=" + course + "&section=" + section;
 
-            String friendUrl = "http://dawsonfriendfinder2017.herokuapp.com/api/api/allfriends?" +
-                    "email=" + email + "&password=" + password;
+            Log.d("DOIN", "doInBackground: " + friendUrl);
 
             try
             {
@@ -139,6 +122,33 @@ public class FindFriendActivity extends MenuActivity
         }
     }
 
+    public void fillListView()
+    {
+        ListView friendsListView = (ListView) findViewById(R.id.friendsCancelledListView);
+
+        if(friendListNames == null || friendListNames.get(0).equalsIgnoreCase("No course found.")){
+            TextView noFriendsCancelledTV = (TextView) findViewById(R.id.noFriendCancelledTV);
+            noFriendsCancelledTV.setText("No friends in this course!");
+        }
+        else
+        {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.cancelled_class, friendListNames);
+            friendsListView.setAdapter(adapter);
+            friendsListView.setOnItemClickListener(emailFriends);
+        }
+    }
+
+    private AdapterView.OnItemClickListener emailFriends = new AdapterView.OnItemClickListener()
+    {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        {
+            Intent sendEMail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", friendListEmails.get(position), null));
+            sendEMail.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.from) + " " + getResources().getString(R.string.app_name));
+            startActivity(Intent.createChooser(sendEMail, getResources().getString(R.string.sendemail)));
+        }
+    };
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -151,5 +161,4 @@ public class FindFriendActivity extends MenuActivity
     {
         return super.onOptionsItemSelected(item);
     }
-
 }
