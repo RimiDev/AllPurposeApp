@@ -35,7 +35,7 @@ public class FriendBreakLoader extends AsyncTask<String, Void, ArrayList<String>
     private String endTime;
     private ArrayList<String> names;
     private ArrayList<String> emails;
-    private static final String NOFRIENDS = "User has no friends.";
+    private static final String NOFRIENDS = "No friend found";
 
     /**
      * Constructor
