@@ -40,8 +40,7 @@
     <string name="uvindexlabel">Index UV</string>
     <string name="dayforecastlabel">Previsions 5 jours</string>
     <string name="teamMates">Maxime Lacasse,  Alessandro Ciotola, Hannah Ly et Kevin</string>
-    <string name="aboutUs">Bienvenue a l\'equipe Dawson Courant Electrique et notre belle application chercheur d\'amis.  Nous sommes des
-        etudiants de troisieme annee en science de l\'ordinateur et oh boy nous adorons ca.</string>
+    <string name="aboutUs">Bienvenue à l\'application Dawson Friend Finder de l\'équipe Dawson Electric Currents. Nous sommes des étudiants en troisième année d\'informatique à Dawson. Le but de ce projet était pour nous de créer une application qui pourrait être utilisée par les étudiants de Dawson pour trouver des informations sur leurs cours, les enseignants et leurs amis qui utilisent également cette application!</string>
     <string name="similar">Resultat similaire</string>
     <string name="exact">Resultat exacte</string>
     <string name="search">Recherche</string>
@@ -100,7 +99,7 @@
     <string name="daySelection">Selectionner la journee: </string>
     <string name="aleInfo">Etudiant en science de l\'informatique qui aime jouer a CS:GO et les licornes.</string>
     <string name="maxInfo">Je veux juste faire du cash et vivre une vie de riche.</string>
-    <string name="hannahInfo">Je suis la presidente du club de jeux video.  Vietnamienne de culture mais sauvage au coeur.</string>
+    <string name="hannahInfo">Présidente du club de jeux vidéos et aime manger.</string>
     <string name="kevinInfo">Etudiant en science de l\'informatique qui aime l\'halterophilie et rire de Alessandro Ciotola.</string>
     <string name="nofriendsonbreak">Aucun ami en pause durant la periode de temps donne</string>
     <string name="searchFriendCourse">Trouver un ami</string>

@@ -1,5 +1,8 @@
 package cs.dawson.dawsonelectriccurrents;
 
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -174,7 +177,8 @@ public class FindFriendCourseActivity extends MenuActivity
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
-    {        super.onCreateOptionsMenu(menu);
+    {   
+		super.onCreateOptionsMenu(menu);
         return true;
     }
 
