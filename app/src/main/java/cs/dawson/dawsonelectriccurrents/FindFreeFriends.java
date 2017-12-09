@@ -30,10 +30,10 @@ public class FindFreeFriends extends MenuActivity
     // Declare the keys
     private final static String DAY = "day";
     private final static String MONDAY = "Monday";
-    private final static String TUESDAY = "Monday";
-    private final static String WEDNESDAY = "Monday";
-    private final static String THURSDAY = "Monday";
-    private final static String FRIDAY = "Monday";
+    private final static String TUESDAY = "Tuesday";
+    private final static String WEDNESDAY = "Wednesday";
+    private final static String THURSDAY = "Thursday";
+    private final static String FRIDAY = "Friday";
     private final static String START = "starttime";
     private final static String END = "endtime";
 
@@ -118,6 +118,13 @@ public class FindFreeFriends extends MenuActivity
 
     }
 
+    /**
+     * Method which calls the super method on onCreateOptionsMenu to display the menu. Required
+     * so code to show the menu will not have to be repeated for each activity.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -125,6 +132,13 @@ public class FindFreeFriends extends MenuActivity
         return true;
     }
 
+    /**
+     * Method which calls the super method on onOptionsItemSelected to add functionality to the menu
+     * buttons without having to repeat the code for each activity.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

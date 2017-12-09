@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
- * This class displays the teacher information
+ * This class displays the teacher information coming from a bundle
  * @author Kevin Bui
  * @version 1.0
  */
@@ -24,7 +24,7 @@ public class TeacherContactActivity extends MenuActivity {
     private TextView emailTv;
     private TextView localTv;
 
-    // Keys
+    // Declare the keys
     private static final String FULLNAME = "fullname";
     private static final String EMAIL = "email";
     private static final String OFFICE = "office";

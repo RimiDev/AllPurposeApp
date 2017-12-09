@@ -17,9 +17,9 @@ import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
  * @version 1.0
  */
 
-public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
+public class UserAsyncTask extends AsyncTask<Void, Void, ArrayList<User>> {
 
-    private static final String TAG = "UserLoader";
+    private static final String TAG = "UserAsyncTask";
     private Activity activity;
     private Options option;
     private FriendFinderDBHelper database;
@@ -42,7 +42,7 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
      * @param database
      * @param data
      */
-    public UserLoader(Options option, SettingsActivity settings, FriendFinderDBHelper database, String[] data) {
+    public UserAsyncTask(Options option, SettingsActivity settings, FriendFinderDBHelper database, String[] data) {
         this.option = option;
         this.activity = settings;
         this.database = database;
@@ -56,7 +56,7 @@ public class UserLoader extends AsyncTask<Void, Void, ArrayList<User>> {
      * @param database
      * @param email
      */
-    public UserLoader(Options option, Activity context, FriendFinderDBHelper database, String email) {
+    public UserAsyncTask(Options option, Activity context, FriendFinderDBHelper database, String email) {
         this.option = option;
         this.activity = context;
         this.database = database;

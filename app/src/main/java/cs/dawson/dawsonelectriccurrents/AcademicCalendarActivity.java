@@ -28,7 +28,7 @@ public class AcademicCalendarActivity extends MenuActivity {
     private EditText yearInput;
     private RadioGroup rg;
 
-    // Keys
+    // Declare the keys
     private static final String YEAR = "year";
     private static final String SEMESTER = "semester";
     private static final String RADIO = "radio";
@@ -58,7 +58,7 @@ public class AcademicCalendarActivity extends MenuActivity {
     }
 
     /**
-     * Sends the data to the fragment
+     * Sends the data to the fragment in a bundle
      */
     private void sendDataToFragment() {
         String semester = getSemesterValue();
@@ -74,7 +74,7 @@ public class AcademicCalendarActivity extends MenuActivity {
     }
 
     /**
-     * Checks if all input was input
+     * Checks if all input was input and correct to the application's standards
      *
      * @return
      */
@@ -117,7 +117,7 @@ public class AcademicCalendarActivity extends MenuActivity {
     }
 
     /**
-     * Returns the semester
+     * Returns the semester radio button selection of the user
      *
      * @return
      */
@@ -145,6 +145,10 @@ public class AcademicCalendarActivity extends MenuActivity {
 
     }
 
+    /**
+     * Saves the state of the activity in a bundle
+     * @param savedInstaneState
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstaneState) {
         super.onSaveInstanceState(savedInstaneState);
@@ -153,6 +157,10 @@ public class AcademicCalendarActivity extends MenuActivity {
         savedInstaneState.putInt(RADIO, rg.getCheckedRadioButtonId());
     }
 
+    /**
+     * Restores the state of the activity in a bundle
+     * @param savedInstanceState
+     */
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);

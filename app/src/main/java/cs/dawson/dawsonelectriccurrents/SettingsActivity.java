@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
-import cs.dawson.dawsonelectriccurrents.utilities.UserLoader;
+import cs.dawson.dawsonelectriccurrents.utilities.UserAsyncTask;
 
 import static cs.dawson.dawsonelectriccurrents.utilities.Options.*;
 
@@ -83,9 +83,9 @@ public class SettingsActivity extends MenuActivity {
         // Validates the user's input
         if (validateInformation(firstName, lastName, email, pw)) {
             if (getSharedPreferences(USERS_PREFS, MODE_PRIVATE).getString(EMAIL, "") != "") {
-                new UserLoader(MODIFY_USER, this, database, new String[] { firstName, lastName, email, pw }).execute();
+                new UserAsyncTask(MODIFY_USER, this, database, new String[] { firstName, lastName, email, pw }).execute();
             } else {
-                new UserLoader(ADD_USER, this, database, new String[] { firstName, lastName, email, pw}).execute();
+                new UserAsyncTask(ADD_USER, this, database, new String[] { firstName, lastName, email, pw}).execute();
             }
             finish();
         } else {
@@ -159,6 +159,10 @@ public class SettingsActivity extends MenuActivity {
             public void onClick(DialogInterface dialogInterface, int i) {}}).show();
     }
 
+    /**
+     * Saves the state of the activity in a bundle
+     * @param savedInstaneState
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstaneState) {
         super.onSaveInstanceState(savedInstaneState);
@@ -169,6 +173,10 @@ public class SettingsActivity extends MenuActivity {
         savedInstaneState.putString(PW, ((EditText) findViewById(R.id.editPassword)).getText().toString());
     }
 
+    /**
+     * Restores the state of the activity
+     * @param savedInstanceState
+     */
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
