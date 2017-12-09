@@ -2,6 +2,8 @@ package cs.dawson.dawsonelectriccurrents;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -65,6 +67,17 @@ public class AboutActivity extends MenuActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    /**
+     * Starts the dawson computer science page into a browser
+     * @param view
+     */
+    public void startDawsonCompSciPage(View view)
+    {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://www.dawsoncollege.qc.ca/computer-science-technology/"));
+        startActivity(intent);
     }
 
     /**
