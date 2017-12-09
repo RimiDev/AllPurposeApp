@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import cs.dawson.dawsonelectriccurrents.FindFriendActivity;
+import cs.dawson.dawsonelectriccurrents.FindFriendCourseActivity;
 import cs.dawson.dawsonelectriccurrents.database.DBHelper;
 import cs.dawson.dawsonelectriccurrents.MenuActivity;
 import cs.dawson.dawsonelectriccurrents.R;
@@ -31,7 +33,7 @@ import cs.dawson.dawsonelectriccurrents.R;
 public class NotesActivity extends MenuActivity
 {
     private static DBHelper dbHelper ;
-    private CustomNoteAdapter sCurAdapter;
+    private SimpleCursorAdapter sCurAdapter;
     private Cursor cursor;
 
     /**
@@ -111,8 +113,10 @@ public class NotesActivity extends MenuActivity
         String[] from = { DBHelper.COL_SHORTNOTE };
         int[] to = { R.id.noteView };
 
-        sCurAdapter = new CustomNoteAdapter(this, R.layout.note_row, cursor, from, to);
+        sCurAdapter = new SimpleCursorAdapter(this, R.layout.note_row, cursor, from, to);
         lv.setAdapter(sCurAdapter);
+        lv.setOnItemClickListener(showNote);
+        lv.setOnItemLongClickListener(deleteNote);
     }
     /**
      * Method which will reset the view in order to display all the notes when a new note is
@@ -125,4 +129,42 @@ public class NotesActivity extends MenuActivity
         sCurAdapter.changeCursor(cursor);
         sCurAdapter.notifyDataSetChanged();
     }
+
+    /**
+     * onItemClickListener which will display the  full note from the DB
+     *
+     */
+    private AdapterView.OnItemClickListener showNote = new AdapterView.OnItemClickListener()
+    {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        {
+            String note = cursor.getString(cursor.getColumnIndex("fullNnote"));
+
+            Log.d("DBHELPER", "onClick: " + note + " " + cursor.getColumnIndex("shortNote"));
+
+            Intent intent = new Intent(NotesActivity.this, ItemNoteActivity.class);
+            intent.putExtra("note", note);
+            startActivity(intent);
+        }
+    };
+
+    /**
+     * onItemLongClickListener which will delete the note which you are holding on.
+     *
+     */
+    private AdapterView.OnItemLongClickListener deleteNote = new AdapterView.OnItemLongClickListener()
+    {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
+        {
+            int positionDB = cursor.getInt(cursor.getColumnIndex("_id"));
+            DBHelper dbHelper = DBHelper.getDBHelper(NotesActivity.this);
+            dbHelper.removeNote(positionDB);
+
+            refreshView();
+
+            return true;
+        }
+    };
 }

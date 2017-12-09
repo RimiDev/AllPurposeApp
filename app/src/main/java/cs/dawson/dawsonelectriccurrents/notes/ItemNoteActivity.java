@@ -13,9 +13,6 @@ import cs.dawson.dawsonelectriccurrents.R;
  * NotesActivity.
  *
  * @author Alessandro Ciotola
- * @author Hannah Ly
- * @author Kevin Bui
- * @author Maxime Lacasse
  * @version 2017/11/25
  *
  */
