@@ -1,5 +1,6 @@
 package cs.dawson.dawsonelectriccurrents;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
@@ -28,7 +29,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class CalendarActivity extends MenuActivity {
-    private TextView etTitle;
+    private EditText etTitle;
     private TextView datePickerTV;
     private TextView startTimePickerTV;
     private TextView endTimePickerTV;
@@ -179,26 +180,93 @@ public class CalendarActivity extends MenuActivity {
         };
     }
 
+    public boolean validateTime(){
+        String startTime;
+        String endTime;
+        int start;
+        int end;
+
+        startTime = startHour + "" + startMinute;
+        endTime = endHour + "" + endMinute;
+
+        start = Integer.parseInt(startTime);
+        end = Integer.parseInt(endTime);
+
+        if(start > end)
+            return false;
+        else
+            return true;
+    }
+
     public void addEvent(View v){
         long calID = 1;
         long start;
         long end;
-        Calendar startTime = Calendar.getInstance();
-        startTime.set(year, month, day, startHour, startMinute);
-        start = startTime.getTimeInMillis();
-        Calendar endTime = Calendar.getInstance();
-        endTime.set(year, month, day, endHour, endMinute);
-        end = endTime.getTimeInMillis();
+        boolean validStartEndTime = validateTime();
 
-        ContentResolver cr = getContentResolver();
-        ContentValues values = new ContentValues();
-        values.put(CalendarContract.Events.DTSTART, start);
-        values.put(CalendarContract.Events.DTEND, end);
-        values.put(CalendarContract.Events.EVENT_TIMEZONE, "America/Montreal");
-        values.put(CalendarContract.Events.TITLE, etTitle.getText().toString());
-        values.put(CalendarContract.Events.CALENDAR_ID, calID);
-        Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
+        if(etTitle.getText().toString().equals("")){
+            AlertDialog errorDialog = new AlertDialog.Builder(
+                    CalendarActivity.this).create();
+            errorDialog.setTitle("Error!");
+            errorDialog.setMessage("You must enter a title!");
+            errorDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            errorDialog.show();
+        }
+        else if(datePickerTV.getText().toString().equals("")){
+            AlertDialog errorDialog = new AlertDialog.Builder(
+                    CalendarActivity.this).create();
+            errorDialog.setTitle("Error!");
+            errorDialog.setMessage("You must enter a date!");
+            errorDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            errorDialog.show();
+        }
+        else if(startTimePickerTV.getText().toString().equals("") || endTimePickerTV.getText().toString().equals("")){
+            AlertDialog errorDialog = new AlertDialog.Builder(
+                    CalendarActivity.this).create();
+            errorDialog.setTitle("Error!");
+            errorDialog.setMessage("You must enter a start and end time!");
+            errorDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            errorDialog.show();
+        }
+        else if(!validStartEndTime) {
+            AlertDialog errorDialog = new AlertDialog.Builder(
+                    this).create();
+            errorDialog.setTitle("Error!");
+            errorDialog.setMessage("The end time cannot be earlier than the start time.");
+            errorDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            errorDialog.show();
+        }
+        else{
+            Calendar startTime = Calendar.getInstance();
+            startTime.set(year, month, day, startHour, startMinute);
+            start = startTime.getTimeInMillis();
+            Calendar endTime = Calendar.getInstance();
+            endTime.set(year, month, day, endHour, endMinute);
+            end = endTime.getTimeInMillis();
 
-        Toast.makeText(this, "The event was created.", Toast.LENGTH_SHORT).show();
+            ContentResolver cr = getContentResolver();
+            ContentValues values = new ContentValues();
+            values.put(CalendarContract.Events.DTSTART, start);
+            values.put(CalendarContract.Events.DTEND, end);
+            values.put(CalendarContract.Events.EVENT_TIMEZONE, "America/Montreal");
+            values.put(CalendarContract.Events.TITLE, etTitle.getText().toString());
+            values.put(CalendarContract.Events.CALENDAR_ID, calID);
+            Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
+
+            //Toast.makeText(this, "The event was created.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, startTimePickerTV.getText(), Toast.LENGTH_SHORT).show();
+        }
     }
 }
