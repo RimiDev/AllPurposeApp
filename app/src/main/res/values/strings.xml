@@ -32,19 +32,19 @@
     <string name="weatherSearch">Weather Search</string>
     <string name="weatherapi">Weather API</string>
     <string name="citylabel">Please enter the city and select the country you wish to see the forecast of</string>
-    <string name="cityDefault">Montreal</string>
+    <string name="cityDefault" translatable="false">Montreal</string>
     <string name="uvindexlabel">UV index</string>
     <string name="dayforecastlabel">5 day forecast</string>
-    <string name="maxText">Maxime Lacasse</string>
-    <string name="aleText">Alessandro Ciotola</string>
-    <string name="hannahText">Hannah Ly</string>
-    <string name="kevinText">Kevin Bui</string>
+    <string name="maxText" translatable="false">Maxime Lacasse</string>
+    <string name="aleText" translatable="false">Alessandro Ciotola</string>
+    <string name="hannahText" translatable="false">Hannah Ly</string>
+    <string name="kevinText" translatable="false">Kevin Bui</string>
     <string name="aboutUs">Welcome to the Dawson Electric Currents team and our beautiful Dawson Friend Finder application.
         We are students in 3rd year comptuer science and oh boy are we lovin' it.
     </string>
-    <string name="aleInfo">3rd year Comp sci student.</string>
-    <string name="maxInfo">3rd year Comp sci student.</string>
-    <string name="hannahInfo">3rd year Comp sci student.</string>
+    <string name="aleInfo">3rd year Comp sci student that enjoys CS:GO and unicorns.</string>
+    <string name="maxInfo">I just want to make money and live a rich life.</string>
+    <string name="hannahInfo">I am the president of the gaming club.  Vietnamese at root but savage at heart.</string>
     <string name="kevinInfo">3rd year Comp sci student that enjoys weightlifting and making fun of Alessandro Ciotola :).</string>
     <string name="five_day_forecast">Five day forecast</string>
     <string name="date">Date</string>
@@ -110,5 +110,8 @@
     <string name="availableText">This friend is currently in: </string>
     <string name="daySelection">Select the day: </string>
     <string name="nofriendsonbreak">No friends on break at current time searched</string>
+    <string name="currentweather">Current Weather</string>
+    <string name="cityhint">City</string>
+    <string name="teamMates">Partenaires</string>
 
 </resources>
