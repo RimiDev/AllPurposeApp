@@ -2,6 +2,7 @@ package cs.dawson.dawsonelectriccurrents.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,8 @@ import cs.dawson.dawsonelectriccurrents.beans.Teacher;
 public class FriendAdapter extends BaseAdapter {
     private static final String TAG = FriendAdapter.class.getName();
     private Context context;
-    private ArrayList<String> friends;
+    private ArrayList<String> names;
+    private ArrayList<String> email;
     private static LayoutInflater inflater;
 
     private static final String FULLNAME = "fullname";
@@ -34,23 +36,24 @@ public class FriendAdapter extends BaseAdapter {
     /**
      * Constructor
      * @param fba
-     * @param friends
+     * @param names
      */
-    public FriendAdapter(FIndBreakActivity fba, ArrayList<String> friends) {
+    public FriendAdapter(FIndBreakActivity fba, ArrayList<String> names, ArrayList<String> email) {
         this.context = fba;
-        this.friends = friends;
+        this.names = names;
+        this.email = email;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
     @Override
     public int getCount() {
-        return friends.size();
+        return names.size();
     }
 
     @Override
     public String getItem(int position) {
-        return friends.get(position);
+        return names.get(position);
     }
 
     @Override
@@ -66,24 +69,28 @@ public class FriendAdapter extends BaseAdapter {
         pc.fName = (TextView)rowView.findViewById(R.id.listItem);
 
         // Display the current teacher in the UI
-        pc.fName.setText(friends.get(position));
+        pc.fName.setText(names.get(position));
+
+
 
         //Container of the list of Teachers from the search
         final List<Teacher> searchedTeachers = new ArrayList<>();
 
+
+
         /**
          * Setting an onClickListener on the current row view
          */
-        /*rowView.setOnClickListener(new View.OnClickListener() {
+        rowView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                Intent teacherContact = new Intent(context, TeacherContactActivity.class);
-                teacherContact.putExtra(FULLNAME, friends.get(position));
-                context.startActivity(teacherContact);
+                Intent sendEMail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email.get(position), null));
+                sendEMail.putExtra(Intent.EXTRA_SUBJECT, context.getResources().getString(R.string.from) + " " + context.getResources().getString(R.string.app_name));
+                context.startActivity(Intent.createChooser(sendEMail, context.getResources().getString(R.string.sendemail)));
             }
-        });*/
+        });
 
         return rowView;
     }
