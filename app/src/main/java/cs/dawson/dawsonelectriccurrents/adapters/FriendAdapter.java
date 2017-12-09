@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import cs.dawson.dawsonelectriccurrents.FIndBreakActivity;
 import cs.dawson.dawsonelectriccurrents.R;
 import cs.dawson.dawsonelectriccurrents.beans.Teacher;

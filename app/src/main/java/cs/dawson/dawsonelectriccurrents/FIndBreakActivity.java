@@ -1,28 +1,12 @@
 package cs.dawson.dawsonelectriccurrents;
 
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-
-import cs.dawson.dawsonelectriccurrents.adapters.FriendAdapter;
 import cs.dawson.dawsonelectriccurrents.beans.User;
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 import cs.dawson.dawsonelectriccurrents.utilities.FriendBreakLoader;
@@ -54,11 +38,6 @@ public class FIndBreakActivity extends MenuActivity {
     private static final String BUNDLE_END = "endtime";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "pw";
-    private static final String NOFRIENDS = "User has no friends.";
-
-    private ArrayList<String> friendListNames;
-    private ArrayList<String> friendListEmails;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +54,6 @@ public class FIndBreakActivity extends MenuActivity {
             day = extras.getString(BUNDLE_DAY);
             startTime = extras.getString(BUNDLE_START);
             endTime = extras.getString(BUNDLE_END);
-
-            Log.i(TAG, "Day: " + day);
-            Log.i(TAG, "Start: " + startTime);
-            Log.i(TAG, "End: " + endTime);
         }
 
         SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
@@ -88,26 +63,9 @@ public class FIndBreakActivity extends MenuActivity {
             password = prefs.getString(PASSWORD, "");
         }
 
+        // Call the Async task
         FriendBreakLoader friendsBreaks = new FriendBreakLoader(this, email, password, day, startTime, endTime);
         friendsBreaks.execute();
-    }
-
-    /**
-     * Fills the list view with friends
-     */
-    public void fillListView()
-    {
-        ListView friendsListView = (ListView) findViewById(R.id.listViewFriends);
-
-        if(friendListNames.get(0).equalsIgnoreCase(NOFRIENDS)){
-            TextView noFriendsTV = (TextView) findViewById(R.id.listItem);
-            noFriendsTV.setText(getResources().getString(R.string.nofriendsonbreak));
-        }
-        else
-        {
-            FriendAdapter adapter = new FriendAdapter(this, friendListNames, friendListEmails);
-            friendsListView.setAdapter(adapter);
-        }
     }
 
     @Override

@@ -12,18 +12,12 @@ import android.view.View;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-
 import cs.dawson.dawsonelectriccurrents.cancelled.CancelledActivity;
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
-
 import cs.dawson.dawsonelectriccurrents.notes.NotesActivity;
 import cs.dawson.dawsonelectriccurrents.weatherrequest.GPSTracker;
 import cs.dawson.dawsonelectriccurrents.weatherrequest.WeatherRequest;
