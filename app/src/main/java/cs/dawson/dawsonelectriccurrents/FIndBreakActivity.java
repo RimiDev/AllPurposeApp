@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import cs.dawson.dawsonelectriccurrents.adapters.FriendAdapter;
 import cs.dawson.dawsonelectriccurrents.beans.User;
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
+import cs.dawson.dawsonelectriccurrents.utilities.FriendBreakLoader;
 
 /**
  * This class takes care of finding any friend from the user that is on break with the specified time
@@ -87,9 +88,8 @@ public class FIndBreakActivity extends MenuActivity {
             password = prefs.getString(PASSWORD, "");
         }
 
-        FriendsBreakASyncTask friendsBreaks = new FriendsBreakASyncTask();
+        FriendBreakLoader friendsBreaks = new FriendBreakLoader(this, email, password, day, startTime, endTime);
         friendsBreaks.execute();
-
     }
 
     /**
@@ -109,68 +109,6 @@ public class FIndBreakActivity extends MenuActivity {
             friendsListView.setAdapter(adapter);
         }
     }
-
-    /**
-     * Fetches from an API query and fills up an arraylist of name and arraylist of emails
-     */
-    private class FriendsBreakASyncTask extends AsyncTask<String, Void, ArrayList<String>>
-    {
-        @Override
-        protected ArrayList<String> doInBackground(String... urls)
-        {
-            String friendUrl = "http://dawsonfriendfinder2017.herokuapp.com/api/api/friendbreaks?" +
-                    "email=" + email + "&password=" + password + "&day=" + day + "&starttime=" + startTime
-                    + "&endtime=" + endTime;
-            
-            logIt("URLFRIENDS: " + friendUrl);
-
-            try
-            {
-                URL url = new URL(friendUrl);
-                HttpURLConnection httpConnection = (HttpURLConnection)url.openConnection();
-                httpConnection.setRequestMethod("GET");
-                httpConnection.connect();
-
-                boolean isError = httpConnection.getResponseCode() >= 400;
-                InputStream is = isError ? new BufferedInputStream(httpConnection.getErrorStream()) :
-                        new BufferedInputStream(httpConnection.getInputStream());
-
-                String result = "";
-                StringBuilder returningResults = new StringBuilder();
-                InputStreamReader inStreamResults = new InputStreamReader(is);
-                BufferedReader readBuffer = new BufferedReader(inStreamResults);
-
-                while ((result = readBuffer.readLine()) != null)
-                    returningResults.append(result);
-
-                JSONArray jsonArray = new JSONArray(returningResults.toString());
-                friendListNames = new ArrayList<>();
-                friendListEmails = new ArrayList<>();
-                for(int i = 0 ; i< jsonArray.length(); i++)
-                {
-                    String email = jsonArray.getJSONObject(i).getString("email");
-                    String name = jsonArray.getJSONObject(i).getString("name");
-                    friendListNames.add(name);
-                    friendListEmails.add(email);
-                    Log.d("LINE", "doInBackground: " + email + " " + name);
-                }
-            }
-            catch (IOException | JSONException e)
-            {
-                e.printStackTrace();
-            }
-            return friendListNames;
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<String> s)
-        {
-            super.onPostExecute(s);
-            fillListView();
-        }
-    }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
