@@ -15,7 +15,7 @@
     <string name="firstName">Prenom</string>
     <string name="lastName">Nom de Famille</string>
     <string name="email">Address Courriel</string>
-    <string name="password">Mot de passe</string>
+    <string name="userpw">Mot de passe</string>
     <string name="lastUpdated">Derniere Mise a jour</string>
     <string name="editSettings">Modifier les parametres</string>
     <string name="save">Enregistrer</string>
@@ -97,4 +97,10 @@
     <string name="error">Erreur</string>
     <string name="invalid">Donnees Incorrectes</string>
     <string name="ok">Ok</string>
+    <string name="daySelection">Selectionner la journee: </string>
+    <string name="aleInfo">3rd year Comp sci student.</string>
+    <string name="maxInfo">3rd year Comp sci student.</string>
+    <string name="hannahInfo">3rd year Comp sci student.</string>
+    <string name="kevinInfo">Etudiant en science de l\'informatique qui aime l\'halterophilie et rire de Alessandro Ciotola.</string>
+    <string name="nofriendsonbreak">Aucun ami en pause durant la periode de temps donne</string>
 </resources>

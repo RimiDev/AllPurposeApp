@@ -15,6 +15,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This class displays the academic calendar from a webview depending on the user input
+ * @author Kevin Bui
+ * @version 1.0
+ */
+
 public class AcademicCalendarActivity extends MenuActivity {
 
     private static final String TAG = AcademicCalendarActivity.class.getName();
@@ -22,6 +28,7 @@ public class AcademicCalendarActivity extends MenuActivity {
     private EditText yearInput;
     private RadioGroup rg;
 
+    // Keys
     private static final String YEAR = "year";
     private static final String SEMESTER = "semester";
     private static final String RADIO = "radio";
@@ -48,15 +55,6 @@ public class AcademicCalendarActivity extends MenuActivity {
                 }
             }
         });
-    }
-
-    /**
-     * Loads the initial webview with the current semester
-     */
-    private void loadInitialCalendar() {
-        CalendarWVFragment fragment = new CalendarWVFragment();
-        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.academicCalendarFragment, fragment, fragment.getTag()).commit();
     }
 
     /**

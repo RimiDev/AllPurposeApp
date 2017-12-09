@@ -8,6 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+/**
+ * This class displays the information about the ElectricCurrent team.
+ * It also displays a blurb of information about each team member.
+ * @author Alessandro Ciotola
+ * @author Hannah Ly
+ * @version 1.0
+ */
+
 public class AboutActivity extends MenuActivity {
 
     @Override
@@ -16,6 +24,10 @@ public class AboutActivity extends MenuActivity {
         setContentView(R.layout.activity_about);
     }
 
+    /**
+     * Displays a blurb depending on the user click
+     * @param view
+     */
     public void showCreatorBlurb(View view)
     {
         String name = "";
@@ -40,11 +52,10 @@ public class AboutActivity extends MenuActivity {
                 break;
         }
 
+        // Displays a blurb
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         builder.setMessage(info)
                 .setTitle(name);
-
         builder.setNegativeButton(R.string.discard, new DialogInterface.OnClickListener()
         {
             public void onClick(DialogInterface dialog, int id)
@@ -53,7 +64,6 @@ public class AboutActivity extends MenuActivity {
             }
         });
         AlertDialog dialog = builder.create();
-
         dialog.show();
     }
 

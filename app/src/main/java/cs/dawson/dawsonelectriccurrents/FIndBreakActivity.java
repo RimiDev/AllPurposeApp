@@ -1,78 +1,72 @@
 package cs.dawson.dawsonelectriccurrents;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Toast;
-
+import android.widget.ListView;
 import java.util.ArrayList;
+import cs.dawson.dawsonelectriccurrents.beans.User;
+import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
+import cs.dawson.dawsonelectriccurrents.utilities.FriendBreakLoader;
+
+/**
+ * This class takes care of finding any friend from the user that is on break with the specified time
+ * from the user
+ * @author Kevin Bui
+ * @author Maxime Lacasse
+ * @version 1.0
+ */
 
 public class FIndBreakActivity extends MenuActivity {
-    private Spinner daySpinner;
-    private Spinner timeSpinner;
-    private ArrayList<String> listDay;
-    private ArrayList<String> listTime;
-    private Button searchBtn;
+
+    private static final String TAG = FIndBreakActivity.class.getName();
+    private String day;
+    private String startTime;
+    private String endTime;
+    private ListView listViewFriends;
+    private String email;
+    private String password;
+    private FriendFinderDBHelper database;
+    private ArrayList<User> user;
+
+    // Keys
+    private final String USERS_PREFS = "user";
+    private static final String BUNDLE_DAY = "day";
+    private static final String BUNDLE_START = "starttime";
+    private static final String BUNDLE_END = "endtime";
+    private static final String EMAIL = "email";
+    private static final String PASSWORD = "pw";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_break);
+        database = new FriendFinderDBHelper(this);
+        database.getWritableDatabase();
 
-        /*daySpinner = (Spinner) findViewById(R.id.daySpinner);
-        timeSpinner = (Spinner) findViewById(R.id.timeSpinner);
-        searchBtn = (Button) findViewById(R.id.searchCourse);*/
+        // Get the list view
+        listViewFriends = (ListView) findViewById(R.id.listViewFriends);
 
-        listDay = getDays();
-        ArrayAdapter<String> daySpinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_day_findfriends, listDay);
-        daySpinner.setAdapter(daySpinnerAdapter);
-
-        listTime = getTime();
-        ArrayAdapter<String> timeSpinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_day_findfriends, listTime);
-        timeSpinner.setAdapter(timeSpinnerAdapter);
-
-        searchBtn.setOnClickListener(showFriendCourses);
-    }
-
-    private ArrayList<String> getDays() {
-        ArrayList<String> days = new ArrayList<>();
-        days.add("Monday");
-        days.add("Tuesday");
-        days.add("Wednesday");
-        days.add("Thursday");
-        days.add("Friday");
-        return days;
-    }
-
-    private ArrayList<String> getTime() {
-        ArrayList<String> timeList = new ArrayList<>();
-        int time = 1000;
-        while (time < 1700) {
-            timeList.add(Integer.toString(time));
-            time += 30;
-            timeList.add(Integer.toString(time));
-            time += 70;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            day = extras.getString(BUNDLE_DAY);
+            startTime = extras.getString(BUNDLE_START);
+            endTime = extras.getString(BUNDLE_END);
         }
-        timeList.add(Integer.toString(time));
-        return timeList;
-    }
 
-    private AdapterView.OnClickListener showFriendCourses = new AdapterView.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            int indexDay = daySpinner.getSelectedItemPosition();
-            String daySelected = listDay.get(indexDay);
-
-            int indexTime = timeSpinner.getSelectedItemPosition();
-            String timeSelected = listTime.get(indexTime);
+        SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
+        if (prefs != null) {
+            // Edit the textviews for the current shared preferences
+            email = prefs.getString(EMAIL, "");
+            password = prefs.getString(PASSWORD, "");
         }
-    };
+
+        // Call the Async task
+        FriendBreakLoader friendsBreaks = new FriendBreakLoader(this, email, password, day, startTime, endTime);
+        friendsBreaks.execute();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,44 +78,15 @@ public class FIndBreakActivity extends MenuActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * Method to easily log to logcat
+     *
+     * @param msg to be printed to logcat
+     */
+    public static void logIt(String msg) {
+        final String TAG = "---------WEATHER: ";
+        Log.d(TAG, msg);
+    }
+
 }
-
-/*
-    LAYOUT USED:
-
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="cs.dawson.dawsonelectriccurrents.FindFriendCourseActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Spinner
-            android:id="@+id/daySpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5">
-        </Spinner>
-
-        <Spinner
-            android:id="@+id/timeSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5">
-        </Spinner>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/searchCourse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/searchFriendCourse" />
-
-</LinearLayout>
-*/
