@@ -67,6 +67,13 @@ public class AboutActivity extends MenuActivity {
         dialog.show();
     }
 
+    /**
+     * Method which calls the super method on onCreateOptionsMenu to display the menu. Required
+     * so code to show the menu will not have to be repeated for each activity.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -74,6 +81,13 @@ public class AboutActivity extends MenuActivity {
         return true;
     }
 
+    /**
+     * Method which calls the super method on onOptionsItemSelected to add functionality to the menu
+     * buttons without having to repeat the code for each activity.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

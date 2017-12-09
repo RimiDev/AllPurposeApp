@@ -24,8 +24,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * FindFriendCourseActivity sends a request to find where the selected friend is
+ * at that current period in time.
+ * Created by: Alessandro Ciotola, Hannah Ly
+ *
+ */
 public class FindFriendCourseActivity extends MenuActivity
 {
+    private static final String TAG = FindFriendCourseActivity.class.getName();
+    private static final String FRIENDEMAIL = "friendEmail";
+    private static final String PATTERN = "EEEE";
+    private static final String USERNAME = "user";
+    private static final String EMAIL = "email";
+    private static final String PW = "pw";
+    private static final String COURSEJSON = "course";
+    private static final String SECTIONJSON = "section";
+    private static final String COURSE = "Course: ";
+    private static final String SECTION = "\nSection: ";
+
+
     private boolean isAvailable = false;
     private TextView friendAvailable;
     private TextView classInfo;
@@ -36,19 +54,25 @@ public class FindFriendCourseActivity extends MenuActivity
     private String course;
     private String section;
 
+    /**
+     * The onCreate method is called when the activity first begins.
+     * Gets the current time and then starts the AsyncTask.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friend_course);
 
-        email = getIntent().getExtras().getString("friendEmail");
+        email = getIntent().getExtras().getString(FRIENDEMAIL);
 
         friendAvailable = (TextView) findViewById(R.id.availableView);
         classInfo = (TextView) findViewById(R.id.classInfoView);
 
         Date now = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(PATTERN, Locale.US);
         asweek = dateFormat.format(now);
 
         int hours = new Time(System.currentTimeMillis()).getHours();
@@ -59,16 +83,27 @@ public class FindFriendCourseActivity extends MenuActivity
         course.execute();
     }
 
+    /**
+     * CourseAsyncTask will send a request to the web api asking for the friends course.
+     *
+     */
     private class CourseAsyncTask extends AsyncTask<String, Void, ArrayList<String>>
     {
+        /**
+         * Method done in the background. Will send the request and add the course and section
+         * to an ArrayList.
+         *
+         * @param urls
+         * @return
+         */
         @Override
         protected ArrayList<String> doInBackground(String... urls)
         {
-            SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
+            SharedPreferences prefs = getSharedPreferences(USERNAME, MODE_PRIVATE);
             if (prefs != null) {
                 // Edit the textviews for the current shared preferences
-                email = prefs.getString("email", "");
-                password = prefs.getString("pw", "");
+                email = prefs.getString(EMAIL, "");
+                password = prefs.getString(PW, "");
             }
             String friendUrl = "http://dawsonfriendfinder2017.herokuapp.com/api/api/whereisfriend?" +
                     "email=" + email + "&password=" + password +
@@ -92,12 +127,12 @@ public class FindFriendCourseActivity extends MenuActivity
                 while ((result = readBuffer.readLine()) != null)
                     returningResults.append(result);
 
-                Log.d("RETURNING", "doInBackground: " + returningResults.toString());
+                Log.d(TAG, "doInBackground: " + returningResults.toString());
 
                 JSONArray jsonObject = new JSONArray(returningResults.toString());
-                    course = jsonObject.getJSONObject(0).getString("course");
-                    section = jsonObject.getJSONObject(0).getString("section");
-                    Log.d("LINE", "doInBackground: " + course + " " + section);
+                    course = jsonObject.getJSONObject(0).getString(COURSEJSON);
+                    section = jsonObject.getJSONObject(0).getString(SECTIONJSON);
+                    Log.d(TAG, "doInBackground: " + course + " " + section);
 
                 if(course != null || !course.equals("") || section != null || !section.equals(""))
                     isAvailable = true;
@@ -109,6 +144,12 @@ public class FindFriendCourseActivity extends MenuActivity
             return null;
         }
 
+        /**
+         *
+         * Method which will wither display firend not available or show the friend's course.
+         *
+         * @param s
+         */
         @Override
         protected void onPostExecute(ArrayList<String> s)
         {
@@ -118,18 +159,32 @@ public class FindFriendCourseActivity extends MenuActivity
                 friendAvailable.setText(R.string.notAvailableText);
             else {
                 friendAvailable.setText(getString(R.string.availableText));
-                classInfo.setText("Course: " + course + " \nSection: " + section);
+                classInfo.setText(COURSE + course + SECTION + section);
             }
 
         }
     }
 
+    /**
+     * Method which calls the super method on onCreateOptionsMenu to display the menu. Required
+     * so code to show the menu will not have to be repeated for each activity.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {        super.onCreateOptionsMenu(menu);
         return true;
     }
 
+    /**
+     * Method which calls the super method on onOptionsItemSelected to add functionality to the menu
+     * buttons without having to repeat the code for each activity.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
