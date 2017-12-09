@@ -8,6 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * This class displays the teacher information
+ * @author Kevin Bui
+ * @version 1.0
+ */
+
 public class TeacherContactActivity extends AppCompatActivity {
 
     private static final String TAG = TeacherContactActivity.class.getName();
@@ -16,6 +22,7 @@ public class TeacherContactActivity extends AppCompatActivity {
     private TextView emailTv;
     private TextView localTv;
 
+    // Keys
     private static final String FULLNAME = "fullname";
     private static final String EMAIL = "email";
     private static final String OFFICE = "office";
@@ -29,6 +36,7 @@ public class TeacherContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_contact);
 
+        // Check if the bundle is null and sets
         if (savedInstanceState != null) {
             ((TextView)findViewById(R.id.fullNameTv)).setText(savedInstanceState.getString(FULLNAME));
             ((TextView)findViewById(R.id.emailTeacherTv)).setText(savedInstanceState.getString(EMAIL));
@@ -63,6 +71,8 @@ public class TeacherContactActivity extends AppCompatActivity {
             local = extras.getString(LOCAL);
             emailTv = (TextView)findViewById(R.id.emailTeacherTv);
             localTv = (TextView)findViewById(R.id.localTv);
+
+            // Sets an onclick listener to send an email
             emailTv.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -73,6 +83,7 @@ public class TeacherContactActivity extends AppCompatActivity {
                 }
             });
 
+            // Sets an onclick listener to call
             localTv.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -85,6 +96,10 @@ public class TeacherContactActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves the state of the activity
+     * @param outState
+     */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -100,6 +115,10 @@ public class TeacherContactActivity extends AppCompatActivity {
         outState.putString(SECTOR, ((TextView)findViewById(R.id.sectorTv)).getText().toString());
     }
 
+    /**
+     * Restores the previous state of the application
+     * @param savedInstanceState
+     */
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);

@@ -1,6 +1,7 @@
 package cs.dawson.dawsonelectriccurrents;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.SharedPreferences;
@@ -15,6 +16,13 @@ import cs.dawson.dawsonelectriccurrents.utilities.UserLoader;
 
 import static cs.dawson.dawsonelectriccurrents.utilities.Options.*;
 
+/**
+ * This class is launched when the user does not have any shared preferences loaded.
+ * This class provides functionality to allow the user to edit his settings and credentials.
+ * @author Kevin
+ * @version 1.0
+ */
+
 public class SettingsActivity extends MenuActivity {
 
     private static final String TAG = SettingsActivity.class.getName();
@@ -23,6 +31,7 @@ public class SettingsActivity extends MenuActivity {
     private final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    // Final strings for keys
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
     private static final String EMAIL = "email";
@@ -44,6 +53,12 @@ public class SettingsActivity extends MenuActivity {
             ((TextView) findViewById(R.id.editEmail)).setText(prefs.getString(EMAIL, ""));
             ((TextView) findViewById(R.id.editPassword)).setText(prefs.getString(PW, ""));
             ((TextView) findViewById(R.id.lastUpdatedSp)).setText(prefs.getString(LASTUPDATED, ""));
+
+            Log.i(TAG, "First name: " + prefs.getString(FIRSTNAME, ""));
+            Log.i(TAG, "Last name: " + prefs.getString(LASTNAME, ""));
+            Log.i(TAG, "Email: " + prefs.getString(EMAIL, ""));
+            Log.i(TAG, "Password: " + prefs.getString(PW, ""));
+            Log.i(TAG, "Last updated: " + prefs.getString(LASTUPDATED, ""));
         }
     }
 
@@ -65,6 +80,7 @@ public class SettingsActivity extends MenuActivity {
         String email = ((EditText) findViewById(R.id.editEmail)).getText().toString();
         String pw = ((EditText) findViewById(R.id.editPassword)).getText().toString();
 
+        // Validates the user's input
         if (validateInformation(firstName, lastName, email, pw)) {
             if (getSharedPreferences(USERS_PREFS, MODE_PRIVATE).getString(EMAIL, "") != "") {
                 new UserLoader(MODIFY_USER, this, database, new String[] { firstName, lastName, email, pw }).execute();

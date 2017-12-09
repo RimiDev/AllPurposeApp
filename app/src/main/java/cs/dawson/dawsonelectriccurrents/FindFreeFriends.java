@@ -12,9 +12,16 @@ import java.util.ArrayList;
 
 import cs.dawson.dawsonelectriccurrents.adapters.SpinnerAdapter;
 
+/**
+ * This class asks for user input for day and time and sends the user input into a bundle to FindBreakActivity.
+ * @author Kevin Bui
+ * @author Maxime Lacasse
+ * @version 1.0
+ */
 public class FindFreeFriends extends MenuActivity
 {
 
+    // Declare variables
     private Spinner daySpinner;
     private Spinner startSpinner;
     private Spinner endSpinner;
@@ -22,6 +29,7 @@ public class FindFreeFriends extends MenuActivity
     private ArrayList<String> listTime;
     private ImageButton searchBtn;
 
+    // Declare the keys
     private final static String DAY = "day";
     private final static String START = "starttime";
     private final static String END = "endtime";

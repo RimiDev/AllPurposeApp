@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import cs.dawson.dawsonelectriccurrents.beans.User;
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
 
+/**
+ * This class takes care of finding any friend from the user that is on break with the specified time
+ * from the user
+ * @author Kevin Bui
+ * @author Maxime Lacasse
+ * @version 1.0
+ */
 
 public class FIndBreakActivity extends MenuActivity {
 
@@ -23,6 +30,7 @@ public class FIndBreakActivity extends MenuActivity {
     private FriendFinderDBHelper database;
     private ArrayList<User> user;
 
+    // Keys
     private final String USERS_PREFS = "user";
     private static final String BUNDLE_DAY = "day";
     private static final String BUNDLE_START = "starttime";

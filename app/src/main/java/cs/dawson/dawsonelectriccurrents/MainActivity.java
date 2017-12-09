@@ -69,6 +69,10 @@ public class MainActivity extends MenuActivity
         }
     }
 
+    /**
+     * Starts the dawson page into a browser
+     * @param view
+     */
     public void startDawsonPage(View view)
     {
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -76,12 +80,20 @@ public class MainActivity extends MenuActivity
         startActivity(intent);
     }
 
+    /**
+     * Starts the about activity
+     * @param view
+     */
     public void startAbout(View view)
     {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts the activity from the user selection
+     * @param view
+     */
     public void startActivityIntent(View view)
     {
         Intent intent = new Intent(this, MainActivity.class);
@@ -136,6 +148,9 @@ public class MainActivity extends MenuActivity
     }
 
 
+    /**
+     * Displays the current weather on the main activity
+     */
     public void onCurrentWeatherStartUp(){
 
         //The API key that was genereated for my account on https://openweathermap.org/
@@ -179,8 +194,12 @@ public class MainActivity extends MenuActivity
         }
     }
 
+    /**
+     * Parses a json object and returns the current temperature
+     * @param jsonCurTempResults
+     * @return
+     */
     public String parseJSONandReturnCurrentTemperature(String jsonCurTempResults) {
-
 
         String currentTemperature = null;
 
@@ -190,14 +209,9 @@ public class MainActivity extends MenuActivity
                 //Create a JSONArray with the String JSON results from 'doInBackground' method.
                 JSONObject jsonObject = new JSONObject(jsonCurTempResults);
 
-                    //Grabbing the weather value
-//                     JSONArray weather = jsonObject.getJSONArray("weather");
-//                     JSONObject weatherDesc = weather.getJSONObject(0);
-//                     weatherDetails[0] = weatherDesc.getString("description");
-
-                    //Grabbing the current temperature
-                    JSONObject main = jsonObject.getJSONObject("main");
-                    currentTemperature = main.getString("temp");
+                //Grabbing the current temperature
+                JSONObject main = jsonObject.getJSONObject("main");
+                currentTemperature = main.getString("temp");
 
                 //Grabbing the first item to then grab the weather.
             } catch (JSONException e) {
@@ -205,14 +219,11 @@ public class MainActivity extends MenuActivity
             }
 
             return convertKelvtoCelcius(currentTemperature);
-
         }
 
         return convertKelvtoCelcius(currentTemperature);
 
     } // end of parseCurrentTemperature
-
-
 
     /**
      * This method is used to convert the information that is given to us by the weather api (kelvin)
@@ -226,7 +237,6 @@ public class MainActivity extends MenuActivity
         celcius -= 273.15;
         NumberFormat formatter = new DecimalFormat("#0.00");
         return String.valueOf(formatter.format(celcius) + "C°");
-
     }
 
 
@@ -239,7 +249,4 @@ public class MainActivity extends MenuActivity
         final String TAG = "---------MAIN: ";
         Log.d(TAG, msg);
     }
-
-
-
 }

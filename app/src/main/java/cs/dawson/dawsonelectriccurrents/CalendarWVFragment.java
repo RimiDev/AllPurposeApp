@@ -2,16 +2,24 @@ package cs.dawson.dawsonelectriccurrents;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+
+/**
+ * This fragment is used to display the academic calendar webview.
+ * @author Kevin Bui
+ * @vrsion 1.0
+ */
 
 public class CalendarWVFragment extends Fragment {
 
     private static final String TAG = CalendarWVFragment.class.getName();
     private String url;
 
+    // Keys
     private static final String YEAR = "year";
     private static final String SEMESTER = "semester";
 
@@ -27,6 +35,8 @@ public class CalendarWVFragment extends Fragment {
             String year = this.getArguments().getString(YEAR).toString();
             String semester = this.getArguments().getString(SEMESTER).toString();
             url = "https://www.dawsoncollege.qc.ca/registrar/" + semester + "-" + year + "-day-division/";
+
+            Log.i(TAG, "URL: " + url);
         }
         wv.loadUrl(url);
 

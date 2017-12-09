@@ -2,6 +2,12 @@ package cs.dawson.dawsonelectriccurrents.beans;
 
 import java.io.Serializable;
 
+/**
+ * This is the teacher bean.  Contains getters and setters.
+ * @author Alessandrio Ciotola
+ * @version 1.0
+ */
+
 public class CancelledClass implements Serializable
 {
     private String title;
@@ -9,11 +15,21 @@ public class CancelledClass implements Serializable
     private String teacher;
     private String dateTimeCancelled;
 
+    /**
+     * Default Constructor
+     */
     public CancelledClass()
     {
         this("", "", "", "");
     }
 
+    /**
+     * Constructor
+     * @param title
+     * @param course
+     * @param teacher
+     * @param dateTimeCancelled
+     */
     public CancelledClass(String title, String course, String teacher, String dateTimeCancelled)
     {
         this.title = title;
@@ -21,6 +37,8 @@ public class CancelledClass implements Serializable
         this.teacher = teacher;
         this.dateTimeCancelled = dateTimeCancelled;
     }
+
+    // Getters and setters
 
     public String getTitle()
     {

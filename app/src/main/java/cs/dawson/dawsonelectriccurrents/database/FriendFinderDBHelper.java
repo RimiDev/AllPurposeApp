@@ -120,6 +120,7 @@ public class FriendFinderDBHelper extends SQLiteOpenHelper {
         String[] col = { COLUMN_USERID, COLUMN_FIRSTNAME, COLUMN_LASTNAME, COLUMN_EMAIL, COLUMN_USERPW, COLUMN_LASTUPDATED };
         Cursor cursor = database.query(TABLE_USERS, col, COLUMN_EMAIL + "=?", new String[] {email}, null, null, null);
 
+        // Fetch the database for each row
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex(COLUMN_USERID));
             String fname = cursor.getString(cursor.getColumnIndex(COLUMN_FIRSTNAME));
