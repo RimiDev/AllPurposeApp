@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import cs.dawson.dawsonelectriccurrents.FindFriendActivity;
 import cs.dawson.dawsonelectriccurrents.FindFriendCourseActivity;
@@ -48,6 +49,9 @@ public class NotesActivity extends MenuActivity
         setContentView(R.layout.activity_notes);
 
        showNotes();
+
+       Toast.makeText(this, R.string.deleteNote,
+                Toast.LENGTH_LONG).show();
     }
 
     /**

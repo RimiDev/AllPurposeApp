@@ -19,7 +19,7 @@ public class CalendarWVFragment extends Fragment {
     private static final String TAG = CalendarWVFragment.class.getName();
     private String url;
 
-    // Keys
+    // Declare the keys
     private static final String YEAR = "year";
     private static final String SEMESTER = "semester";
 
@@ -29,6 +29,7 @@ public class CalendarWVFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_calendar_web_view, container, false);
         WebView wv = (WebView)view.findViewById(R.id.academicCalendarWv);
+        // Check if the arguments are null, if not, set the default calendar
         if (this.getArguments() == null) {
             url = "https://www.dawsoncollege.qc.ca/registrar/fall-2017-day-division/";
         } else {

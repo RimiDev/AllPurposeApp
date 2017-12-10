@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:theme="@style/weather">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,32 +27,64 @@
         <activity
             android:name=".MenuActivity"
             android:label="Menu" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".cancelled.CancelledActivity" />
-        <activity android:name=".cancelled.ShowCancelActivity" />
-        <activity android:name=".FindTeacherActivity" />
-        <activity
-            android:name=".ChooseTeacherActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity android:name=".notes.NotesActivity" />
-        <activity android:name=".notes.ItemNoteActivity" />
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".WeatherActivity" />
-        <activity android:name=".FindFriendActivity" />
-        <activity
-            android:name=".AcademicCalendarActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity android:name=".FindFreeFriends" />
-        <activity
-            android:name=".FiveDayForecastActivity"
-            android:theme="@style/weather">
-            >
-        </activity>
-        <activity android:name=".TeacherContactActivity" />
-        <activity android:name=".FindFriendCourseActivity" />
-        <activity android:name=".FIndBreakActivity" />
-        <activity android:name=".cancelled.ShowCancelledFriends"></activity>
+
+
+        <activity android:name=".AboutActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".SettingsActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".cancelled.CancelledActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".cancelled.ShowCancelActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".FindTeacherActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".ChooseTeacherActivity"
+                  android:theme="@style/weather"
+                  android:configChanges="orientation|screenSize|keyboardHidden"/>
+
+        <activity android:name=".notes.NotesActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".notes.ItemNoteActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".CalendarActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".WeatherActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".FindFriendActivity"
+                  android:theme="@style/weather" />
+
+        <activity android:name=".AcademicCalendarActivity"
+                  android:configChanges="orientation|screenSize|keyboardHidden"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".FindFreeFriends"
+                  android:theme="@style/weatherCenter"/>
+
+        <activity android:name=".FiveDayForecastActivity"
+                  android:theme="@style/weather" />
+
+        <activity android:name=".TeacherContactActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".FindFriendCourseActivity"
+                  android:theme="@style/weather" />
+
+        <activity android:name=".FIndBreakActivity"
+                  android:theme="@style/weather"/>
+
+        <activity android:name=".cancelled.ShowCancelledFriends"
+                  android:theme="@style/weather" />
+
     </application>
 
 </manifest>

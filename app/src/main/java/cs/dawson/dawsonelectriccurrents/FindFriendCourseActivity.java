@@ -35,6 +35,7 @@ import java.util.Locale;
  */
 public class FindFriendCourseActivity extends MenuActivity
 {
+    // Declare the keys
     private static final String TAG = FindFriendCourseActivity.class.getName();
     private static final String FRIENDEMAIL = "friendEmail";
     private static final String PATTERN = "EEEE";

@@ -42,7 +42,7 @@ public class MainActivity extends MenuActivity
     private String lname;
     private String pw;
 
-    // Keys
+    // Declare the keys
     private static final String EMAIL = "email";
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";

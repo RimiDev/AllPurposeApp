@@ -3,6 +3,7 @@ package cs.dawson.dawsonelectriccurrents;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +41,7 @@ public class ChooseTeacherActivity extends MenuActivity {
     private ArrayList<String> allTeachersFullName;
     private ArrayList<Teacher> teachers;
 
-    // Keys
+    // Declare the keys
     private static final String SELECTION = "selection";
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
@@ -80,11 +81,12 @@ public class ChooseTeacherActivity extends MenuActivity {
             searchDb = extras.getBoolean(SEARCHDATABASE);
         }
 
+        // Set the full name
         fullName = firstName + " " + lastName;
     }
 
     /**
-     * Opens the teacher information fragment
+     * Opens the teacher information activity if no teacher were found in the user search
      */
     private void loadInitialActivity() {
         Intent teacherContact = new Intent(getApplicationContext(), TeacherContactActivity.class);
@@ -92,7 +94,7 @@ public class ChooseTeacherActivity extends MenuActivity {
     }
 
     /**
-     * Gets all the teachers
+     * Gets all the teachers in the firebase database into an ArrayList of Strings
      * @return
      */
     private void getAllTeachers() {
@@ -113,6 +115,7 @@ public class ChooseTeacherActivity extends MenuActivity {
                     DataSnapshot ds = iterator.next();
 
                     String teacherFullName = (String)ds.child(FULLNAME_DB).getValue();
+                    String unEncodedName = Html.fromHtml(teacherFullName).toString();
                     // Check if office and local are in the database, because some teachers dont have
                     String office = (String)ds.child(OFFICE).getValue();
                     if (office == null) {
@@ -129,7 +132,7 @@ public class ChooseTeacherActivity extends MenuActivity {
 
                     if (searchDb) {
                         if (teacherName.equals(teacherFullName)) {
-                            Teacher t = new Teacher((String)ds.child(FIRSTNAME_DB).getValue(), (String)ds.child(LASTNAME_DB).getValue(),
+                            Teacher t = new Teacher(((String)ds.child(FIRSTNAME_DB).getValue()), (String)ds.child(LASTNAME_DB).getValue(),
                                     (String)ds.child(FULLNAME_DB).getValue(), (String)ds.child(EMAIL).getValue(),
                                     office, local, (String)ds.child(DEPARTMENT_DB).child("0").getValue(), (String)ds.child(POSITION_DB).child("0").getValue(),
                                     (String)ds.child(SECTOR_DB).child("0").getValue());
@@ -140,7 +143,7 @@ public class ChooseTeacherActivity extends MenuActivity {
                         if (!firstName.equals("") && lastName.equals("")) {
                             String fn = teacherFullName.substring(0, teacherFullName.indexOf(" "));
                             if (fn.toLowerCase().trim().contains(firstName.toLowerCase().trim())) {
-                                allTeachersFullName.add(teacherFullName);
+                                allTeachersFullName.add(unEncodedName);
                                 Teacher t = new Teacher((String)ds.child(FIRSTNAME_DB).getValue(), (String)ds.child(LASTNAME_DB).getValue(),
                                         (String)ds.child(FULLNAME_DB).getValue(), (String)ds.child(EMAIL).getValue(),
                                         office, local, (String)ds.child(DEPARTMENT_DB).child("0").getValue(), (String)ds.child(POSITION_DB).child("0").getValue(),
@@ -151,7 +154,7 @@ public class ChooseTeacherActivity extends MenuActivity {
                         } else if (firstName.equals("") && !lastName.equals("")) {
                             String ln = teacherFullName.substring(teacherFullName.indexOf(" ") + 1);
                             if (ln.toLowerCase().trim().contains(lastName.toLowerCase().trim())) {
-                                allTeachersFullName.add(teacherFullName);
+                                allTeachersFullName.add(unEncodedName);
                                 Teacher t = new Teacher((String)ds.child(FIRSTNAME_DB).getValue(), (String)ds.child(LASTNAME_DB).getValue(),
                                         (String)ds.child(FULLNAME_DB).getValue(), (String)ds.child(EMAIL).getValue(),
                                         office, local, (String)ds.child(DEPARTMENT_DB).child("0").getValue(), (String)ds.child(POSITION_DB).child("0").getValue(),
@@ -161,7 +164,7 @@ public class ChooseTeacherActivity extends MenuActivity {
                             // Both fields were set
                         } else if (!firstName.equals("") && !lastName.equals("")) {
                             if (teacherFullName.toLowerCase().trim().contains(fullName.toLowerCase().trim())) {
-                                allTeachersFullName.add(teacherFullName);
+                                allTeachersFullName.add(unEncodedName);
                                 Teacher t = new Teacher((String)ds.child(FIRSTNAME_DB).getValue(), (String)ds.child(LASTNAME_DB).getValue(),
                                         (String)ds.child(FULLNAME_DB).getValue(), (String)ds.child(EMAIL).getValue(),
                                         office, local, (String)ds.child(DEPARTMENT_DB).child("0").getValue(), (String)ds.child(POSITION_DB).child("0").getValue(),
@@ -175,7 +178,7 @@ public class ChooseTeacherActivity extends MenuActivity {
                         if (!firstName.equals("") && lastName.equals("")) {
                             String fn = teacherFullName.substring(0, teacherFullName.indexOf(" "));
                             if (fn.toLowerCase().trim().equals(firstName.toLowerCase().trim())) {
-                                allTeachersFullName.add(teacherFullName);
+                                allTeachersFullName.add(unEncodedName);
                                 Teacher t = new Teacher((String)ds.child(FIRSTNAME_DB).getValue(), (String)ds.child(LASTNAME_DB).getValue(),
                                         (String)ds.child(FULLNAME_DB).getValue(), (String)ds.child(EMAIL).getValue(),
                                         office, local, (String)ds.child(DEPARTMENT_DB).child("0").getValue(), (String)ds.child(POSITION_DB).child("0").getValue(),
@@ -186,7 +189,7 @@ public class ChooseTeacherActivity extends MenuActivity {
                         } else if (firstName.equals("") && !lastName.equals("")) {
                             String ln = teacherFullName.substring(teacherFullName.indexOf(" ") + 1);
                             if (ln.toLowerCase().trim().equals(lastName.toLowerCase().trim())) {
-                                allTeachersFullName.add(teacherFullName);
+                                allTeachersFullName.add(unEncodedName);
                                 Teacher t = new Teacher((String)ds.child(FIRSTNAME_DB).getValue(), (String)ds.child(LASTNAME_DB).getValue(),
                                         (String)ds.child(FULLNAME_DB).getValue(), (String)ds.child(EMAIL).getValue(),
                                         office, local, (String)ds.child(DEPARTMENT_DB).child("0").getValue(), (String)ds.child(POSITION_DB).child("0").getValue(),
@@ -196,7 +199,7 @@ public class ChooseTeacherActivity extends MenuActivity {
                             // Both fields were set
                         } else if (!firstName.equals("") && !lastName.equals("")) {
                             if (teacherFullName.toLowerCase().trim().equals(fullName.toLowerCase().trim())) {
-                                allTeachersFullName.add(teacherFullName);
+                                allTeachersFullName.add(unEncodedName);
                                 Teacher t = new Teacher((String)ds.child(FIRSTNAME_DB).getValue(), (String)ds.child(LASTNAME_DB).getValue(),
                                         (String)ds.child(FULLNAME_DB).getValue(), (String)ds.child(EMAIL).getValue(),
                                         office, local, (String)ds.child(DEPARTMENT_DB).child("0").getValue(), (String)ds.child(POSITION_DB).child("0").getValue(),
@@ -237,6 +240,13 @@ public class ChooseTeacherActivity extends MenuActivity {
         });
     }
 
+    /**
+     * Method which calls the super method on onCreateOptionsMenu to display the menu. Required
+     * so code to show the menu will not have to be repeated for each activity.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -244,6 +254,13 @@ public class ChooseTeacherActivity extends MenuActivity {
         return true;
     }
 
+    /**
+     * Method which calls the super method on onOptionsItemSelected to add functionality to the menu
+     * buttons without having to repeat the code for each activity.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

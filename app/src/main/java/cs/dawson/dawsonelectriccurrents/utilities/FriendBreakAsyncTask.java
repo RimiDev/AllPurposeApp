@@ -25,7 +25,7 @@ import cs.dawson.dawsonelectriccurrents.adapters.FriendAdapter;
  * @version 1.0
  */
 
-public class FriendBreakLoader extends AsyncTask<String, Void, ArrayList<String>> {
+public class FriendBreakAsyncTask extends AsyncTask<String, Void, ArrayList<String>> {
 
     private FIndBreakActivity context;
     private String email;
@@ -46,7 +46,7 @@ public class FriendBreakLoader extends AsyncTask<String, Void, ArrayList<String>
      * @param startTime
      * @param endTime
      */
-    public FriendBreakLoader (FIndBreakActivity fba, String email, String password, String day, String startTime,String endTime) {
+    public FriendBreakAsyncTask(FIndBreakActivity fba, String email, String password, String day, String startTime, String endTime) {
         this.context = fba;
         this.email = email;
         this.password = password;

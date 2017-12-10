@@ -9,7 +9,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import cs.dawson.dawsonelectriccurrents.beans.User;
 import cs.dawson.dawsonelectriccurrents.database.FriendFinderDBHelper;
-import cs.dawson.dawsonelectriccurrents.utilities.FriendBreakLoader;
+import cs.dawson.dawsonelectriccurrents.utilities.FriendBreakAsyncTask;
 
 /**
  * This class takes care of finding any friend from the user that is on break with the specified time
@@ -31,7 +31,7 @@ public class FIndBreakActivity extends MenuActivity {
     private FriendFinderDBHelper database;
     private ArrayList<User> user;
 
-    // Keys
+    // Declare the keys
     private final String USERS_PREFS = "user";
     private static final String BUNDLE_DAY = "day";
     private static final String BUNDLE_START = "starttime";
@@ -49,6 +49,7 @@ public class FIndBreakActivity extends MenuActivity {
         // Get the list view
         listViewFriends = (ListView) findViewById(R.id.listViewFriends);
 
+        // Get the bundle from the user's search
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             day = extras.getString(BUNDLE_DAY);
@@ -56,6 +57,7 @@ public class FIndBreakActivity extends MenuActivity {
             endTime = extras.getString(BUNDLE_END);
         }
 
+        // Get the shared preferences for the user's information
         SharedPreferences prefs = getSharedPreferences(USERS_PREFS, MODE_PRIVATE);
         if (prefs != null) {
             // Edit the textviews for the current shared preferences
@@ -63,17 +65,31 @@ public class FIndBreakActivity extends MenuActivity {
             password = prefs.getString(PASSWORD, "");
         }
 
-        // Call the Async task
-        FriendBreakLoader friendsBreaks = new FriendBreakLoader(this, email, password, day, startTime, endTime);
+        // Call the Async task to look with the API call
+        FriendBreakAsyncTask friendsBreaks = new FriendBreakAsyncTask(this, email, password, day, startTime, endTime);
         friendsBreaks.execute();
     }
 
+    /**
+     * Method which calls the super method on onCreateOptionsMenu to display the menu. Required
+     * so code to show the menu will not have to be repeated for each activity.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         return true;
     }
 
+    /**
+     * Method which calls the super method on onOptionsItemSelected to add functionality to the menu
+     * buttons without having to repeat the code for each activity.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);

@@ -31,18 +31,18 @@ import cs.dawson.dawsonelectriccurrents.weatherrequest.WeatherRequest;
 
 public class FiveDayForecastActivity extends MenuActivity {
 
-    //The API key that was genereated for my account on https://openweathermap.org/
+    // The API key that was genereated for my account on https://openweathermap.org/
     public String apiKey = "&APPID=5b62062bcde765f123614e4c944f8027";
-    //The city that the user wants to check the weather for.
+    // The city that the user wants to check the weather for.
     public String city;
     public String countryCode;
 
-    //Latitude and longitude of the device.
+    // Latitude and longitude of the device.
     public String longitude;
     public String latitude;
 
 
-    //Weather details for 5 day range.
+    // Weather details for 5 day range.
     TextView weatherDay1;
     TextView weatherDay2;
     TextView weatherDay3;
@@ -53,7 +53,7 @@ public class FiveDayForecastActivity extends MenuActivity {
     TextView dawsonweathertitle;
     HorizontalScrollView horizontalscrollView;
 
-    //weatherRequest class objects in global scope.
+    // WeatherRequest class objects in global scope.
     WeatherRequest forecastRequest;
     WeatherRequest uvIndexRequest;
 
