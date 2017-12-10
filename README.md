@@ -16,3 +16,11 @@ Hannah Ly
 Kevin Bui
 
 Maxime Lacasse
+
+Two accounts to log in with:
+email: tricia@gmail.com
+password: 123456
+email: jaya@gmail.com
+password: 123456
+
+They both have courses, friends and some of their friends have courses.
