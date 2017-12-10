@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainbg"
-    tools:context="cs.dawson.dawsonelectriccurrents.FindFreeFriends">
+    tools:context="cs.dawson.dawsonelectriccurrents.FIndBreakActivity">
 
 
     <LinearLayout
@@ -17,7 +17,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
+
             android:textSize="20dp"
             android:textColor="#000000"
             android:textStyle="bold"
@@ -28,7 +29,7 @@
             android:id="@+id/daySpinner"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.4" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,7 +72,12 @@
         <Spinner
             android:id="@+id/endTimeSpinner"
             android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:textStyle="bold"
+            />
+=======
             android:layout_height="100dp"
             android:layout_weight="0.5" />
     </LinearLayout>
@@ -83,7 +89,7 @@
 
         <ImageButton
             android:id="@+id/searchButton"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00000000"

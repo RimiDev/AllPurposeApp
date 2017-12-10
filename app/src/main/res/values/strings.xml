@@ -108,7 +108,7 @@
     <string name="searchFriendCourse">Search Friend Courses</string>
     <string name="notAvailableText">This friend is not available!</string>
     <string name="availableText">This friend is currently in: </string>
-    <string name="daySelection">Select the day: </string>
+    <string name="daySelection">Select day: </string>
     <string name="noFriends">No friends</string>
     <string name="noFriendsCourse">No friends in this course!</string>
     <string name="nofriendsonbreak">No friends on break at current time searched</string>
